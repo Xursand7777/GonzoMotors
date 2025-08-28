@@ -1,0 +1,12 @@
+export '../../core/enums/car.dart';
+export 'battery.dart';
+export 'charging.dart';
+export 'dimensions.dart';
+export 'driver_assist.dart';
+export 'interior.dart';
+export 'performance.dart';
+export 'pricing.dart';
+export 'warranty.dart';
+export 'car_info.dart';
+export 'car_specs.dart';
+export 'car_details.dart';

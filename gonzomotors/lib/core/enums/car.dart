@@ -1,0 +1,1 @@
+enum Car { info, size, engine, range, safety, features }
