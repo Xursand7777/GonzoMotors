@@ -23,11 +23,11 @@ class CarPickCard extends StatelessWidget {
     final platform = theme.platform;
     final border = RoundedRectangleBorder(borderRadius: BorderRadius.circular(16));
 
-    IconData _addIcon() => (platform == TargetPlatform.iOS || platform == TargetPlatform.macOS)
+    IconData addIcon() => (platform == TargetPlatform.iOS || platform == TargetPlatform.macOS)
         ? CupertinoIcons.add
         : Icons.add_rounded;
 
-    IconData _checkIcon() => (platform == TargetPlatform.iOS || platform == TargetPlatform.macOS)
+    IconData checkIcon() => (platform == TargetPlatform.iOS || platform == TargetPlatform.macOS)
         ? CupertinoIcons.check_mark
         : Icons.check_rounded;
 
@@ -35,7 +35,7 @@ class CarPickCard extends StatelessWidget {
     final Color badgeColor = selected ? cs.tertiary : cs.primary;
     final Color badgeIconColor = cs.onPrimary; // достаточно контрастно и там, и там
 
-    void _handleToggle() {
+    void handleToggle() {
       // нативная тактильная отдача (на iOS/Android), безопасно на других
       Feedback.forTap(context);
       onToggle();
@@ -46,7 +46,7 @@ class CarPickCard extends StatelessWidget {
       elevation: 1,
       shape: border,
       child: InkWell(
-        onTap: _handleToggle,
+        onTap: handleToggle,
         customBorder: border,
         child: Stack(
           children: [
@@ -110,7 +110,7 @@ class CarPickCard extends StatelessWidget {
               child: Tooltip(
                 message: selected ? 'Выбрано' : 'Добавить',
                 child: InkWell(
-                  onTap: _handleToggle,
+                  onTap: handleToggle,
                   borderRadius: BorderRadius.circular(20),
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 150),
@@ -128,7 +128,7 @@ class CarPickCard extends StatelessWidget {
                       ],
                     ),
                     child: Icon(
-                      selected ? _checkIcon() : _addIcon(),
+                      selected ? checkIcon() : addIcon(),
                       color: badgeIconColor,
                       size: 20,
                     ),

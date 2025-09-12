@@ -11,7 +11,7 @@ class SelectCarsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final platform = Theme.of(context).platform;
 
-    void _openCompare(a, b) {
+    void openCompare(a, b) {
       final route = (platform == TargetPlatform.iOS || platform == TargetPlatform.macOS)
           ? CupertinoPageRoute(builder: (_) => ComparePage.prefilled(a: a, b: b))
           : MaterialPageRoute(builder: (_) => ComparePage.prefilled(a: a, b: b));
@@ -25,7 +25,7 @@ class SelectCarsPage extends StatelessWidget {
         // адаптивная высота/тенюшка уже handled Material3; цветов не хардкодим
       ),
       // FAB у тебя уже адаптивный внутри (CompareFab)
-      floatingActionButton: CompareFab(onCompare: _openCompare),
+      floatingActionButton: CompareFab(onCompare: openCompare),
       body: const SafeArea( // чуть лучше на iOS с жестами/выемками
         minimum: EdgeInsets.only(bottom: 8),
         child: CarsList(),
