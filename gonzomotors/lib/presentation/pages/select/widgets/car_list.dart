@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gonzomotors/presentation/bloc/select/car_select_bloc.dart';
+import 'package:gonzo_motors/presentation/bloc/select/car_select_bloc.dart';
 
 import 'car_pick_card.dart';
 

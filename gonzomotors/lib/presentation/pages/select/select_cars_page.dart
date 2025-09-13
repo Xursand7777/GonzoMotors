@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gonzomotors/presentation/pages/select/widgets/car_list.dart';
-import 'package:gonzomotors/presentation/pages/select/widgets/compare_fab.dart';
+import 'package:gonzo_motors/presentation/pages/select/widgets/car_list.dart';
+import 'package:gonzo_motors/presentation/pages/select/widgets/compare_fab.dart';
 import '../compare/compare_page.dart';
 
 class SelectCarsPage extends StatelessWidget {

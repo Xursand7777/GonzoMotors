@@ -1,4 +1,5 @@
-import 'package:gonzomotors/data/models/car_details.dart';
+import 'package:gonzo_motors/data/models/car_details.dart';
+
 
 import '../../domain/repositories/car_repository.dart';
 import '../data_sources/car_local_ds.dart';
