@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "737063805016",
+    "project_id": "gonzomotors-2de6f",
+    "storage_bucket": "gonzomotors-2de6f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:737063805016:android:be38c9b5e0159cd7df2a2d",
+        "android_client_info": {
+          "package_name": "com.example.gonzomotors"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAmhYGRtfQLjhdgZnnvd8vGN82Gj0cRqM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

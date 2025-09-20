@@ -1,5 +1,12 @@
+import 'dart:io';
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:talker_bloc_logger/talker_bloc_logger_observer.dart';
 
@@ -9,6 +16,7 @@ import 'core/log/talker_logger.dart';
 import 'core/theme/app_theme.dart';
 
 import 'domain/usecases/find_details_by_specs.dart';
+import 'firebase_options.dart';
 import 'presentation/bloc/compare/compare_bloc.dart';
 import 'presentation/bloc/select/car_select_bloc.dart';
 
@@ -18,6 +26,48 @@ final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  FlutterError.onError = (FlutterErrorDetails details) {
+    if (!kDebugMode) {
+      FirebaseCrashlytics.instance.recordFlutterError(details);
+    }
+  };
+
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
+
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
+
+  await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(true);
+
+  // iOS uchun APNS token olish
+  if (Platform.isIOS) {
+    String? apnsToken = await FirebaseMessaging.instance.getAPNSToken();
+    if (apnsToken != null) {
+      // FCM token olish
+      await FirebaseMessaging.instance.getToken();
+      logger.debug("Firebase Messaging Token: $apnsToken");
+    } else {
+      // Callback orqali token olish
+      FirebaseMessaging.instance.onTokenRefresh.listen((token) {
+        logger.debug("Firebase Messaging apns Token stream: $apnsToken");
+      });
+    }
+  } else {
+    // Android uchun
+    final token = await FirebaseMessaging.instance.getToken();
+    logger.debug("Firebase Messaging android Token: $token");
+  }
+
 
   Bloc.observer = MultiBlocObserver([
     TalkerBlocObserver(talker: logger),
