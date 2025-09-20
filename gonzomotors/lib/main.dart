@@ -1,17 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:talker_bloc_logger/talker_bloc_logger_observer.dart';
 
-import 'core/app_injection.dart';
+import 'core/di/app_injection.dart';
+import 'core/bloc/observer.dart';
+import 'core/log/talker_logger.dart';
 import 'core/theme/app_theme.dart';
 
 import 'domain/usecases/find_details_by_specs.dart';
 import 'presentation/bloc/compare/compare_bloc.dart';
 import 'presentation/bloc/select/car_select_bloc.dart';
-import 'presentation/pages/select/select_cars_page.dart';
+
+import 'core/route/app_router.dart';
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  Bloc.observer = MultiBlocObserver([
+    TalkerBlocObserver(talker: logger),
+  ]);
+
   await initInjection();
   runApp(const MyApp());
 }
@@ -30,8 +41,9 @@ class MyApp extends StatelessWidget {
           create: (_) => CompareBloc(sl<FindDetailsBySpecs>()),
         ),
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
+        routerConfig: appRouter,
         theme: AppTheme.light,
         darkTheme: AppTheme.dark,
         themeMode: ThemeMode.system, // системная светлая/тёмная
@@ -40,7 +52,6 @@ class MyApp extends StatelessWidget {
           data: AppTheme.cupertinoFrom(context),
           child: child!,
         ),
-        home: const SelectCarsPage(),
       ),
     );
   }

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gonzo_motors/presentation/pages/compare/widgets/radar_card.dart';
 import 'package:gonzo_motors/presentation/pages/compare/widgets/reasons_card.dart';
 import 'package:gonzo_motors/presentation/pages/compare/widgets/sections_from_details.dart';
-import '../../../core/app_injection.dart';
+import '../../../core/di/app_injection.dart';
 import '../../../core/enums/car.dart';
 import '../../../data/models/car_specs.dart';
 import '../../../data/models/compare_models.dart';
