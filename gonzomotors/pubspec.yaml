@@ -49,6 +49,9 @@ dependencies:
   firebase_crashlytics: ^4.3.9
   internet_connection_checker: ^3.0.1
   connectivity_plus: ^6.1.5
+  hive_ce: ^2.11.3
+  hive_ce_flutter: ^2.3.1
+  hive_ce_generator: ^1.9.2
 
 
 
@@ -71,6 +74,21 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
   build_runner: ^2.4.9
+  flutter_gen_runner: ^5.10.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+    android: true
+    ios: true
+    image_path: assets/icons/logo.png
+    adaptive_icon_background: "#FFFFFF"
+    adaptive_icon_foreground: assets/icons/logo.png
+    min_sdk_android: 21
+
+
+flutter_gen:
+    output: lib/gen/
+    line_length: 80
 
 
 
@@ -100,17 +118,25 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
+  fonts:
+      - family: Pretendard
+        fonts:
+          - asset: assets/fonts/Pretendard-Regular.otf
+          - asset: assets/fonts/Pretendard-Thin.otf
+            weight: 100
+          - asset: assets/fonts/Pretendard-ExtraLight.otf
+            weight: 200
+          - asset: assets/fonts/Pretendard-Light.otf
+            weight: 300
+          - asset: assets/fonts/Pretendard-Medium.otf
+            weight: 500
+          - asset: assets/fonts/Pretendard-SemiBold.otf
+            weight: 600
+          - asset: assets/fonts/Pretendard-Bold.otf
+            weight: 700
+          - asset: assets/fonts/Pretendard-ExtraBold.otf
+            weight: 800
+          - asset: assets/fonts/Pretendard-Black.otf
+            weight: 900
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
