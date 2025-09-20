@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gonzo_motors/shared/internet_connectivity/internet_connectivity_wrapper.dart';
 import 'package:talker_bloc_logger/talker_bloc_logger_observer.dart';
 
 import 'core/di/app_injection.dart';
@@ -98,9 +99,11 @@ class MyApp extends StatelessWidget {
         darkTheme: AppTheme.dark,
         themeMode: ThemeMode.system, // системная светлая/тёмная
         // Оборачиваем всё в CupertinoTheme, чтобы iOS-виджеты брали цвета/шрифты
-        builder: (context, child) => CupertinoTheme(
-          data: AppTheme.cupertinoFrom(context),
-          child: child!,
+        builder: (context, child) => InternetConnectivityWrapper(
+          child: CupertinoTheme(
+            data: AppTheme.cupertinoFrom(context),
+            child: child!,
+          ),
         ),
       ),
     );
