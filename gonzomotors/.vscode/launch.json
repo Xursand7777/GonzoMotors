@@ -5,21 +5,30 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "gonzomotors",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "gonzomotors (profile mode)",
+            "name": "Gonzo Android (debug)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "program": "lib/main.dart",
+            "deviceId": "Pixel_9_Pro_API_36",
+            "preLaunchTask": "Start Pixel emulator"
         },
         {
-            "name": "gonzomotors (release mode)",
+            "name": "Gonzo Android (profile)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "flutterMode": "profile",
+            "program": "lib/main.dart",
+            "deviceId": "Pixel_9_Pro_API_36",
+            "preLaunchTask": "Start Pixel emulator"
+        },
+        {
+            "name": "Gonzo Android (release)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release",
+            "program": "lib/main.dart",
+            "deviceId": "Pixel_9_Pro_API_36",
+            "preLaunchTask": "Start Pixel emulator"
         }
     ]
 }

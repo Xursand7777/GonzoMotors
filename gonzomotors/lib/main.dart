@@ -99,11 +99,9 @@ class MyApp extends StatelessWidget {
         darkTheme: AppTheme.dark,
         themeMode: ThemeMode.system, // системная светлая/тёмная
         // Оборачиваем всё в CupertinoTheme, чтобы iOS-виджеты брали цвета/шрифты
-        builder: (context, child) => InternetConnectivityWrapper(
-          child: CupertinoTheme(
-            data: AppTheme.cupertinoFrom(context),
-            child: child!,
-          ),
+        builder: (context, child) => CupertinoTheme(
+          data: AppTheme.cupertinoFrom(context),
+          child: child!,
         ),
       ),
     );
