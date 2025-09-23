@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gonzo_motors/presentation/pages/compare/widgets/radar_card.dart';
-import 'package:gonzo_motors/presentation/pages/compare/widgets/reasons_card.dart';
-import 'package:gonzo_motors/presentation/pages/compare/widgets/sections_from_details.dart';
 import '../../../core/di/app_injection.dart';
 import '../../../core/enums/car.dart';
-import '../../../data/models/car_specs.dart';
+import '../../data/models/car_specs.dart';
 import '../../../data/models/compare_models.dart';
-import '../../../domain/usecases/find_details_by_specs.dart';
-import '../../bloc/compare/compare_bloc.dart';
+import '../../features/selection/data/usecases/find_details_by_specs.dart';
+import '../../../features/selection/bloc/compare_bloc.dart';
+import '../../../features/selection/widgets/radar_card.dart';
+import '../../../features/selection/widgets/reasons_card.dart';
+import '../../../features/selection/widgets/sections_from_details.dart';
 
 class ComparePage extends StatelessWidget {
   const ComparePage({super.key, this.a, this.b});
