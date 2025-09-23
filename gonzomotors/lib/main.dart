@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gonzo_motors/shared/internet_connectivity/internet_connectivity_wrapper.dart';
 import 'package:talker_bloc_logger/talker_bloc_logger_observer.dart';
 
 import 'core/di/app_injection.dart';
@@ -15,6 +16,7 @@ import 'core/bloc/observer.dart';
 import 'core/log/talker_logger.dart';
 import 'core/theme/app_theme.dart';
 
+import 'features/connection_checker/bloc/connection_checker_bloc.dart';
 import 'features/selection/data/usecases/find_details_by_specs.dart';
 import 'features/car_catalog/bloc/car_select_event.dart';
 import 'firebase_options.dart';
@@ -91,6 +93,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<CompareBloc>(
           create: (_) => CompareBloc(sl<FindDetailsBySpecs>()),
         ),
+        BlocProvider<ConnectionCheckerBloc>(
+          create: (context) => ConnectionCheckerBloc(sl.get(), sl.get()),
+        ),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
@@ -99,9 +104,11 @@ class MyApp extends StatelessWidget {
         darkTheme: AppTheme.dark,
         themeMode: ThemeMode.system, // системная светлая/тёмная
         // Оборачиваем всё в CupertinoTheme, чтобы iOS-виджеты брали цвета/шрифты
-        builder: (context, child) => CupertinoTheme(
-          data: AppTheme.cupertinoFrom(context),
-          child: child!,
+        builder: (context, child) => InternetConnectivityWrapper(
+          child: CupertinoTheme(
+            data: AppTheme.cupertinoFrom(context),
+            child: child!,
+          ),
         ),
       ),
     );

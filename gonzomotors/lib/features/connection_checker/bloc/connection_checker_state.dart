@@ -1,5 +1,4 @@
 part of 'connection_checker_bloc.dart';
-
 class ConnectionCheckerState extends Equatable {
   final bool isConnected;
 

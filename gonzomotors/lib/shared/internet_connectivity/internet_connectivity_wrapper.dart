@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/route/route_names.dart';
+import '../../features/connection_checker/bloc/connection_checker_bloc.dart';
 import '../../main.dart';
-import 'bloc/connection_checker_bloc.dart';
 
 class InternetConnectivityWrapper extends StatelessWidget {
   final Widget child;

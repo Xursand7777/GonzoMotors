@@ -39,10 +39,73 @@ class $AssetsCarsGen {
   ];
 }
 
+class $AssetsIconsGen {
+  const $AssetsIconsGen();
+
+  /// File path: assets/icons/calendar.png
+  AssetGenImage get calendar =>
+      const AssetGenImage('assets/icons/calendar.png');
+
+  /// File path: assets/icons/close_circle.png
+  AssetGenImage get closeCircle =>
+      const AssetGenImage('assets/icons/close_circle.png');
+
+  /// File path: assets/icons/connect_no.png
+  AssetGenImage get connectNo =>
+      const AssetGenImage('assets/icons/connect_no.png');
+
+  /// File path: assets/icons/language.png
+  AssetGenImage get language =>
+      const AssetGenImage('assets/icons/language.png');
+
+  /// File path: assets/icons/log_out.png
+  AssetGenImage get logOut => const AssetGenImage('assets/icons/log_out.png');
+
+  /// File path: assets/icons/logo.png
+  AssetGenImage get logo => const AssetGenImage('assets/icons/logo.png');
+
+  /// File path: assets/icons/magazine.png
+  AssetGenImage get magazine =>
+      const AssetGenImage('assets/icons/magazine.png');
+
+  /// File path: assets/icons/search.png
+  AssetGenImage get search => const AssetGenImage('assets/icons/search.png');
+
+  /// File path: assets/icons/settings.png
+  AssetGenImage get settings =>
+      const AssetGenImage('assets/icons/settings.png');
+
+  /// File path: assets/icons/splash.png
+  AssetGenImage get splash => const AssetGenImage('assets/icons/splash.png');
+
+  /// File path: assets/icons/trash.png
+  AssetGenImage get trash => const AssetGenImage('assets/icons/trash.png');
+
+  /// File path: assets/icons/user.png
+  AssetGenImage get user => const AssetGenImage('assets/icons/user.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+    calendar,
+    closeCircle,
+    connectNo,
+    language,
+    logOut,
+    logo,
+    magazine,
+    search,
+    settings,
+    splash,
+    trash,
+    user,
+  ];
+}
+
 class Assets {
   const Assets._();
 
   static const $AssetsCarsGen cars = $AssetsCarsGen();
+  static const $AssetsIconsGen icons = $AssetsIconsGen();
 }
 
 class AssetGenImage {
