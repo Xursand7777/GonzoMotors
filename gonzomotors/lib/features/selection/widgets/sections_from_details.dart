@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import '../../../../data/models/car_details.dart' as db;
+import '../../../data/models/car_details.dart' as db;
 import 'diff_section.dart';
 
 List<Widget> buildSectionsFromDetails(

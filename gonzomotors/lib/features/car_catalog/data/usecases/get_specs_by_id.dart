@@ -1,5 +1,5 @@
-import '../repositories/car_repository.dart';
-import '../../data/models/car_specs.dart';
+import '../repository/car_repository.dart';
+import '../../../../data/models/car_specs.dart';
 
 class GetSpecsById {
   final CarRepository repo;

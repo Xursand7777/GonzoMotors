@@ -1,4 +1,6 @@
-part of 'car_select_bloc.dart';
+
+import 'package:equatable/equatable.dart';
+
 
 abstract class CarSelectEvent extends Equatable {
   @override

@@ -1,6 +1,6 @@
-import '../repositories/car_repository.dart';
-import '../../data/models/car_details.dart';
-import '../../data/models/car_specs.dart';
+import '../../../car_catalog/data/repository/car_repository.dart';
+import '../../../../data/models/car_details.dart';
+import '../../../../data/models/car_specs.dart';
 
 class FindDetailsBySpecs {
   final CarRepository repo;

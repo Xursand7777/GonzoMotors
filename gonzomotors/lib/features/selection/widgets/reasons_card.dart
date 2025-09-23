@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../../../../data/models/car_specs.dart';
+import '../../../data/models/car_specs.dart';
 
 class ReasonsCard extends StatelessWidget {
   const ReasonsCard({super.key, required this.a, required this.reasons});

@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../data/models/car_specs.dart';
-import '../../../bloc/select/car_select_bloc.dart';
+import '../bloc/car_select_event.dart';
+import '../../../data/models/car_specs.dart';
+import '../bloc/car_select_bloc.dart';
 
 class CompareFab extends StatelessWidget {
   const CompareFab({super.key, required this.onCompare});

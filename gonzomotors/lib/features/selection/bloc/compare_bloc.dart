@@ -3,9 +3,9 @@ import 'package:equatable/equatable.dart';
 
 import '../../../../core/enums/car.dart';
 import '../../../../data/models/car_details.dart';
-import '../../../../data/models/car_specs.dart';
+import '../../../data/models/car_specs.dart';
 import '../../../../data/models/compare_models.dart';
-import '../../../../domain/usecases/find_details_by_specs.dart';
+import '../data/usecases/find_details_by_specs.dart';
 
 
 part 'compare_event.dart';

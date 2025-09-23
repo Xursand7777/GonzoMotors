@@ -1,12 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import '../../../../data/models/car_info.dart';
-import '../../../../data/models/car_specs.dart';
-import '../../../../domain/usecases/get_car_cards.dart';
-import '../../../../domain/usecases/get_specs_by_id.dart';
+import '../../../data/models/car_specs.dart';
+import '../data/usecases/get_car_cards.dart';
+import '../data/usecases/get_specs_by_id.dart';
+import 'car_select_event.dart';
 
 
-part 'car_select_event.dart';
 part 'car_select_state.dart';
 
 class CarSelectBloc extends Bloc<CarSelectEvent, CarSelectState> {

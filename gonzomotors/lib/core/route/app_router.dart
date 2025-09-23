@@ -1,8 +1,9 @@
 import 'package:go_router/go_router.dart';
 import 'package:gonzo_motors/core/route/route_names.dart';
-import 'package:gonzo_motors/presentation/pages/select/select_cars_page.dart';
 
 import '../../main.dart';
+import '../../pages/car_catalog_page/car_catalog_page.dart';
+
 final GoRouter appRouter = GoRouter(
   navigatorKey: navigatorKey,
   initialLocation: '/home',

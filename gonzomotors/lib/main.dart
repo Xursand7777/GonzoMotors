@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gonzo_motors/shared/internet_connectivity/internet_connectivity_wrapper.dart';
 import 'package:talker_bloc_logger/talker_bloc_logger_observer.dart';
 
 import 'core/di/app_injection.dart';
@@ -16,10 +15,11 @@ import 'core/bloc/observer.dart';
 import 'core/log/talker_logger.dart';
 import 'core/theme/app_theme.dart';
 
-import 'domain/usecases/find_details_by_specs.dart';
+import 'features/selection/data/usecases/find_details_by_specs.dart';
+import 'features/car_catalog/bloc/car_select_event.dart';
 import 'firebase_options.dart';
-import 'presentation/bloc/compare/compare_bloc.dart';
-import 'presentation/bloc/select/car_select_bloc.dart';
+import 'features/selection/bloc/compare_bloc.dart';
+import 'features/car_catalog/bloc/car_select_bloc.dart';
 
 import 'core/route/app_router.dart';
 

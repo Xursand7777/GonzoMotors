@@ -1,7 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/enums/car.dart';
-import '../../../../data/models/car_specs.dart';
+import '../../../data/models/car_specs.dart';
 
 class RadarCard extends StatelessWidget {
   const RadarCard({

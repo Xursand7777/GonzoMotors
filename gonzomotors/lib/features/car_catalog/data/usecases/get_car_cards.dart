@@ -1,5 +1,5 @@
-import '../repositories/car_repository.dart';
-import '../../data/models/car_info.dart';
+import '../repository/car_repository.dart';
+import '../../../../data/models/car_info.dart';
 
 class GetCarCards {
   final CarRepository repo;

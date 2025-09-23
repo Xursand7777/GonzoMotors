@@ -1,10 +1,18 @@
-import 'package:gonzo_motors/data/models/car_details.dart';
+import '../../../../data/data_sources/car_local_ds.dart';
+import '../../../../data/models/car_details.dart';
+import '../../../../data/models/car_info.dart';
+import '../../../../data/models/car_specs.dart';
 
 
-import '../../domain/repositories/car_repository.dart';
-import '../data_sources/car_local_ds.dart';
-import '../models/car_info.dart';
-import '../models/car_specs.dart';
+
+
+abstract class CarRepository {
+  Future<List<CarInfo>> getCarCards();
+  Future<CarSpecs> getSpecsById(String id);
+
+  /// Найти полные детали по спецификации (имя в формате 'Name (YYYY)')
+  Future<CarDetails?> findDetailsBySpecs(CarSpecs s);
+}
 
 class CarRepositoryImpl implements CarRepository {
   final CarLocalDataSource local;
