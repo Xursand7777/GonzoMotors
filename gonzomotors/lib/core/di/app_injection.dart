@@ -8,6 +8,7 @@ import '../../features/car_catalog/data/repository/car_repository.dart';
 import '../../features/selection/data/usecases/find_details_by_specs.dart';
 import '../../features/car_catalog/data/usecases/get_car_cards.dart';
 import '../../features/car_catalog/data/usecases/get_specs_by_id.dart';
+import '../../features/user_location/data/repository/user_location_repository.dart';
 
 final sl = GetIt.instance;
 
@@ -28,10 +29,11 @@ Future<void> initInjection() async {
   sl.registerLazySingleton<CarLocalDataSource>(() => CarLocalDataSourceImpl());
 
   // repository
-  sl.registerLazySingleton<CarRepository>(() => CarRepositoryImpl(sl()));
+  sl.registerLazySingleton<CarRepository>(() => CarRepositoryImpl(sl.get()));
+  sl.registerLazySingleton<UserLocationRepository>(() => UserLocationRepositoryImpl(sl.get(), sl.get()));
 
   // usecases
-  sl.registerLazySingleton(() => GetCarCards(sl()));
-  sl.registerLazySingleton(() => GetSpecsById(sl()));
-  sl.registerLazySingleton(() => FindDetailsBySpecs(sl()));
+  sl.registerLazySingleton(() => GetCarCards(sl.get()));
+  sl.registerLazySingleton(() => GetSpecsById(sl.get()));
+  sl.registerLazySingleton(() => FindDetailsBySpecs(sl.get()));
 }

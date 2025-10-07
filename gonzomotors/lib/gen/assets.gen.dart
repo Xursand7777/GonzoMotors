@@ -68,6 +68,10 @@ class $AssetsIconsGen {
   AssetGenImage get magazine =>
       const AssetGenImage('assets/icons/magazine.png');
 
+  /// File path: assets/icons/notification.png
+  AssetGenImage get notification =>
+      const AssetGenImage('assets/icons/notification.png');
+
   /// File path: assets/icons/search.png
   AssetGenImage get search => const AssetGenImage('assets/icons/search.png');
 
@@ -77,6 +81,10 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/splash.png
   AssetGenImage get splash => const AssetGenImage('assets/icons/splash.png');
+
+  /// File path: assets/icons/stroke-arrow-left.png
+  AssetGenImage get strokeArrowLeft =>
+      const AssetGenImage('assets/icons/stroke-arrow-left.png');
 
   /// File path: assets/icons/trash.png
   AssetGenImage get trash => const AssetGenImage('assets/icons/trash.png');
@@ -93,9 +101,11 @@ class $AssetsIconsGen {
     logOut,
     logo,
     magazine,
+    notification,
     search,
     settings,
     splash,
+    strokeArrowLeft,
     trash,
     user,
   ];
