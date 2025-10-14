@@ -9,11 +9,15 @@ import '../../features/selection/data/usecases/find_details_by_specs.dart';
 import '../../features/car_catalog/data/usecases/get_car_cards.dart';
 import '../../features/car_catalog/data/usecases/get_specs_by_id.dart';
 import '../../features/user_location/data/repository/user_location_repository.dart';
+import '../services/deeplink_service.dart';
+import '../services/notification_service.dart';
 
 final sl = GetIt.instance;
 
 Future<void> initInjection() async {
   final dio = DioClient();
+  final deeplinkService = DeeplinkService();
+  final notificationService = NotificationService();
   final sharedPreferences = await SharedPreferences.getInstance();
   final InternetConnectionChecker connectionChecker =
   InternetConnectionChecker.createInstance(
@@ -24,6 +28,8 @@ Future<void> initInjection() async {
   sl.registerSingleton(connectionChecker);
   sl.registerSingleton(dio.dio);
   sl.registerSingleton<SharedPreferences>(sharedPreferences);
+  sl.registerSingleton(deeplinkService);
+  sl.registerSingleton(notificationService);
 
   // data source
   sl.registerLazySingleton<CarLocalDataSource>(() => CarLocalDataSourceImpl());

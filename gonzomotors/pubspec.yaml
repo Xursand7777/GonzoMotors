@@ -53,7 +53,10 @@ dependencies:
   hive_ce_flutter: ^2.3.1
   hive_ce_generator: ^1.9.2
   geolocator: ^14.0.2
-
+  bloc: ^9.0.1
+  flutter_cache_manager: ^3.4.1
+  app_links: ^6.4.0
+  flutter_local_notifications: ^19.4.0
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -68,9 +68,23 @@ class $AssetsIconsGen {
   AssetGenImage get magazine =>
       const AssetGenImage('assets/icons/magazine.png');
 
+  /// File path: assets/icons/md_catalog.png
+  AssetGenImage get mdCatalog =>
+      const AssetGenImage('assets/icons/md_catalog.png');
+
+  /// File path: assets/icons/md_menu.png
+  AssetGenImage get mdMenu => const AssetGenImage('assets/icons/md_menu.png');
+
+  /// File path: assets/icons/navigation_logo2.png
+  AssetGenImage get navigationLogo2 =>
+      const AssetGenImage('assets/icons/navigation_logo2.png');
+
   /// File path: assets/icons/notification.png
   AssetGenImage get notification =>
       const AssetGenImage('assets/icons/notification.png');
+
+  /// File path: assets/icons/profile.png
+  AssetGenImage get profile => const AssetGenImage('assets/icons/profile.png');
 
   /// File path: assets/icons/search.png
   AssetGenImage get search => const AssetGenImage('assets/icons/search.png');
@@ -101,7 +115,11 @@ class $AssetsIconsGen {
     logOut,
     logo,
     magazine,
+    mdCatalog,
+    mdMenu,
+    navigationLogo2,
     notification,
+    profile,
     search,
     settings,
     splash,

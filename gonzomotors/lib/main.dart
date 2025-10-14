@@ -14,6 +14,8 @@ import 'package:talker_bloc_logger/talker_bloc_logger_observer.dart';
 import 'core/di/app_injection.dart';
 import 'core/bloc/observer.dart';
 import 'core/log/talker_logger.dart';
+import 'core/services/deeplink_service.dart';
+import 'core/services/notification_service.dart';
 import 'core/theme/app_theme.dart';
 
 import 'features/connection_checker/bloc/connection_checker_bloc.dart';
@@ -72,11 +74,15 @@ Future<void> main() async {
   }
 
 
+
   Bloc.observer = MultiBlocObserver([
     TalkerBlocObserver(talker: logger),
   ]);
 
   await initInjection();
+
+  await sl<DeeplinkService>().initialize();
+  await sl<NotificationService>().initialize();
   runApp(const MyApp());
 }
 
