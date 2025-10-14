@@ -57,6 +57,8 @@ dependencies:
   flutter_cache_manager: ^3.4.1
   app_links: ^6.4.0
   flutter_local_notifications: ^19.4.0
+  cached_network_image: ^3.3.1
+  shimmer: ^3.0.0
 
 
   # The following adds the Cupertino Icons font to your application.

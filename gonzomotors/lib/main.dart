@@ -18,6 +18,7 @@ import 'core/services/deeplink_service.dart';
 import 'core/services/notification_service.dart';
 import 'core/theme/app_theme.dart';
 
+import 'features/ads_banner/bloc/ads_banner_bloc.dart';
 import 'features/connection_checker/bloc/connection_checker_bloc.dart';
 import 'features/selection/data/usecases/find_details_by_specs.dart';
 import 'features/car_catalog/bloc/car_select_event.dart';
@@ -96,6 +97,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<CarSelectBloc>(
           create: (_) => CarSelectBloc(sl(), sl())..add(CarSelectLoad()),
         ),
+        BlocProvider<AdsBannerBloc>(
+          create: (_) => AdsBannerBloc(repo: sl.get())..add(const GetBannersEvent()),
+        ),
         BlocProvider<CompareBloc>(
           create: (_) => CompareBloc(sl<FindDetailsBySpecs>()),
         ),
@@ -108,7 +112,7 @@ class MyApp extends StatelessWidget {
         routerConfig: appRouter,
         theme: AppTheme.light,
         darkTheme: AppTheme.dark,
-        themeMode: ThemeMode.system, // системная светлая/тёмная
+        themeMode: ThemeMode.system,
         // Оборачиваем всё в CupertinoTheme, чтобы iOS-виджеты брали цвета/шрифты
         builder: (context, child) => InternetConnectivityWrapper(
           child: CupertinoTheme(

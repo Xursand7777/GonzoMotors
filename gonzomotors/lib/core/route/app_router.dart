@@ -14,7 +14,7 @@ final GoRouter appRouter = GoRouter(
   initialLocation: '/splash',
   observers: [TalkerRouteObserver(logger)],
   onException: (context, state, router) {
-    router.goNamed(RouteNames.home);
+    router.goNamed(RouteNames.dashboard);
   },
   routes: [
     GoRoute(
@@ -26,12 +26,12 @@ final GoRouter appRouter = GoRouter(
       GoRoute(
         path: '/home',
         name: RouteNames.home,
-        builder: (context, state) => const SelectCarsPage(),
+        builder: (context, state) => const DashboardPage(),
       ),
-    // GoRoute(
-    //     path: '/dashboard',
-    //     name: RouteNames.dashboard,
-    //     builder: (_, __) => const DashboardPage()),
+    GoRoute(
+        path: '/dashboard',
+        name: RouteNames.dashboard,
+        builder: (_, __) => const DashboardPage()),
     GoRoute(
       path: '/__offline__',
       name: RouteNames.offline,

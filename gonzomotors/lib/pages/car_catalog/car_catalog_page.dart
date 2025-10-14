@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gonzo_motors/features/car_catalog/widgets/car_list.dart';
-import '../../../features/car_catalog/widgets/compare_fab.dart';
+import '../../features/ads_banner/widgets/ads_banners.dart';
 import '../../gen/assets.gen.dart';
 import '../../shared/app_bar/app_bar_shared.dart';
 import '../compare/compare_page.dart';
@@ -48,21 +48,31 @@ class _SelectCarsPageViewState extends State<SelectCarsPageView> {
         showBack: false,
         actions: [
           SizedBox(
-            width: MediaQuery.sizeOf(context).width - 10,
+            width: MediaQuery.sizeOf(context).width,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Assets.icons.logo.image(height: 40, width: 120),
+                Assets.icons.logo.image(height: 40, width: 60),
                 _notificationIcon(onTap: () {}),
               ],
             ),
           ),
         ],
       ),
-      floatingActionButton: CompareFab(onCompare: widget.onCompare),
-      body: const SafeArea(
-        minimum: EdgeInsets.only(bottom: 8),
-        child: CarsList(),
+      // floatingActionButton: CompareFab(onCompare: widget.onCompare),
+      body: SafeArea(
+        minimum: const EdgeInsets.only(bottom: 8),
+        child: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(bottom: 12),
+              child: AdsBannerWidget(),
+            ),
+            const Expanded(
+              child: CarsList(),
+            ),
+          ],
+        ),
       ),
     );
   }

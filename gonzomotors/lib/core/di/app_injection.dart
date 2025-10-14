@@ -4,6 +4,7 @@ import 'package:gonzo_motors/core/network/dio_client.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../data/data_sources/car_local_ds.dart';
+import '../../features/ads_banner/data/repository/ads_banner_repository.dart';
 import '../../features/car_catalog/data/repository/car_repository.dart';
 import '../../features/selection/data/usecases/find_details_by_specs.dart';
 import '../../features/car_catalog/data/usecases/get_car_cards.dart';
@@ -37,6 +38,7 @@ Future<void> initInjection() async {
   // repository
   sl.registerLazySingleton<CarRepository>(() => CarRepositoryImpl(sl.get()));
   sl.registerLazySingleton<UserLocationRepository>(() => UserLocationRepositoryImpl(sl.get(), sl.get()));
+  sl.registerLazySingleton<AdsBannerRepository>(() => AdsBannerRepositoryImpl(sl.get(), sl.get()));
 
   // usecases
   sl.registerLazySingleton(() => GetCarCards(sl.get()));

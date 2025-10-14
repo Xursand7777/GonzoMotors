@@ -39,16 +39,16 @@ class AppTheme {
     visualDensity: VisualDensity.adaptivePlatformDensity,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: const Color(0xFF121212),
-      selectedItemColor: const Color(0xFFD0BCFF),
+      selectedItemColor: Colors.red,
       unselectedItemColor: Colors.grey.shade600,
-      selectedIconTheme: const IconThemeData(size: 24, color: Color(0xFFD0BCFF)),
+      selectedIconTheme: const IconThemeData(size: 24, color: Colors.red),
       unselectedIconTheme: IconThemeData(size: 24, color: Colors.grey.shade600),
       showSelectedLabels: true,
       showUnselectedLabels: true,
       selectedLabelStyle: const TextStyle(
         fontWeight: FontWeight.w500,
         fontSize: 12,
-        color: Color(0xFFD0BCFF),
+        color: Colors.red,
       ),
       unselectedLabelStyle: TextStyle(
         fontWeight: FontWeight.w500,

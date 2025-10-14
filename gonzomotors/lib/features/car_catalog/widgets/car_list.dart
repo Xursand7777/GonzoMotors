@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gonzo_motors/features/car_catalog/bloc/car_select_bloc.dart';
-
-import '../bloc/car_select_event.dart';
 import 'car_pick_card.dart';
 
 
@@ -41,18 +39,21 @@ class _CarsListView extends StatelessWidget {
           (b) => (b.state as CarSelectLoaded).selected,
     );
 
-    return ListView.separated(
-      padding: const EdgeInsets.all(12),
+    return GridView.builder(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisSpacing: 16,
+        crossAxisSpacing: 16,
+        childAspectRatio: 0.94,
+      ),
       itemCount: cards.length,
-      separatorBuilder: (_, __) => const SizedBox(height: 12),
-      itemBuilder: (_, i) {
+      itemBuilder: (context, i) {
         final car = cards[i];
-        final selected = selectedIds.contains(car.id);
-        return CarPickCard(
+        return CarProductCard(
           car: car,
-          selected: selected,
-          onToggle: () =>
-              context.read<CarSelectBloc>().add(CarSelectToggle(car.id)),
+          retailPriceText: r"$92 000 – Цена с растаможкой",
+          cipPriceText:  r"$77 000 – Цена CIP Tashkent",
         );
       },
     );

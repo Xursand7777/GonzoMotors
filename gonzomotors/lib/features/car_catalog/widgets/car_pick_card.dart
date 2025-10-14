@@ -1,142 +1,85 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../../../../data/models/car_info.dart' as model;
-import 'spec_chip.dart';
 
-class CarPickCard extends StatelessWidget {
-  const CarPickCard({
+class CarProductCard extends StatelessWidget {
+  const CarProductCard({
     super.key,
     required this.car,
-    required this.selected,
-    required this.onToggle,
+    required this.retailPriceText,   // "$92 000 – Цена с растаможкой"
+    required this.cipPriceText,      // "$77 000 – Цена CIP Tashkent"
+    this.onTap,
   });
 
   final model.CarInfo car;
-  final bool selected;
-  final VoidCallback onToggle;
+  final String retailPriceText;
+  final String cipPriceText;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final cs = theme.colorScheme;
     final tt = theme.textTheme;
-    final platform = theme.platform;
-    final border = RoundedRectangleBorder(borderRadius: BorderRadius.circular(16));
-
-    IconData addIcon() => (platform == TargetPlatform.iOS || platform == TargetPlatform.macOS)
-        ? CupertinoIcons.add
-        : Icons.add_rounded;
-
-    IconData checkIcon() => (platform == TargetPlatform.iOS || platform == TargetPlatform.macOS)
-        ? CupertinoIcons.check_mark
-        : Icons.check_rounded;
-
-    // используем цвета из темы: primary — обычное состояние, tertiary — «успех»
-    final Color badgeColor = selected ? cs.tertiary : cs.primary;
-    final Color badgeIconColor = cs.onPrimary; // достаточно контрастно и там, и там
-
-    void handleToggle() {
-      // нативная тактильная отдача (на iOS/Android), безопасно на других
-      Feedback.forTap(context);
-      onToggle();
-    }
 
     return Material(
       color: cs.surface,
-      elevation: 1,
-      shape: border,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
+        side: BorderSide(color: cs.outlineVariant),
+      ),
+      clipBehavior: Clip.antiAlias,
       child: InkWell(
-        onTap: handleToggle,
-        customBorder: border,
-        child: Stack(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(12),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // картинка
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(12),
-                    child: SizedBox(
-                      width: 110,
-                      height: 72,
-                      child: Image.asset(
-                        car.imageUrl,
-                        fit: BoxFit.cover,
-                        errorBuilder: (_, __, ___) => Container(
-                          color: cs.surfaceContainerHighest,
-                          alignment: Alignment.center,
-                          child: Icon(Icons.directions_car, color: cs.onSurfaceVariant),
-                        ),
-                      ),
-                    ),
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(6),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AspectRatio(
+                aspectRatio: 16 / 9,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: cs.surfaceBright,
                   ),
-                  const SizedBox(width: 12),
-                  // текст и спеки
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // заголовок — из textTheme, без хардкода
-                        Text(
-                          '${car.name} (${car.year})',
-                          style: tt.titleMedium?.copyWith(fontWeight: FontWeight.w700),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        const SizedBox(height: 10),
-                        Wrap(
-                          spacing: 18,
-                          runSpacing: 10,
-                          children: [
-                            SpecChip(icon: Icons.directions_car_outlined, text: car.bodyType),
-                            SpecChip(icon: Icons.electric_bolt, text: car.powertrain),
-                            SpecChip(icon: Icons.speed, text: '${car.topSpeedKmh} km/h'),
-                            SpecChip(icon: Icons.precision_manufacturing_outlined, text: '${car.horsepower} hp'),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            // адаптивная круглая кнопка (Material/Cupertino иконки + цвета из темы)
-            Positioned(
-              top: 6,
-              right: 6,
-              child: Tooltip(
-                message: selected ? 'Выбрано' : 'Добавить',
-                child: InkWell(
-                  onTap: handleToggle,
-                  borderRadius: BorderRadius.circular(20),
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 150),
-                    width: 36,
-                    height: 36,
-                    decoration: BoxDecoration(
-                      color: badgeColor,
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(.12),
-                          blurRadius: 8,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: Icon(
-                      selected ? checkIcon() : addIcon(),
-                      color: badgeIconColor,
-                      size: 20,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                    child: Image.asset(
+                      car.imageUrl,
+                      fit: BoxFit.contain,
+                      errorBuilder: (_, __, ___) =>
+                          Icon(Icons.directions_car_filled, color: cs.onSurfaceVariant),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+              const SizedBox(height: 12),
+              Text(
+                car.name,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: tt.titleMedium?.copyWith(fontWeight: FontWeight.w700),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                retailPriceText,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: tt.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.w600,
+                  color: cs.onSurface,
+                ),
+              ),
+              Text(
+                cipPriceText,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: tt.bodySmall?.copyWith(
+                  color: cs.onSurfaceVariant,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
