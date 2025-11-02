@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gonzo_motors/features/car_catalog/bloc/car_select_bloc.dart';
+import 'package:gonzo_motors/features/car_catalog/bloc/car_catalog_bloc.dart';
 import 'car_pick_card.dart';
 
 
@@ -9,19 +9,8 @@ class CarsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Можно оставить BlocBuilder, но BlocSelector точечно выдернет нужные поля
-    return BlocBuilder<CarSelectBloc, CarSelectState>(
+    return BlocBuilder<CarCatalogBloc, CarCatalogState>(
       builder: (context, state) {
-        if (state is CarSelectLoading) {
-          return const Center(child: CircularProgressIndicator());
-        }
-        if (state is CarSelectError) {
-          return Center(child: Text('Ошибка: ${state.message}'));
-        }
-        if (state is! CarSelectLoaded) {
-          return const SizedBox.shrink();
-        }
-
         return _CarsListView();
       },
     );
@@ -31,12 +20,9 @@ class CarsList extends StatelessWidget {
 class _CarsListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // 🎯 Тянем только то, что нужно списку: карточки и выбранные id
-    final cards = context.select<CarSelectBloc, List<dynamic>>(
-          (b) => (b.state as CarSelectLoaded).cards,
-    );
-    final selectedIds = context.select<CarSelectBloc, Set<String>>(
-          (b) => (b.state as CarSelectLoaded).selected,
+
+    final cards = context.select<CarCatalogBloc, List<dynamic>>(
+          (b) => (b.state).cars,
     );
 
     return GridView.builder(

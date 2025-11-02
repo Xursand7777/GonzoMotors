@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gonzo_motors/pages/onboarding/onboarding_page.dart';
 import '../../core/di/app_injection.dart';
 import '../../core/services/deeplink_service.dart';
 import '../../core/services/notification_service.dart';
@@ -80,7 +81,8 @@ class _DashboardViewState extends State<_DashboardView> {
             return IndexedStack(
               index: currentIndex,
               children: const [
-                SelectCarsPage(),
+                CarCatalogPage(),
+                OnBoardingPage()
               ],
             );
           },

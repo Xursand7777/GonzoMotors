@@ -47,6 +47,7 @@ class DeeplinkService {
         _handleDeeplink(initialLink);
       }
     } catch (e) {
+      logger.debug('Error handling initDeepLinkListener: $e');
     }
   }
   /// Handle incoming deeplink

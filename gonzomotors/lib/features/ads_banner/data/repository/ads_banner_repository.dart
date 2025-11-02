@@ -22,7 +22,7 @@ class AdsBannerRepositoryImpl extends AdsBannerRepository {
 
   @override
   Future<ApiResponse<Pagination<AdsBannerModel>>> getBanners() async {
-    return getListWithPagination('ads-banner', fromJson: AdsBannerModel.fromJson);
+    return getListWithPagination('AdsBanner', fromJson: AdsBannerModel.fromJson);
   }
 
   @override

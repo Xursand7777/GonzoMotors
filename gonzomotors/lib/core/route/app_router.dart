@@ -1,17 +1,22 @@
 import 'package:go_router/go_router.dart';
 import 'package:gonzo_motors/core/route/route_names.dart';
+import 'package:gonzo_motors/pages/onboarding/onboarding_page.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 
 import '../../main.dart';
-import '../../pages/car_catalog/car_catalog_page.dart';
 import '../../pages/connection_check/connection_check_page.dart';
 import '../../pages/dashboard/dashboard_page.dart';
+import '../../pages/phone_register/phone_register_page.dart';
 import '../../pages/splash/splash_page.dart';
+import '../../pages/verification/verification_page.dart';
 import '../log/talker_logger.dart';
+
+
+
 
 final GoRouter appRouter = GoRouter(
   navigatorKey: navigatorKey,
-  initialLocation: '/splash',
+  initialLocation: '/onboarding',
   observers: [TalkerRouteObserver(logger)],
   onException: (context, state, router) {
     router.goNamed(RouteNames.dashboard);
@@ -37,5 +42,26 @@ final GoRouter appRouter = GoRouter(
       name: RouteNames.offline,
       builder: (context, state) => const OfflinePage(),
     ),
+    GoRoute(
+        path: '/onboarding',
+    name: RouteNames.onboarding,
+    builder: (context, state) => const OnBoardingPage()
+    ),
+    GoRoute(
+      path: '/phone-register',
+      name: 'phone_register',
+      builder: (_, __) => const PhoneRegisterPage(),
+    ),
+    GoRoute(
+      path: '/verification',
+      name: RouteNames.verification,
+      // если extra нет — уходим на регистрацию
+      redirect: (context, state) => state.extra == null ? '/phone-register' : null,
+      builder: (context, state) {
+        final phone = state.extra as String; // гарантировано не null после redirect
+        return VerificationPage(phone: phone);
+      },
+    ),
+
   ],
 );

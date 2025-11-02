@@ -6,9 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../data/data_sources/car_local_ds.dart';
 import '../../features/ads_banner/data/repository/ads_banner_repository.dart';
 import '../../features/car_catalog/data/repository/car_repository.dart';
-import '../../features/selection/data/usecases/find_details_by_specs.dart';
-import '../../features/car_catalog/data/usecases/get_car_cards.dart';
-import '../../features/car_catalog/data/usecases/get_specs_by_id.dart';
 import '../../features/user_location/data/repository/user_location_repository.dart';
 import '../services/deeplink_service.dart';
 import '../services/notification_service.dart';
@@ -36,12 +33,8 @@ Future<void> initInjection() async {
   sl.registerLazySingleton<CarLocalDataSource>(() => CarLocalDataSourceImpl());
 
   // repository
-  sl.registerLazySingleton<CarRepository>(() => CarRepositoryImpl(sl.get()));
+  sl.registerLazySingleton<CarRepository>(() => CarRepositoryImpl(sl.get(), sl.get()));
   sl.registerLazySingleton<UserLocationRepository>(() => UserLocationRepositoryImpl(sl.get(), sl.get()));
   sl.registerLazySingleton<AdsBannerRepository>(() => AdsBannerRepositoryImpl(sl.get(), sl.get()));
 
-  // usecases
-  sl.registerLazySingleton(() => GetCarCards(sl.get()));
-  sl.registerLazySingleton(() => GetSpecsById(sl.get()));
-  sl.registerLazySingleton(() => FindDetailsBySpecs(sl.get()));
 }

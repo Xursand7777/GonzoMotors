@@ -20,11 +20,8 @@ import 'core/theme/app_theme.dart';
 
 import 'features/ads_banner/bloc/ads_banner_bloc.dart';
 import 'features/connection_checker/bloc/connection_checker_bloc.dart';
-import 'features/selection/data/usecases/find_details_by_specs.dart';
-import 'features/car_catalog/bloc/car_select_event.dart';
 import 'firebase_options.dart';
-import 'features/selection/bloc/compare_bloc.dart';
-import 'features/car_catalog/bloc/car_select_bloc.dart';
+
 
 import 'core/route/app_router.dart';
 
@@ -94,14 +91,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<CarSelectBloc>(
-          create: (_) => CarSelectBloc(sl(), sl())..add(CarSelectLoad()),
-        ),
         BlocProvider<AdsBannerBloc>(
           create: (_) => AdsBannerBloc(repo: sl.get())..add(const GetBannersEvent()),
-        ),
-        BlocProvider<CompareBloc>(
-          create: (_) => CompareBloc(sl<FindDetailsBySpecs>()),
         ),
         BlocProvider<ConnectionCheckerBloc>(
           create: (context) => ConnectionCheckerBloc(sl.get(), sl.get()),
