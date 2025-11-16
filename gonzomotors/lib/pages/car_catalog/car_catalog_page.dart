@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gonzo_motors/features/car_catalog/widgets/car_list.dart';
+import 'package:gonzo_motors/pages/car_catalog/widgets/car_filter_widget.dart';
 import '../../features/ads_banner/widgets/ads_banners.dart';
 import '../../gen/assets.gen.dart';
 import '../../shared/app_bar/app_bar_shared.dart';
@@ -58,6 +59,10 @@ class _SelectCarsPageViewState extends State<SelectCarsPageView> {
             const Padding(
               padding: EdgeInsets.only(bottom: 12),
               child: AdsBannerWidget(),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(top:12, bottom: 12),
+              child: CarFilterWidget()
             ),
             const Expanded(
               child: CarsList(),

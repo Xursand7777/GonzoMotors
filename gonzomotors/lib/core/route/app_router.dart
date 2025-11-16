@@ -2,7 +2,6 @@ import 'package:go_router/go_router.dart';
 import 'package:gonzo_motors/core/route/route_names.dart';
 import 'package:gonzo_motors/pages/onboarding/onboarding_page.dart';
 import 'package:talker_flutter/talker_flutter.dart';
-
 import '../../main.dart';
 import '../../pages/connection_check/connection_check_page.dart';
 import '../../pages/dashboard/dashboard_page.dart';
@@ -55,13 +54,10 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/verification',
       name: RouteNames.verification,
-      // если extra нет — уходим на регистрацию
-      redirect: (context, state) => state.extra == null ? '/phone-register' : null,
       builder: (context, state) {
-        final phone = state.extra as String; // гарантировано не null после redirect
+        final phone = state.extra as String;
         return VerificationPage(phone: phone);
       },
     ),
-
   ],
 );

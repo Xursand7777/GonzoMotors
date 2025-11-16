@@ -19,18 +19,23 @@ class AdsBannerBloc extends Bloc<AdsBannerEvent, AdsBannerState> {
 
   void _getBanners(GetBannersEvent event, Emitter<AdsBannerState> emit) async {
     emit(state.copyWith(status: BaseStatus.loading()));
-    try{
-      final response = await repo.getBanners();
-      if (response.success && response.data?.items != null) {
-        emit(state.copyWith(
-            status: BaseStatus.success(), banners: response.data?.items ?? []));
-      } else {
-        emit(state.copyWith(
-            status: BaseStatus.errorWithMessage(message: response.message)));
-      }
-    }catch (e) {
-      emit(state.copyWith(
-          status: BaseStatus.errorWithMessage(message: e.toString())));
+
+    try {
+      final pagination = await repo.getBanners();
+
+      emit(
+        state.copyWith(
+          status: BaseStatus.success(),
+          banners: pagination.items,
+        ),
+      );
+      print("SUCCESS EMIT → banners count: ${pagination.items.length}");
+    } catch (e) {
+      emit(
+        state.copyWith(
+          status: BaseStatus.errorWithMessage(message: e.toString()),
+        ),
+      );
     }
   }
 

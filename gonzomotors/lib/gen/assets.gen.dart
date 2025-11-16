@@ -42,6 +42,10 @@ class $AssetsCarsGen {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/available.png
+  AssetGenImage get available =>
+      const AssetGenImage('assets/icons/available.png');
+
   /// File path: assets/icons/calendar.png
   AssetGenImage get calendar =>
       const AssetGenImage('assets/icons/calendar.png');
@@ -54,6 +58,12 @@ class $AssetsIconsGen {
   AssetGenImage get connectNo =>
       const AssetGenImage('assets/icons/connect_no.png');
 
+  /// File path: assets/icons/electro.png
+  AssetGenImage get electro => const AssetGenImage('assets/icons/electro.png');
+
+  /// File path: assets/icons/hybrid.png
+  AssetGenImage get hybrid => const AssetGenImage('assets/icons/hybrid.png');
+
   /// File path: assets/icons/language.png
   AssetGenImage get language =>
       const AssetGenImage('assets/icons/language.png');
@@ -63,6 +73,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/logo.png
   AssetGenImage get logo => const AssetGenImage('assets/icons/logo.png');
+
+  /// File path: assets/icons/logo_new.png
+  AssetGenImage get logoNew => const AssetGenImage('assets/icons/logo_new.png');
 
   /// File path: assets/icons/magazine.png
   AssetGenImage get magazine =>
@@ -82,6 +95,20 @@ class $AssetsIconsGen {
   /// File path: assets/icons/notification.png
   AssetGenImage get notification =>
       const AssetGenImage('assets/icons/notification.png');
+
+  /// File path: assets/icons/onboarding1.png
+  AssetGenImage get onboarding1 =>
+      const AssetGenImage('assets/icons/onboarding1.png');
+
+  /// File path: assets/icons/onboarding2.png
+  AssetGenImage get onboarding2 =>
+      const AssetGenImage('assets/icons/onboarding2.png');
+
+  /// File path: assets/icons/popular.png
+  AssetGenImage get popular => const AssetGenImage('assets/icons/popular.png');
+
+  /// File path: assets/icons/premium.png
+  AssetGenImage get premium => const AssetGenImage('assets/icons/premium.png');
 
   /// File path: assets/icons/profile.png
   AssetGenImage get profile => const AssetGenImage('assets/icons/profile.png');
@@ -106,19 +133,38 @@ class $AssetsIconsGen {
   /// File path: assets/icons/user.png
   AssetGenImage get user => const AssetGenImage('assets/icons/user.png');
 
+  /// File path: assets/icons/xiamo.png
+  AssetGenImage get xiamo => const AssetGenImage('assets/icons/xiamo.png');
+
+  /// File path: assets/icons/xiamoyu7.png
+  AssetGenImage get xiamoyu7 =>
+      const AssetGenImage('assets/icons/xiamoyu7.png');
+
+  /// File path: assets/icons/zeekr001.png
+  AssetGenImage get zeekr001 =>
+      const AssetGenImage('assets/icons/zeekr001.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
+    available,
     calendar,
     closeCircle,
     connectNo,
+    electro,
+    hybrid,
     language,
     logOut,
     logo,
+    logoNew,
     magazine,
     mdCatalog,
     mdMenu,
     navigationLogo2,
     notification,
+    onboarding1,
+    onboarding2,
+    popular,
+    premium,
     profile,
     search,
     settings,
@@ -126,6 +172,9 @@ class $AssetsIconsGen {
     strokeArrowLeft,
     trash,
     user,
+    xiamo,
+    xiamoyu7,
+    zeekr001,
   ];
 }
 

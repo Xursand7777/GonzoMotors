@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:sms_autofill/sms_autofill.dart';
-
+import '../../core/di/app_injection.dart';
 import '../../core/route/route_names.dart';
-import '../../core/utils/common_utils.dart';
+import '../../features/verification/data/repository/verification_repository.dart';
 import '../../gen/assets.gen.dart';
 
 
@@ -12,7 +12,7 @@ class Country {
   final String name;
   final String iso2;
   final String dialCode;
-  final String flag; // emoji
+  final String flag;
 
   const Country({
     required this.name,
@@ -22,15 +22,15 @@ class Country {
   });
 }
 
-/// Примерный список стран (можешь расширить)
+
 const countries = <Country>[
-  Country(name: 'Uzbekistan', iso2: 'UZ', dialCode: '+998', flag: '🇺🇿'),
+  Country(name: 'Uzbekistan', iso2: 'UZ', dialCode: '998', flag: '🇺🇿'),
   Country(name: 'Kazakhstan', iso2: 'KZ', dialCode: '+7', flag: '🇰🇿'),
   Country(name: 'Russia', iso2: 'RU', dialCode: '+7', flag: '🇷🇺'),
   Country(name: 'USA', iso2: 'US', dialCode: '+1', flag: '🇺🇸'),
 ];
 
-/// ====== Страница регистрации по телефону ======
+
 class PhoneRegisterPage extends StatefulWidget {
   const PhoneRegisterPage({super.key});
 
@@ -44,7 +44,7 @@ class _PhoneRegisterPageState extends State<PhoneRegisterPage> {
 
   Country _selected = countries.first;
   bool _isValid = false;
-  bool _sending = false; // состояние отправки OTP
+  bool _sending = false;
 
   @override
   void initState() {
@@ -62,7 +62,7 @@ class _PhoneRegisterPageState extends State<PhoneRegisterPage> {
 
   void _onChanged() {
     final digits = _digitsOnly(_controller.text);
-    final need = _selected.dialCode == '+998' ? 9 : 10;
+    final need = _selected.dialCode == '998' ? 9 : 10;
     setState(() => _isValid = digits.length >= need);
   }
 
@@ -73,9 +73,9 @@ class _PhoneRegisterPageState extends State<PhoneRegisterPage> {
     return '${_selected.dialCode}$digits';
   }
 
-  /// Маска под страну
+
   List<TextInputFormatter> _formatters() {
-    if (_selected.dialCode == '+998') {
+    if (_selected.dialCode == '998') {
       return [FilteringTextInputFormatter.digitsOnly, _UzbekistanPhoneFormatter()];
     }
     return [FilteringTextInputFormatter.digitsOnly, _GenericGroupingFormatter()];
@@ -115,26 +115,30 @@ class _PhoneRegisterPageState extends State<PhoneRegisterPage> {
   Future<void> _sendOtpAndNavigate() async {
     if (!_isValid || _sending) return;
     setState(() => _sending = true);
+
     try {
-      // Необязательно, но полезно для Android (SMS Retriever API подпись)
+
       final appSignature = await SmsAutoFill().getAppSignature;
       debugPrint('App Signature: $appSignature');
 
-      // Отправляем OTP (внутри CommonUtils будет сохранён verificationId -> CommonUtils.verify)
-      await CommonUtils.firebasePhoneAuth(phone: _e164, context: context);
+      // Отправляем SMS через твой API
+      final phoneNumber =  _e164;
+      await sl<VerificationRepository>().postPhoneNumber(phoneNumber);
 
       if (!mounted) return;
-      // Переходим на VerificationPage, передаём номер (пусть роут читает state.extra as String)
+
+      // Переход на VerificationPage
       context.pushNamed(RouteNames.verification, extra: _e164);
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to send OTP: $e')),
+        SnackBar(content: Text('Ошибка при отправке SMS: $e')),
       );
     } finally {
       if (mounted) setState(() => _sending = false);
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -205,7 +209,7 @@ class _PhoneRegisterPageState extends State<PhoneRegisterPage> {
               ),
               const SizedBox(height: 24),
 
-              // Поле ввода
+
               DecoratedBox(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
@@ -214,7 +218,6 @@ class _PhoneRegisterPageState extends State<PhoneRegisterPage> {
                 child: Row(
                   children: [
                     const SizedBox(width: 8),
-                    // выбор страны
                     InkWell(
                       onTap: _sending ? null : _openCountryPicker,
                       borderRadius: BorderRadius.circular(8),

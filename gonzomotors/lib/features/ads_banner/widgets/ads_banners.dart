@@ -62,10 +62,11 @@ class _AdsBannerWidgetState extends State<AdsBannerWidget> {
 
     return BlocBuilder<AdsBannerBloc, AdsBannerState>(
       builder: (context, state) {
+        print("🏁 BANNERS IN WIDGET: ${state}");
         final success = state.status.isSuccess();
         final len = success ? state.banners.length : 0;
-       // final showShimmer = !success || len == 0;
-        final showShimmer = true;
+        print("🏁 state = $success, len = $len");
+        final showShimmer = !success || len == 0;
         return SizedBox(
           height: h + 10,
           child: Column(
@@ -78,13 +79,24 @@ class _AdsBannerWidgetState extends State<AdsBannerWidget> {
                     : PageView.builder(
                   controller: _pageController,
                   itemCount: len,
-                  itemBuilder: (_, i) => _BannerView(
-                    banner: state.banners[i],
-                    onTap: (b) {
-                      widget.onBannerTap?.call(b);
-                      context.read<AdsBannerBloc>().add(ClickedBannerEvent(b.id));
-                    },
-                  ),
+                    itemBuilder: (_, i) {
+                      final b = state.banners[i];
+                      print("🖼 banner[$i] = ${b.imageUrl}");
+                      print("🎯 WIDGET → state.status = ${state.status}");
+                      print("🎯 WIDGET → banners.length = ${state.banners.length}");
+                      for (final b in state.banners) {
+                        print("🖼 banner: id=${b.id}, url=${b.imageUrl}");
+                      }
+                      return _BannerView(
+                        banner: b,
+                        onTap: (b) {
+                          widget.onBannerTap?.call(b);
+                          //context
+                           //   .read<AdsBannerBloc>()
+                           //   .add(ClickedBannerEvent(b.id));
+                        },
+                      );
+                    }
                 ),
               ),
               const SizedBox(height: 5),
@@ -107,11 +119,10 @@ class _BannerView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // фиксированный размер (как и у контейнера наверху)
     final  double bannerW = MediaQuery.sizeOf(context).width - 32;
     final  double bannerH = bannerW * (150 / 350);
 
-    // отмечаем просмотр
+
     context.read<AdsBannerBloc>().add(SeenBannerEvent(banner.id));
 
     return GestureDetector(
@@ -124,13 +135,10 @@ class _BannerView extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              // картинка
               ImageWidgetShared(
                 imageUrl: banner.imageUrl ?? "",
                 fit: BoxFit.cover,
               ),
-
-              // лёгкий градиент снизу (для читаемости текста)
               const DecoratedBox(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(

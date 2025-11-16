@@ -1,12 +1,47 @@
 import 'package:dio/dio.dart';
+import '../../main.dart';
 import '../log/talker_logger.dart';
+import '../storage/flutter_storage.dart';
 import 'models/api_response.dart';
 import 'models/pagination.dart';
 
 
 abstract class BaseRepository {
   final Dio dio;
-  BaseRepository(this.dio);
+
+
+  BaseRepository(this.dio) {
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onRequest: (options, handler) async {
+          try {
+            final token = await AuthStorage.getAccessToken();
+            if (token != null && token.isNotEmpty) {
+              options.headers['Authorization'] = 'Bearer $token';
+            }
+          } catch (e) {
+            logger.warning('Ошибка при получении токена: $e');
+          }
+          return handler.next(options);
+        },
+        onError: (DioException e, handler) {
+          if (e.response?.statusCode == 401) {
+            logger.warning('Неавторизован: ${e.requestOptions.path}');
+            AuthStorage.clear();
+
+            navigatorKey.currentState?.pushNamedAndRemoveUntil(
+              '/phone-register',
+                  (route) => false,
+            );
+          }
+          return handler.next(e);
+        },
+      ),
+    );
+  }
+
+
+
 
   Future<ApiResponse<T>> get<T>(
       String path, {
@@ -51,6 +86,21 @@ abstract class BaseRepository {
     return ApiResponse<Pagination<T>>.fromJson(res.data, (data) => Pagination<T>.fromJson(data, fromJson));
   }
 
+  Future<Pagination<T>> getListWithPaginationBanner<T>(
+      String path, {
+        required T Function(Map<String, dynamic>) fromJson,
+        Map<String, dynamic>? queryParameters,
+      }) async {
+    final res = await dio.get(path, queryParameters: queryParameters);
+
+
+    return Pagination<T>.fromJson(
+      res.data as Map<String, dynamic>,
+      fromJson,
+    );
+  }
+
+
 
 
   Future<ApiResponse<T>> post<T>(
@@ -70,5 +120,5 @@ abstract class BaseRepository {
 
 
 
-// Istasang: put, delete ham qo‘shish mumkin
+
 }

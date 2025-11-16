@@ -1,8 +1,5 @@
-
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-
 import '../../../core/bloc/base_status.dart';
 import '../data/models/car.dart' show CarModel;
 import '../data/repository/car_repository.dart';

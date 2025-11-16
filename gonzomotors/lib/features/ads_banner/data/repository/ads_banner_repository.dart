@@ -10,7 +10,7 @@ import '../models/ads_banner_model.dart';
 abstract class AdsBannerRepository extends BaseRepository {
   AdsBannerRepository(super.dio);
 
-  Future<ApiResponse<Pagination<AdsBannerModel>>> getBanners();
+  Future<Pagination<AdsBannerModel>> getBanners();
   Future<void> seenBanner(String id);
   Future<void> clickedBanner(String id);
 
@@ -21,8 +21,8 @@ class AdsBannerRepositoryImpl extends AdsBannerRepository {
   AdsBannerRepositoryImpl(super.dio, this.sharedPreferences);
 
   @override
-  Future<ApiResponse<Pagination<AdsBannerModel>>> getBanners() async {
-    return getListWithPagination('AdsBanner', fromJson: AdsBannerModel.fromJson);
+  Future<Pagination<AdsBannerModel>> getBanners() async {
+    return getListWithPaginationBanner('AdsBanner', fromJson: AdsBannerModel.fromJson);
   }
 
   @override

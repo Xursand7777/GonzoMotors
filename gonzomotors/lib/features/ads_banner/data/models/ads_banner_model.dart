@@ -1,6 +1,10 @@
 
 import 'package:equatable/equatable.dart';
 
+const String kFileBaseUrl = 'http://zachir.uz';
+
+
+
 class AdsBannerModel extends Equatable {
   final int? id;
   final String? imageUrl;
@@ -30,11 +34,26 @@ class AdsBannerModel extends Equatable {
     this.viewsCount,
   });
 
+  static String? _resolveImageUrl(dynamic raw) {
+    if (raw == null) return null;
+    final String value = raw.toString();
+    if (value.isEmpty) return null;
+
+    if (value.startsWith('http://') || value.startsWith('https://')) {
+      return value;
+    }
+
+    // относительный путь из API: "/files/banner/2/....webp"
+    return '$kFileBaseUrl$value';
+  }
+
 
   factory AdsBannerModel.fromJson(Map<String, dynamic> json) {
     return AdsBannerModel(
       id: json['id'] as int?,
-      imageUrl: json['image_url'] as String?,
+      imageUrl: _resolveImageUrl(
+        json['imageUrl'] ?? json['image_url'],
+      ),
       linkUrl: json['link_url'] as String?,
       title: json['title'] as String?,
       description: json['description'] as String?,

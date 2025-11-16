@@ -156,7 +156,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                         ),
                       ),
                       onPressed: () {
-                        context.goNamed(RouteNames.verification);
+                        context.goNamed(RouteNames.phoneRegister);
                       },
                       child: const Text(
                         "Login / Registration",

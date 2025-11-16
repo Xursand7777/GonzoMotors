@@ -19,6 +19,7 @@ import 'core/services/notification_service.dart';
 import 'core/theme/app_theme.dart';
 
 import 'features/ads_banner/bloc/ads_banner_bloc.dart';
+import 'features/car_catalog/bloc/car_catalog_bloc.dart';
 import 'features/connection_checker/bloc/connection_checker_bloc.dart';
 import 'firebase_options.dart';
 
@@ -93,6 +94,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<AdsBannerBloc>(
           create: (_) => AdsBannerBloc(repo: sl.get())..add(const GetBannersEvent()),
+        ),
+        BlocProvider<CarCatalogBloc>(
+          create: (_) => CarCatalogBloc(repo: sl.get()),
         ),
         BlocProvider<ConnectionCheckerBloc>(
           create: (context) => ConnectionCheckerBloc(sl.get(), sl.get()),
