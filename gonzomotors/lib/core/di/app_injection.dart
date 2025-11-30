@@ -4,7 +4,6 @@ import 'package:gonzo_motors/core/network/dio_client.dart';
 import 'package:gonzo_motors/features/verification/data/repository/verification_repository.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../data/data_sources/car_local_ds.dart';
 import '../../features/ads_banner/data/repository/ads_banner_repository.dart';
 import '../../features/car_catalog/data/repository/car_repository.dart';
 import '../../features/user_location/data/repository/user_location_repository.dart';
@@ -31,7 +30,7 @@ Future<void> initInjection() async {
   sl.registerSingleton(notificationService);
 
   // data source
-  sl.registerLazySingleton<CarLocalDataSource>(() => CarLocalDataSourceImpl());
+
 
   // repository
   sl.registerLazySingleton<CarRepository>(() => CarRepositoryImpl(sl.get(), sl.get()));

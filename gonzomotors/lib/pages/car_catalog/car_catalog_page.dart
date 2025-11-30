@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gonzo_motors/features/car_catalog/widgets/car_list.dart';
 import 'package:gonzo_motors/pages/car_catalog/widgets/car_filter_widget.dart';
 import '../../features/ads_banner/widgets/ads_banners.dart';
+import '../../features/car_catalog/bloc/car_catalog_bloc.dart';
 import '../../gen/assets.gen.dart';
 import '../../shared/app_bar/app_bar_shared.dart';
 
@@ -13,17 +15,25 @@ class CarCatalogPage extends StatelessWidget {
     final platform = Theme.of(context).platform;
     return SelectCarsPageView();
   }
+
 }
 
 class SelectCarsPageView extends StatefulWidget {
   const SelectCarsPageView({super.key});
-
 
   @override
   State<SelectCarsPageView> createState() => _SelectCarsPageViewState();
 }
 
 class _SelectCarsPageViewState extends State<SelectCarsPageView> {
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<CarCatalogBloc>().add(const GetCarsEvent());
+  }
+
+
   Widget _notificationIcon({VoidCallback? onTap}) => InkWell(
     onTap: onTap,
     borderRadius: BorderRadius.circular(100),

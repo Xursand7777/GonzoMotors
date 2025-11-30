@@ -29,7 +29,6 @@ class AdsBannerBloc extends Bloc<AdsBannerEvent, AdsBannerState> {
           banners: pagination.items,
         ),
       );
-      print("SUCCESS EMIT → banners count: ${pagination.items.length}");
     } catch (e) {
       emit(
         state.copyWith(

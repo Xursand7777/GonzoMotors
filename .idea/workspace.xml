@@ -5,17 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3fb66d60-bf55-4744-a189-5e75f78c85c9" name="Changes" comment="Add unified styles">
-      <change afterPath="$PROJECT_DIR$/.idea/deviceManager.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/GonzoMotors.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/.vscode/launch.json" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/.vscode/launch.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/devtools_options.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/devtools_options.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/main.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/GonzoMotors.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/core/di/app_injection.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/core/di/app_injection.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/core/network/base_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/core/network/base_repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/core/network/models/pagination.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/core/network/models/pagination.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/data/data_sources/car_local_ds.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/ads_banner/bloc/ads_banner_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/ads_banner/bloc/ads_banner_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/ads_banner/data/repository/ads_banner_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/ads_banner/data/repository/ads_banner_repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/ads_banner/widgets/ads_banners.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/ads_banner/widgets/ads_banners.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/bloc/car_catalog_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/bloc/car_catalog_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/data/models/car.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/data/models/car.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/data/repository/car_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/data/repository/car_repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/widgets/car_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/widgets/car_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/widgets/car_pick_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/widgets/car_pick_card.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/pages/car_catalog/car_catalog_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/car_catalog/car_catalog_page.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,31 +61,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/FlutterProjects/GonzoMotors&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;dart.settings&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Flutter.main.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "io.flutter.reload.alreadyRun": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "F:/FlutterProjects/GonzoMotors",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "dart.settings",
+    "show.migrate.to.gradle.popup": "false"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\FlutterProjects\GonzoMotors\gonzomotors\lib\shared\internet_connectivity" />
       <recent name="F:\FlutterProjects\GonzoMotors\gonzomotors\lib\core\di" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="filePath" value="$PROJECT_DIR$/gonzomotors/lib/main.dart" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

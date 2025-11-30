@@ -9,7 +9,7 @@ import '../models/car.dart' show CarModel;
 
 abstract class CarRepository extends BaseRepository {
   CarRepository(super.dio);
-  Future<ApiResponse<Pagination<CarModel>>> getCarCards();
+  Future<Pagination<CarModel>> getCarCards();
 }
 
 class CarRepositoryImpl extends CarRepository {
@@ -17,8 +17,8 @@ class CarRepositoryImpl extends CarRepository {
   CarRepositoryImpl(super.dio, this.sharedPreferences);
 
   @override
-  Future<ApiResponse<Pagination<CarModel>>> getCarCards() async {
-    return getListWithPagination('cars', fromJson: CarModel.fromJson);
+  Future<Pagination<CarModel>> getCarCards() async {
+    return getListWithPaginationRequest('cars', fromJson: CarModel.fromJson);
   }
 
 

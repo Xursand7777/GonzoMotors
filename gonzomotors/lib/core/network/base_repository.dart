@@ -86,7 +86,7 @@ abstract class BaseRepository {
     return ApiResponse<Pagination<T>>.fromJson(res.data, (data) => Pagination<T>.fromJson(data, fromJson));
   }
 
-  Future<Pagination<T>> getListWithPaginationBanner<T>(
+  Future<Pagination<T>> getListWithPaginationRequest<T>(
       String path, {
         required T Function(Map<String, dynamic>) fromJson,
         Map<String, dynamic>? queryParameters,

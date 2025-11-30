@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import '../../../../data/models/car_info.dart' as model;
+import '../data/models/car.dart';
 
 class CarProductCard extends StatelessWidget {
   const CarProductCard({
     super.key,
     required this.car,
-    required this.retailPriceText,   // "$92 000 – Цена с растаможкой"
-    required this.cipPriceText,      // "$77 000 – Цена CIP Tashkent"
     this.onTap,
   });
 
-  final model.CarInfo car;
-  final String retailPriceText;
-  final String cipPriceText;
+  final CarModel car;
+  final String retailPriceText = '99 cent';
+  final String cipPriceText = '80 cent';
   final VoidCallback? onTap;
 
   @override

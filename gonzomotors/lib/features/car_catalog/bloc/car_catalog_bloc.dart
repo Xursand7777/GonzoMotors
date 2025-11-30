@@ -17,18 +17,20 @@ class CarCatalogBloc extends Bloc<CarCatalogEvent, CarCatalogState> {
   void _getCars(GetCarsEvent event, Emitter<CarCatalogState> emit) async {
     emit(state.copyWith(status: BaseStatus.loading()));
     try {
-      final response = await repo.getCarCards();
-      if (response.success && response.data?.items != null) {
-        emit(state.copyWith(
-            status: BaseStatus.success(), cars: response.data?.items ?? []));
-      } else {
-        emit(state.copyWith(
-            status: BaseStatus.errorWithMessage(message: response.message)));
-      }
+      final pagination = await repo.getCarCards();
+      emit(
+        state.copyWith(
+          status: BaseStatus.success(),
+          cars: pagination.items,
+        ),
+      );
     }
     catch(e) {
-      emit(state.copyWith(
-          status: BaseStatus.errorWithMessage(message: e.toString())));
+      emit(
+        state.copyWith(
+          status: BaseStatus.errorWithMessage(message: e.toString()),
+        ),
+      );
     }
 
   }

@@ -1,9 +1,5 @@
-
-
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../../core/network/base_repository.dart';
-import '../../../../core/network/models/api_response.dart';
 import '../../../../core/network/models/pagination.dart';
 import '../models/ads_banner_model.dart';
 
@@ -22,7 +18,7 @@ class AdsBannerRepositoryImpl extends AdsBannerRepository {
 
   @override
   Future<Pagination<AdsBannerModel>> getBanners() async {
-    return getListWithPaginationBanner('AdsBanner', fromJson: AdsBannerModel.fromJson);
+    return getListWithPaginationRequest('AdsBanner', fromJson: AdsBannerModel.fromJson);
   }
 
   @override

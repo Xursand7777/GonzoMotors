@@ -84,9 +84,7 @@ class _AdsBannerWidgetState extends State<AdsBannerWidget> {
                       print("🖼 banner[$i] = ${b.imageUrl}");
                       print("🎯 WIDGET → state.status = ${state.status}");
                       print("🎯 WIDGET → banners.length = ${state.banners.length}");
-                      for (final b in state.banners) {
-                        print("🖼 banner: id=${b.id}, url=${b.imageUrl}");
-                      }
+
                       return _BannerView(
                         banner: b,
                         onTap: (b) {
@@ -123,7 +121,7 @@ class _BannerView extends StatelessWidget {
     final  double bannerH = bannerW * (150 / 350);
 
 
-    context.read<AdsBannerBloc>().add(SeenBannerEvent(banner.id));
+   // context.read<AdsBannerBloc>().add(SeenBannerEvent(banner.id));
 
     return GestureDetector(
       onTap: () => onTap?.call(banner),
