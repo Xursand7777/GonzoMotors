@@ -107,15 +107,48 @@ abstract class BaseRepository {
       String path, {
         required T Function(dynamic) fromJson,
         dynamic data,
+        Map<String,dynamic>? headers
       }) async {
+    if(headers !=null  && headers.isNotEmpty){
+      dio.options.headers.addAll(headers);
+    }
+
     final res = await dio.post(path, data: data);
     return ApiResponse<T>.fromJson(res.data, fromJson);
   }
+
   Future<void> postNoContent(
       String path, {
         dynamic data,
+        Map<String, dynamic>? headers,
       }) async {
+
+    if(headers != null && headers.isNotEmpty){
+      dio.options.headers.addAll(headers);
+    }
     await dio.post(path, data: data);
+  }
+
+  Future<ApiResponse> delete(
+      String path, {
+        dynamic data,
+      }) async {
+    final res = await dio.delete(path, data: data);
+    return ApiResponse.fromJson(res.data, (data) => data);
+  }
+
+  Future<ApiResponse<T>> put<T>(
+      String path, {
+        required T Function(dynamic) fromJson,
+        dynamic data,
+        Map<String,dynamic>? headers
+      }) async {
+    if(headers != null  && headers.isNotEmpty){
+      dio.options.headers.addAll(headers);
+    }
+
+    final res = await dio.put(path, data: data);
+    return ApiResponse<T>.fromJson(res.data, fromJson);
   }
 
 

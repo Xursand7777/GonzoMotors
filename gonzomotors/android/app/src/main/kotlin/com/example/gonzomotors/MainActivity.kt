@@ -1,4 +1,4 @@
-package com.example.gonzomotors
+package com.gonzomotors
 
 import io.flutter.embedding.android.FlutterActivity
 

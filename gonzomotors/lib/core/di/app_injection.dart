@@ -1,4 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gonzo_motors/core/network/dio_client.dart';
 import 'package:gonzo_motors/features/verification/data/repository/verification_repository.dart';
@@ -9,6 +10,7 @@ import '../../features/car_catalog/data/repository/car_repository.dart';
 import '../../features/user_location/data/repository/user_location_repository.dart';
 import '../services/deeplink_service.dart';
 import '../services/notification_service.dart';
+import '../services/token_service.dart';
 
 final sl = GetIt.instance;
 
@@ -21,6 +23,13 @@ Future<void> initInjection() async {
   InternetConnectionChecker.createInstance(
       addresses: [AddressCheckOption(uri: Uri.parse('https://www.google.com'))]);
   final Connectivity connectivity = Connectivity();
+  const FlutterSecureStorage secureStorage = FlutterSecureStorage(
+    aOptions: AndroidOptions(
+      encryptedSharedPreferences: true,
+      resetOnError: true,
+    ),
+  );
+  final TokenService tokenService = TokenService(secureStorage)..initialize();
   // core
   sl.registerSingleton(connectivity);
   sl.registerSingleton(connectionChecker);

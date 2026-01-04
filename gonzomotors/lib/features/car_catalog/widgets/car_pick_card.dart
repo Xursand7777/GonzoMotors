@@ -41,8 +41,8 @@ class CarProductCard extends StatelessWidget {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-                    child: Image.asset(
-                      car.imageUrl,
+                    child: Image.network(
+                      car.imageCardUrl,
                       fit: BoxFit.contain,
                       errorBuilder: (_, __, ___) =>
                           Icon(Icons.directions_car_filled, color: cs.onSurfaceVariant),

@@ -321,6 +321,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.11"
+  device_info_plus:
+    dependency: "direct main"
+    description:
+      name: device_info_plus
+      sha256: "4df8babf73058181227e18b08e6ea3520cf5fc5d796888d33b7cb0f33f984b7c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "12.3.0"
+  device_info_plus_platform_interface:
+    dependency: transitive
+    description:
+      name: device_info_plus_platform_interface
+      sha256: e1ea89119e34903dca74b883d0dd78eb762814f97fb6c76f35e9ff74d261a18f
+      url: "https://pub.dev"
+    source: hosted
+    version: "7.0.3"
   dio:
     dependency: "direct main"
     description:
@@ -481,6 +497,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.3"
+  firebase_remote_config:
+    dependency: "direct main"
+    description:
+      name: firebase_remote_config
+      sha256: "0f419efb00503e285bc7000e0e5dfc1dca9f390ea004091a01d35a798b22923c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.1.0"
+  firebase_remote_config_platform_interface:
+    dependency: transitive
+    description:
+      name: firebase_remote_config_platform_interface
+      sha256: e6513edd1d58079f5fe335858d2febc6baadad77a9e8852401ac48af4344b5b4
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.4"
+  firebase_remote_config_web:
+    dependency: transitive
+    description:
+      name: firebase_remote_config_web
+      sha256: "8ab5354403d2221873ed5870c6c9a0370819d69dc7bdfc03a445cde32e841de2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.9.0"
   fixnum:
     dependency: transitive
     description:
@@ -630,6 +670,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.2"
+  flutter_svg:
+    dependency: "direct main"
+    description:
+      name: flutter_svg
+      sha256: "87fbd7c534435b6c5d9d98b01e1fd527812b82e68ddd8bd35fc45ed0fa8f0a95"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.2.3"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -993,7 +1041,7 @@ packages:
     source: hosted
     version: "2.2.0"
   package_info_plus:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: package_info_plus
       sha256: "16eee997588c60225bda0488b6dcfac69280a6b7a3cf02c741895dd370a02968"
@@ -1088,6 +1136,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.5.2"
+  pinput:
+    dependency: "direct main"
+    description:
+      name: pinput
+      sha256: c41f42ee301505ae2375ec32871c985d3717bf8aee845620465b286e0140aad2
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.2"
   platform:
     dependency: transitive
     description:
@@ -1253,6 +1309,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  smart_auth:
+    dependency: "direct main"
+    description:
+      name: smart_auth
+      sha256: b13797df28900e4224fdeaa1892ffc0f3bfbc3cbc8a263a3667027c7d56017cd
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0"
   sms_autofill:
     dependency: "direct main"
     description:
@@ -1461,6 +1525,38 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.4.0"
+  universal_platform:
+    dependency: transitive
+    description:
+      name: universal_platform
+      sha256: "64e16458a0ea9b99260ceb5467a214c1f298d647c659af1bff6d3bf82536b1ec"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
+  url_launcher:
+    dependency: "direct main"
+    description:
+      name: url_launcher
+      sha256: f6a7e5c4835bb4e3026a04793a4199ca2d14c739ec378fdfe23fc8075d0439f8
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.3.2"
+  url_launcher_android:
+    dependency: transitive
+    description:
+      name: url_launcher_android
+      sha256: "81777b08c498a292d93ff2feead633174c386291e35612f8da438d6e92c4447e"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.3.20"
+  url_launcher_ios:
+    dependency: transitive
+    description:
+      name: url_launcher_ios
+      sha256: d80b3f567a617cb923546034cc94bfe44eb15f989fe670b37f26abdb9d939cb7
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.3.4"
   url_launcher_linux:
     dependency: transitive
     description:
@@ -1469,6 +1565,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.1"
+  url_launcher_macos:
+    dependency: transitive
+    description:
+      name: url_launcher_macos
+      sha256: c043a77d6600ac9c38300567f33ef12b0ef4f4783a2c1f00231d2b1941fea13f
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.2.3"
   url_launcher_platform_interface:
     dependency: transitive
     description:
@@ -1501,6 +1605,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.5.1"
+  vector_graphics:
+    dependency: transitive
+    description:
+      name: vector_graphics
+      sha256: a4f059dc26fc8295b5921376600a194c4ec7d55e72f2fe4c7d2831e103d461e6
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.19"
   vector_graphics_codec:
     dependency: transitive
     description:
@@ -1573,6 +1685,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.14.0"
+  win32_registry:
+    dependency: transitive
+    description:
+      name: win32_registry
+      sha256: "6f1b564492d0147b330dd794fee8f512cec4977957f310f9951b5f9d83618dae"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   xdg_directories:
     dependency: transitive
     description:
@@ -1607,4 +1727,4 @@ packages:
     version: "2.1.0"
 sdks:
   dart: ">=3.8.0 <4.0.0"
-  flutter: ">=3.29.0"
+  flutter: ">=3.32.0"

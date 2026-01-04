@@ -23,6 +23,17 @@ class ImagePlaceholderShared extends StatelessWidget {
   factory ImagePlaceholderShared.large({Key? key}) =>
       ImagePlaceholderShared._(key: key, height: 150, width: 350);
 
+  factory ImagePlaceholderShared.error({
+    Key? key,
+    double? height,
+    double? width,
+  }) =>
+      ImagePlaceholderShared._(
+        key: key,
+        height: height ?? 56,
+        width: width ?? 56,
+      );
+
   @override
   Widget build(BuildContext context) {
     return ColoredBox(

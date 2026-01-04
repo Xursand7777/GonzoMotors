@@ -6,6 +6,7 @@ import '../../core/services/deeplink_service.dart';
 import '../../core/services/notification_service.dart';
 import '../../gen/assets.gen.dart';
 import '../car_catalog/car_catalog_page.dart';
+import '../profile/profile_page.dart';
 import 'cubit/dashboard_cubit.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -82,7 +83,8 @@ class _DashboardViewState extends State<_DashboardView> {
               index: currentIndex,
               children: const [
                 CarCatalogPage(),
-                OnBoardingPage()
+                OnboardingPage(),
+                ProfilePage(),
               ],
             );
           },

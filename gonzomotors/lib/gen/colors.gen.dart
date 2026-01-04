@@ -14,11 +14,20 @@ import 'package:flutter/material.dart';
 class ColorName {
   ColorName._();
 
+  /// Color: #E50000
+  static const Color accentBrandNamePrimary = Color(0xFFE50000);
+
+  /// Color: #00B268
+  static const Color accentGreenPrimary = Color(0xFF00B268);
+
   /// Color: #2196F3
   static const Color accentInfo = Color(0xFF2196F3);
 
   /// Color: #D32F2F
   static const Color accentPrimary = Color(0xFFD32F2F);
+
+  /// Color: #E04917
+  static const Color accentRedPrimary = Color(0xFFE04917);
 
   /// Color: #FFC107
   static const Color accentSecondary = Color(0xFFFFC107);
@@ -38,6 +47,9 @@ class ColorName {
   /// Color: #FFFFFF
   static const Color backgroundSecondary = Color(0xFFFFFFFF);
 
+  /// Color: #2073F7
+  static const Color blue = Color(0xFF2073F7);
+
   /// Color: #FFFFFF
   static const Color contentInverse = Color(0xFFFFFFFF);
 
@@ -50,11 +62,23 @@ class ColorName {
   /// Color: #757575
   static const Color contentSecondary = Color(0xFF757575);
 
+  /// Color: #919DA6
+  static const Color contentTeritary = Color(0xFF919DA6);
+
+  /// Color: #DB9D16
+  static const Color gold = Color(0xFFDB9D16);
+
+  /// Color: #23AD56
+  static const Color green = Color(0xFF23AD56);
+
   /// Color: #33757575
   static const Color lineBorder = Color(0x33757575);
 
   /// Color: #1F757575
   static const Color lineDivider = Color(0x1F757575);
+
+  /// Color: #F72707
+  static const Color red = Color(0xFFF72707);
 
   /// Color: #D32F2F
   static const Color statusError = Color(0xFFD32F2F);

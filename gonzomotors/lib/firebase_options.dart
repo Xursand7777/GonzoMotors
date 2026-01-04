@@ -62,7 +62,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '737063805016',
     projectId: 'gonzomotors-2de6f',
     storageBucket: 'gonzomotors-2de6f.firebasestorage.app',
-    iosBundleId: 'com.example.gonzomotors',
+    iosBundleId: 'com.gonzomotors',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(

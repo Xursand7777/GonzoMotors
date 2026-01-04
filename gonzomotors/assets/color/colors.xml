@@ -1,36 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!-- CONTENT -->
-<color name="content_primary">#212121</color> <!-- основной текст -->
-<color name="content_secondary">#757575</color> <!-- вторичный текст -->
-<color name="content_inverse">#FFFFFF</color> <!-- белый текст на тёмном фоне -->
-<color name="content_muted">#99757575</color> <!-- приглушённый текст -->
+    <!-- CONTENT -->
+    <color name="content_primary">#212121</color> <!-- основной текст -->
+    <color name="content_secondary">#757575</color> <!-- вторичный текст -->
+    <color name="content_inverse">#FFFFFF</color> <!-- белый текст на тёмном фоне -->
+    <color name="content_muted">#99757575</color> <!-- приглушённый текст -->
+    <color name="content_teritary">#919DA6</color>
 
-<!-- BACKGROUND -->
-<color name="background_primary">#F5F5F5</color> <!-- фон экранов -->
-<color name="background_secondary">#FFFFFF</color> <!-- карточки, панели -->
-<color name="background_inverse">#212121</color> <!-- фон в dark mode -->
-<color name="background_muted">#EEEEEE</color> <!-- серый фон для выделений -->
 
-<!-- SURFACE -->
-<color name="surface_primary">#FFFFFF</color>
-<color name="surface_secondary">#F5F5F5</color>
-<color name="surface_inverse">#212121</color>
+    <color name="accent_brand_name_primary">#E50000</color>
 
-<!-- ACCENT -->
-<color name="accent_primary">#D32F2F</color> <!-- красный -->
-<color name="accent_secondary">#FFC107</color> <!-- жёлтый -->
-<color name="accent_success">#4CAF50</color> <!-- зелёный (доп) -->
-<color name="accent_info">#2196F3</color> <!-- синий (доп) -->
+    <!-- BACKGROUND -->
+    <color name="background_primary">#F5F5F5</color> <!-- фон экранов -->
+    <color name="background_secondary">#FFFFFF</color> <!-- карточки, панели -->
+    <color name="background_inverse">#212121</color> <!-- фон в dark mode -->
+    <color name="background_muted">#EEEEEE</color> <!-- серый фон для выделений -->
+    <color name="background_muted">#1AB4C0CC</color>
+    <!-- SURFACE -->
+    <color name="surface_primary">#FFFFFF</color>
+    <color name="surface_secondary">#F5F5F5</color>
+    <color name="surface_inverse">#212121</color>
 
-<!-- STATUS -->
-<color name="status_success">#4CAF50</color>
-<color name="status_error">#D32F2F</color>
-<color name="status_warning">#FFC107</color>
-<color name="status_info">#2196F3</color>
+    <!-- ACCENT -->
 
-<!-- LINE / BORDER -->
-<color name="line_divider">#1F757575</color>
-<color name="line_border">#33757575</color>
+    <color name="accent_green_primary">#00B268</color>
+
+    <color name="accent_red_primary">#E04917</color>
+
+    <color name="accent_primary">#D32F2F</color> <!-- красный -->
+    <color name="accent_secondary">#FFC107</color> <!-- жёлтый -->
+    <color name="accent_success">#4CAF50</color> <!-- зелёный (доп) -->
+    <color name="accent_info">#2196F3</color> <!-- синий (доп) -->
+
+    <!-- STATUS -->
+    <color name="status_success">#4CAF50</color>
+    <color name="status_error">#D32F2F</color>
+    <color name="status_warning">#FFC107</color>
+    <color name="status_info">#2196F3</color>
+
+    <!-- LINE / BORDER -->
+    <color name="line_divider">#1F757575</color>
+    <color name="line_border">#33757575</color>
+
+    <color name="red">#F72707</color>
+    <color name="green">#23AD56</color>
+    <color name="blue">#2073F7</color>
+    <color name="gold">#DB9D16</color>
 </resources>
 

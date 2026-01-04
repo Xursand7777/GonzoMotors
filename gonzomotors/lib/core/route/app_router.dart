@@ -6,7 +6,9 @@ import '../../main.dart';
 import '../../pages/connection_check/connection_check_page.dart';
 import '../../pages/dashboard/dashboard_page.dart';
 import '../../pages/phone_register/phone_register_page.dart';
+import '../../pages/profile/profile_page.dart';
 import '../../pages/splash/splash_page.dart';
+import '../../pages/success/success_page.dart';
 import '../../pages/verification/verification_page.dart';
 import '../log/talker_logger.dart';
 
@@ -44,7 +46,7 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
         path: '/onboarding',
     name: RouteNames.onboarding,
-    builder: (context, state) => const OnBoardingPage()
+    builder: (context, state) => const OnboardingPage()
     ),
     GoRoute(
       path: '/phone-register',
@@ -57,6 +59,24 @@ final GoRouter appRouter = GoRouter(
       builder: (context, state) {
         final phone = state.extra as String;
         return VerificationPage(phone: phone);
+      },
+    ),
+    GoRoute(
+      path: '/profile',
+      name: RouteNames.profile,
+      builder: (_, __) => const ProfilePage(),
+    ),
+    GoRoute(
+      path: '/success',
+      name: RouteNames.success,
+      builder: (_, state) {
+        if (state.extra is SuccessNavigation) {
+          final args = state.extra as SuccessNavigation;
+          return SuccessPage(
+            navigation: args,
+          );
+        }
+        return const SuccessPage();
       },
     ),
   ],
