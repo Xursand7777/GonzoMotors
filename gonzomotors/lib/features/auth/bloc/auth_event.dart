@@ -71,19 +71,6 @@ class CheckUserInfoValidationEvent extends AuthEvent {
   List<Object?> get props => [];
 }
 
-// class UserUniversitySelectedEvent extends AuthEvent {
-//   final UniversityModel university;
-//   final bool isCreate;
-//
-//   const UserUniversitySelectedEvent({
-//     required this.university,
-//     this.isCreate = true,
-//   });
-//
-//   @override
-//   List<Object?> get props => [university];
-// }
-
 class OtpClearEvent extends AuthEvent {
   const OtpClearEvent();
 

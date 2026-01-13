@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:gonzo_motors/core/route/route_names.dart';
+import 'package:gonzo_motors/pages/auth/auth_page.dart';
 import 'package:gonzo_motors/pages/onboarding/onboarding_page.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 import '../../main.dart';
@@ -65,6 +66,11 @@ final GoRouter appRouter = GoRouter(
       path: '/profile',
       name: RouteNames.profile,
       builder: (_, __) => const ProfilePage(),
+    ),
+    GoRoute(
+      path: '/auth',
+      name: RouteNames.auth,
+      builder: (_, __) => const AuthPage(),
     ),
     GoRoute(
       path: '/success',

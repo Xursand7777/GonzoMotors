@@ -8,9 +8,11 @@ import '../../core/di/app_injection.dart';
 import '../../core/route/route_names.dart';
 import '../../core/theme/text_styles.dart';
 import '../../features/auth/bloc/auth_bloc.dart';
+import '../../features/profile/bloc/profile_bloc.dart';
 import '../../gen/colors.gen.dart';
 import '../../shared/keyboard_dismisser/keyboard_dismisser.dart';
 import '../../shared/page_dot_Indicator/page_dot_indicator_shared.dart';
+import '../success/success_page.dart';
 import 'cubit/auth_cubit.dart';
 
 class AuthPage extends StatelessWidget {
@@ -74,16 +76,16 @@ class _AuthView extends StatelessWidget {
               listenWhen: (previous, current) =>
               previous.isLogin != current.isLogin,
               listener: (context, state) {
-                // context.read<ProfileBloc>().add(const GetProfileEvent());
+                context.read<ProfileBloc>().add(const GetProfileEvent());
 
-                // if (state.isLogin) {
-                //   if (cubit.state.currentPage != cubit.pages.length - 1) {
-                //     context.replaceNamed(RouteNames.success,
-                //         extra: SuccessNavigation.register);
-                //   } else {
-                //     context.replaceNamed(RouteNames.success);
-                //   }
-                // }
+                if (state.isLogin) {
+                  if (cubit.state.currentPage != cubit.pages.length - 1) {
+                    context.replaceNamed(RouteNames.success,
+                        extra: SuccessNavigation.register);
+                  } else {
+                    context.replaceNamed(RouteNames.success);
+                  }
+                }
               }),
         ],
         child: PopScope(
@@ -151,25 +153,6 @@ class _AuthView extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              /*if (currentPage == cubit.pages.length - 1) ...[
-                                Positioned(
-                                  right: 0,
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 16.0, vertical: 8),
-                                    decoration: BoxDecoration(
-                                      color: ColorName.backgroundPrimary,
-                                      borderRadius: BorderRadius.circular(
-                                          AppStatics.radiusMedium),
-                                    ),
-                                    child: const Text(
-                                      "Keyingi",
-                                      style:
-                                          AppTextStyles.bodySemiboldSecondary,
-                                    ),
-                                  ),
-                                ),
-                              ]*/
                             ],
                           );
                         },
@@ -181,7 +164,7 @@ class _AuthView extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         child: PageView.builder(
                           onPageChanged: (index) {
-                            //context.read<AuthCubit>().changeCurrentPage(index);
+                            context.read<AuthCubit>().changeCurrentPage(index);
                           },
                           controller: cubit.pageController,
                           itemCount: cubit.pages.length,
@@ -240,7 +223,7 @@ class _AuthView extends StatelessWidget {
     );
   }
 
-/*  void _backButtonPressed(AuthCubit cubit,BuildContext context) {
+  void _backButtonPressed(AuthCubit cubit,BuildContext context) {
 
     final currentPage = cubit.state.currentPage;
     if (currentPage == 0) {
@@ -251,5 +234,5 @@ class _AuthView extends StatelessWidget {
     }
 
     cubit.changeCurrentPage(currentPage - 1);
-  }*/
+  }
 }

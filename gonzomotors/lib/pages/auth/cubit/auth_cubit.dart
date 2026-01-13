@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../features/auth/widgets/auth_widgets.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthPageState> {
@@ -23,7 +25,7 @@ class AuthCubit extends Cubit<AuthPageState> {
   TextEditingController get nameController => _nameController;
 
   AuthCubit() : super(const AuthPageState()){
-    // pages = authPages;
+     pages = authPages;
   }
 
   @override

@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 import '../../../core/local/onboarding_service.dart';
-import '../../../gen/assets.gen.dart';
+
 part 'onboarding_state.dart';
 
 

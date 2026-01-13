@@ -71,7 +71,7 @@ class _OnboardingViewState extends State<_OnboardingView> {
           previous.isFinished != current.isFinished,
           listener: (context, state) {
             if (state.isFinished) {
-              context.goNamed(RouteNames.dashboard);
+              context.goNamed(RouteNames.auth);
             }
           },
         ),
@@ -138,7 +138,7 @@ class _OnboardingViewState extends State<_OnboardingView> {
                             cubit.state.pagesData.length - 1;
 
                         return ButtonSharedWidget.auth(
-                          text:  isLastPage ? 'Chegirmalarni koʻrish' :'Davom etish',
+                          text:  isLastPage ? 'Moshinalarni koʻrish' :'Davom etish',
                           onTap: () => _onTap(context),
                         );
                       },

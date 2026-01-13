@@ -4,111 +4,16 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fb66d60-bf55-4744-a189-5e75f78c85c9" name="Changes" comment="Add car api">
-      <change afterPath="$PROJECT_DIR$/gonzomotors/android/app/src/main/res/drawable-hdpi/ic_launcher_foreground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/android/app/src/main/res/drawable-mdpi/ic_launcher_foreground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/android/app/src/main/res/drawable-xhdpi/ic_launcher_foreground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/android/app/src/main/res/drawable-xxhdpi/ic_launcher_foreground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/android/app/src/main/res/drawable-xxxhdpi/ic_launcher_foreground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/android/app/src/main/res/values/colors.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/android/keystore.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/assets/icons/check.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/assets/icons/check_circle_fill.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/assets/icons/message.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/assets/icons/passport_line.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/assets/icons/phone.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/assets/icons/security.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/assets/logo/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-50x50@1x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-50x50@2x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-57x57@1x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-57x57@2x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-72x72@1x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-72x72@2x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/core/local/onboarding_service.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/core/services/device_info_service.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/core/services/remote_service.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/core/services/token_service.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/core/services/user_service.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/core/utils/mask_text_input_formatter.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/auth/bloc/auth_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/auth/bloc/auth_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/auth/bloc/auth_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/auth/data/models/create_user_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/auth/data/models/verify_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/auth/data/repository/auth_repository.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/auth/widgets/auth_widgets.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/profile/bloc/profile_bloc.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/profile/bloc/profile_event.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/profile/bloc/profile_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/profile/data/models/user_model.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/profile/data/repository/profile_repository.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/profile/widgets/profile_title.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/auth/auth_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/auth/cubit/auth_cubit.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/auth/cubit/auth_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/onboarding/cubit/onboarding_cubit.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/onboarding/cubit/onboarding_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/profile/cubit/profile_cubit.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/profile/cubit/profile_state.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/profile/profile_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/success/success_page.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/shared/bouncing/bouncing_widget.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/shared/button/button_shared.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/shared/custom_text_field/custom_text_field.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/shared/keyboard_dismisser/keyboard_dismisser.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/shared/padding/padding_shared.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+    <list default="true" id="3fb66d60-bf55-4744-a189-5e75f78c85c9" name="Changes" comment="Add profile and auth">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/android/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/android/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/android/app/google-services.json" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/android/app/google-services.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/android/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/android/app/src/main/kotlin/com/example/gonzomotors/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/android/app/src/main/kotlin/com/example/gonzomotors/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/assets/color/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/assets/color/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/ios/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gonzomotors/lib/core/di/app_injection.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/core/di/app_injection.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/core/network/base_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/core/network/base_repository.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gonzomotors/lib/core/route/app_router.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/core/route/app_router.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/core/route/route_names.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/core/route/route_names.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/core/utils/common_utils.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/core/utils/common_utils.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/data/models/car.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/data/models/car.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/widgets/car_pick_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/widgets/car_pick_card.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/firebase_options.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/firebase_options.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/gen/assets.gen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/gen/assets.gen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/gen/colors.gen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/gen/colors.gen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/pages/dashboard/dashboard_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/dashboard/dashboard_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/auth/bloc/auth_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/auth/bloc/auth_bloc.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/auth/bloc/auth_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/auth/bloc/auth_event.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/pages/auth/auth_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/auth/auth_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/pages/auth/cubit/auth_cubit.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/auth/cubit/auth_cubit.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/pages/onboarding/cubit/onboarding_cubit.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/onboarding/cubit/onboarding_cubit.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gonzomotors/lib/pages/onboarding/onboarding_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/onboarding/onboarding_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/shared/image_placeholder/image_placeholder_shared.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/shared/image_placeholder/image_placeholder_shared.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/shared/image_widget/image_widget_shared.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/shared/image_widget/image_widget_shared.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/linux/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/linux/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/macos/Flutter/GeneratedPluginRegistrant.swift" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/macos/Flutter/GeneratedPluginRegistrant.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/macos/Runner.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/macos/Runner.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/macos/Runner/Configs/AppInfo.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/macos/Runner/Configs/AppInfo.xcconfig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/pubspec.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +73,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;dart.settings&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
 }</component>
@@ -251,7 +156,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764522033032</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Add profile and auth">
+      <option name="closed" value="true" />
+      <created>1767510554877</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1767510554877</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -273,6 +186,7 @@
     <MESSAGE value="Add flutter gen color and assets" />
     <MESSAGE value="Add unified styles" />
     <MESSAGE value="Add car api" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add car api" />
+    <MESSAGE value="Add profile and auth" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add profile and auth" />
   </component>
 </project>
