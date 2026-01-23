@@ -4,16 +4,46 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fb66d60-bf55-4744-a189-5e75f78c85c9" name="Changes" comment="Add profile and auth">
+    <list default="true" id="3fb66d60-bf55-4744-a189-5e75f78c85c9" name="Changes" comment="add auth logic">
+      <change afterPath="$PROJECT_DIR$/gonzomotors/assets/images/benzin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gonzomotors/assets/images/electro.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gonzomotors/assets/images/gibrid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_detail/bloc/car_detail_bloc.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_detail/bloc/car_detail_event.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_detail/bloc/car_detail_state.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_detail/data/models/car_model_detail.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_detail/data/repository/car_detail_repository.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_detail/widgets/bottom_buy_bar.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_detail/widgets/car_detail_app_bar.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_detail/widgets/car_image_gallery.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_detail/widgets/color_dots.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_detail/widgets/feature_cards.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_detail/widgets/modifications_grid.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_detail/widgets/pdf_button.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_detail/widgets/specs_table.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/car_detail/car_detail_page.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/catalog/catalog_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/android/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/android/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gonzomotors/lib/core/di/app_injection.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/core/di/app_injection.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/core/network/models/api_response.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/core/network/models/api_response.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gonzomotors/lib/core/route/app_router.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/core/route/app_router.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/core/route/route_names.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/core/route/route_names.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/core/storage/flutter_storage.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/core/storage/flutter_storage.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/auth/bloc/auth_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/auth/bloc/auth_bloc.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/auth/bloc/auth_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/auth/bloc/auth_event.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/pages/auth/auth_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/auth/auth_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/auth/bloc/auth_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/auth/bloc/auth_state.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/auth/data/models/create_user_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/auth/data/models/create_user_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/auth/data/models/verify_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/auth/data/models/verify_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/auth/data/repository/auth_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/auth/data/repository/auth_repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/data/models/car.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/data/models/car.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/data/repository/car_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/data/repository/car_repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/widgets/car_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/widgets/car_list.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gonzomotors/lib/pages/auth/cubit/auth_cubit.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/auth/cubit/auth_cubit.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/pages/onboarding/cubit/onboarding_cubit.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/onboarding/cubit/onboarding_cubit.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/pages/dashboard/dashboard_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/dashboard/dashboard_page.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gonzomotors/lib/pages/onboarding/onboarding_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/onboarding/onboarding_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,11 +109,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\FlutterProjects\GonzoMotors\gonzomotors\assets\images" />
+      <recent name="F:\FlutterProjects\GonzoMotors\gonzomotors\lib\features\car_detail" />
       <recent name="F:\FlutterProjects\GonzoMotors\gonzomotors\assets\icons" />
       <recent name="F:\FlutterProjects\GonzoMotors\gonzomotors\lib\features\auth\bloc" />
       <recent name="F:\FlutterProjects\GonzoMotors\gonzomotors\android\app" />
-      <recent name="F:\FlutterProjects\GonzoMotors\gonzomotors" />
-      <recent name="F:\FlutterProjects\GonzoMotors\gonzomotors\assets\logo" />
     </key>
   </component>
   <component name="RunManager">
@@ -164,7 +194,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767510554877</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add auth logic">
+      <option name="closed" value="true" />
+      <created>1768301464328</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1768301464328</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -187,6 +225,7 @@
     <MESSAGE value="Add unified styles" />
     <MESSAGE value="Add car api" />
     <MESSAGE value="Add profile and auth" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add profile and auth" />
+    <MESSAGE value="add auth logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="add auth logic" />
   </component>
 </project>

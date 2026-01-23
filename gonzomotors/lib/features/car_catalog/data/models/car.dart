@@ -4,6 +4,7 @@ class CarModel extends Equatable {
   final int id;
   final String name;
   final int year;
+  final int modelId;
   final String bodyType;
   final String powertrain;
   final String imageCardUrl;
@@ -14,6 +15,7 @@ class CarModel extends Equatable {
     required this.id,
     required this.name,
     required this.year,
+    required this.modelId,
     required this.bodyType,
     required this.imageCardUrl,
     required this.powertrain,
@@ -26,6 +28,7 @@ class CarModel extends Equatable {
       id: json['id'] ?? 0,
       name: json['name'] ?? '',
       year: json['year'] ?? 0,
+      modelId: json['modelId'] ?? 0,
       bodyType: json['bodyType'] ?? '',
       imageCardUrl: json['imageCardUrl'] ?? '',
       powertrain: json['powertrain'] ?? '',
@@ -39,6 +42,7 @@ class CarModel extends Equatable {
       'id': id,
       'name': name,
       'year': year,
+      'modelId': modelId,
       'bodyType': bodyType,
       'imageCardUrl': imageCardUrl,
       'powertrain': powertrain,
@@ -52,6 +56,7 @@ class CarModel extends Equatable {
     id,
     name,
     year,
+    modelId,
     bodyType,
     imageCardUrl,
     powertrain,

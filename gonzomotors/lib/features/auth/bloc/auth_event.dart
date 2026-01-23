@@ -79,12 +79,12 @@ class OtpClearEvent extends AuthEvent {
 }
 
 class UserPassportDataEvent extends AuthEvent {
-  final String? pnfl;
+  final String? pinfl;
   final String? series;
   final bool isNumber;
 
   const UserPassportDataEvent({
-    this.pnfl,
+    this.pinfl,
     this.series,
     this.isNumber = false,
   });
@@ -92,7 +92,7 @@ class UserPassportDataEvent extends AuthEvent {
   @override
   // TODO: implement props
   List<Object?> get props => [
-    pnfl,
+    pinfl,
     series,
     isNumber,
   ];

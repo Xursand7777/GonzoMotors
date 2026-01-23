@@ -12,7 +12,7 @@ class AuthState extends Equatable {
   final String? birthDateError;
   final bool isUserInfoValid;
   final bool resentOtpCode;
-  final String? pnfl;
+  final String? pinfl;
   final String? series;
   final String? seriesNumber;
 
@@ -27,7 +27,7 @@ class AuthState extends Equatable {
     this.nameError,
     this.birthDateError,
     this.isUserInfoValid = false,
-    this.pnfl,
+    this.pinfl,
     this.series,
     this.seriesNumber,
     this.resentOtpCode = false,
@@ -45,7 +45,7 @@ class AuthState extends Equatable {
     String? birthDateError,
     bool? isUserInfoValid,
     bool? resentOtpCode,
-    String? pnfl,
+    String? pinfl,
     String? series,
     String? seriesNumber,
   }) {
@@ -60,7 +60,7 @@ class AuthState extends Equatable {
       birthDateError: birthDateError,
       isUserInfoValid: isUserInfoValid ?? this.isUserInfoValid,
       resentOtpCode: resentOtpCode ?? false,
-      pnfl:  pnfl ?? this.pnfl,
+      pinfl:  pinfl ?? this.pinfl,
       series:  series?? this.series,
       seriesNumber:  seriesNumber ?? this.seriesNumber,
     );
@@ -78,7 +78,7 @@ class AuthState extends Equatable {
     birthDateError,
     isUserInfoValid,
     resentOtpCode,
-    pnfl,
+    pinfl,
     series,
     seriesNumber,
   ];

@@ -5,6 +5,8 @@ abstract class RouteNames {
   static const onboarding = 'onboarding';
   static const phoneRegister = 'phone_register';
   static const verification = 'verification';
+  static const carDetail = 'carDetail';
+  static const catalog = 'catalog';
   static const auth = 'auth';
   static const editProfile = 'editProfile';
   static const security = 'security';

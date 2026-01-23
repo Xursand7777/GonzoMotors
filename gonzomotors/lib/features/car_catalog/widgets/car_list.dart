@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gonzo_motors/features/car_catalog/bloc/car_catalog_bloc.dart';
+import '../../../pages/car_detail/car_detail_page.dart';
+import '../../car_detail/data/repository/car_detail_repository.dart';
 import '../data/models/car.dart';
 import 'car_pick_card.dart';
 
@@ -57,6 +59,18 @@ class _CarsListView extends StatelessWidget {
         final car = cards[i];
         return CarProductCard(
           car: car,
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => CarDetailPage(
+                  modelId: car.modelId,
+                  initialCarId: car.id,
+                  repository: context.read<CarDetailRepository>(),
+                ),
+              ),
+            );
+          },
         );
       },
     );

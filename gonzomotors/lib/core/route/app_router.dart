@@ -4,6 +4,8 @@ import 'package:gonzo_motors/pages/auth/auth_page.dart';
 import 'package:gonzo_motors/pages/onboarding/onboarding_page.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 import '../../main.dart';
+import '../../pages/car_detail/car_detail_page.dart';
+import '../../pages/catalog/catalog_page.dart';
 import '../../pages/connection_check/connection_check_page.dart';
 import '../../pages/dashboard/dashboard_page.dart';
 import '../../pages/phone_register/phone_register_page.dart';
@@ -71,6 +73,16 @@ final GoRouter appRouter = GoRouter(
       path: '/auth',
       name: RouteNames.auth,
       builder: (_, __) => const AuthPage(),
+    ),
+    GoRoute(
+      path: '/car-detail',
+      name: RouteNames.carDetail,
+      builder: (_, __) => const CarDetailPage(),
+    ),
+    GoRoute(
+      path: '/catalog',
+      name: RouteNames.catalog,
+      builder: (_, __) => const CatalogPage(),
     ),
     GoRoute(
       path: '/success',

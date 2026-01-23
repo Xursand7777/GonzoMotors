@@ -67,7 +67,7 @@ class AuthCubit extends Cubit<AuthPageState> {
   }
 
   Future<void> onOtpCodeChanged() async {
-    if (_pinController.text.length != 5) return;
+    if (_pinController.text.length != 4) return;
 
     emit(state.copyWith(
       otpCodeStatus: const BaseStatus(type: StatusType.loading),
@@ -75,7 +75,7 @@ class AuthCubit extends Cubit<AuthPageState> {
 
     await Future.delayed(const Duration(seconds: 2));
 
-    if (_pinController.text == "12345") {
+    if (_pinController.text == "1234") {
       emit(state.copyWith(
         otpCodeStatus: const BaseStatus(type: StatusType.success),
       ));

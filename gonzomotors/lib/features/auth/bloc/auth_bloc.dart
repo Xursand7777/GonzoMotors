@@ -10,6 +10,7 @@ import 'package:smart_auth/smart_auth.dart';
 
 import '../../../core/bloc/base_status.dart';
 import '../../../core/services/token_service.dart';
+import '../../../core/storage/flutter_storage.dart';
 import '../../../core/utils/mask_text_input_formatter.dart';
 import '../data/repository/auth_repository.dart';
 
@@ -85,13 +86,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     if (!state.isVerified) return;
     emit(state.copyWith(status: const BaseStatus(type: StatusType.loading)));
     try {
-      final phone = '+998${_phoneMaskFormatter.getUnmaskedText()}';
+      final phone = '998${_phoneMaskFormatter.getUnmaskedText()}';
       final data = {
-        'phone': phone,
+        'phoneNumber': phone,
       };
-      if(!Platform.isIOS){
-        state.smsAuth != null ? data['hash_code'] = state.smsAuth! : null;
-      }
+      // if(!Platform.isIOS){
+      //   state.smsAuth != null ? data['hash_code'] = state.smsAuth! : null;
+      // }
 
       await _repository.sendPhoneVerification(query: data);
       emit(state.copyWith(
@@ -101,6 +102,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           status: BaseStatus.paging(),resentOtpCode:  true));
 
     }on DioException catch(e){
+
       if (e.response != null && e.response?.data != null) {
         final errorData = e.response?.data;
         String errorMessage = 'Xatolik yuz berdi';
@@ -116,13 +118,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         ));
         log('Auth bloc DioException otp ${e.response?.data}');
       } else {
+
         emit( state.copyWith(
           status: BaseStatus.errorWithMessage(message: e.message),
         ));
         log('Auth bloc DioException otp ${e.message}');
       }
 
+
     } catch (e) {
+
       emit(state.copyWith(
         status: BaseStatus(type: StatusType.error, message: e.toString()),
       ));
@@ -139,42 +144,25 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         status:  BaseStatus.loading()
     ));
 
-    final phone = '+998${_phoneMaskFormatter.getUnmaskedText()}';
+    final phone = '998${_phoneMaskFormatter.getUnmaskedText()}';
 
     try {
       final data = {
-        'phone': phone,
+        'phoneNumber': phone,
         'code': _pinController.text,
       };
       final res = await _repository.verifyOtpCode(query: data);
 
-      if (res.data != null && res.success == true) {
-        if (res.data?.accessToken != null && res.data!.refreshToken != null) {
-          await _tokenService.saveToken(res.data!.accessToken!);
+      if (res.data?.accessToken != null) {
+        await _tokenService.saveToken(res.data!.accessToken!);
+        if (res.data?.refreshToken != null) {
           await _tokenService.saveRefreshToken(res.data!.refreshToken!);
-          emit(
-              state.copyWith(
-                status: BaseStatus.completed(),
-                isLogin: true,
-              )
-          );
-        } else if (res.data?.temporaryToken != null) {
-          await _tokenService.saveToken(res.data!.temporaryToken!);
-          emit(
-              state.copyWith(
-                status: BaseStatus.completed(),
-              )
-          );
         }
 
-        /*await _tokenService.saveToken(res.data!.accessToken!);
-        await _tokenService.saveRefreshToken(res.data!.refreshToken!);
-        emit(
-            state.copyWith(
-              otpCodeStatus:  BaseStatus.completed(),
-              isLogin:  res.data?.temporaryToken != null,
-            )
-        );*/
+        emit(state.copyWith(
+          status: BaseStatus.success(),
+          isLogin: false,
+        ));
       } else {
         emit(
             state.copyWith(
@@ -233,11 +221,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       status:  BaseStatus.loading(),
     ));
     try {
-      final phone = '+998${_phoneMaskFormatter.getUnmaskedText()}';
+      final phone = '998${_phoneMaskFormatter.getUnmaskedText()}';
       final data = {
-        'phone': phone,
+        'phoneNumber': phone,
       };
-      state.smsAuth != null ? data['hash_code'] = state.smsAuth! : null;
+      // state.smsAuth != null ? data['hash_code'] = state.smsAuth! : null;
 
       await _repository.sendPhoneVerification(query: data);
       emit(state.copyWith(
@@ -358,16 +346,18 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     try {
       final data = {
-        'phone': '+998${_phoneMaskFormatter.getUnmaskedText()}',
-        'first_name': _nameController.text.trim(),
+        'phoneNumber': '998${_phoneMaskFormatter.getUnmaskedText()}',
+        'firstname': _nameController.text.trim(),
+        'genderId': '1',
+        'userName': 'abc'
       };
 
       if (_lastController.text.trim().isNotEmpty) {
-        data['last_name'] = _lastController.text.trim();
+        data['lastname'] = _lastController.text.trim();
       }
 
       if (state.userDateOfBirth != null) {
-        data['date_of_birth'] = state.userDateOfBirth!.toIso8601String();
+        data['birthDate'] = toYyyyMmDd(state.userDateOfBirth!);
       } else if (_birthDateController.text.trim().isNotEmpty) {
         // Parse manually entered date
         final parts = _birthDateController.text.trim().split('.');
@@ -375,33 +365,26 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         final month = int.parse(parts[1]);
         final year = int.parse(parts[2]);
         final date = DateTime(year, month, day);
-        data['date_of_birth'] = date.toIso8601String();
+        data['birthDate'] = toYyyyMmDd(date);
       }
 
       final res = await _repository.registerUserProfile(query: data);
 
-      if (res.data != null && res.success ==true ){
-        if(res.data?.accessToken != null && res.data?.refreshToken != null){
-          await _tokenService.saveToken(res.data!.accessToken!);
-          await _tokenService.saveRefreshToken(res.data!.refreshToken!);
 
-          emit(
-              state.copyWith(
-                status: BaseStatus.completed(),
-                isLogin: true,
-              )
-          );
-
-        }
-      }else{
-        emit (state.copyWith(
-          isUserInfoValid:  false,
-
-          status:  BaseStatus.errorWithMessage(message: res.message),
+      if (res.success == true) {
+        emit(state.copyWith(
+          status: BaseStatus.completed(),
+          isLogin: true,
+        ));
+      } else {
+        emit(state.copyWith(
+          isUserInfoValid: false,
+          status: BaseStatus.errorWithMessage(message: res.message),
         ));
       }
 
     } catch (e, s) {
+      print('❌ STATUS: ${e.toString()}');
       log('Error registering user: $e $s');
       emit(state.copyWith(
         status: BaseStatus.errorWithMessage(message: 'Xatolik yuz berdi'),
@@ -409,6 +392,14 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       ));
     }
   }
+
+  String toYyyyMmDd(DateTime d) {
+    final y = d.year.toString().padLeft(4, '0');
+    final m = d.month.toString().padLeft(2, '0');
+    final day = d.day.toString().padLeft(2, '0');
+    return '$y-$m-$day';
+  }
+
   void _onCheckUserInfoValidation(CheckUserInfoValidationEvent event, Emitter<AuthState> emit) {
     final isNameValid = _nameController.text.trim().isNotEmpty && _nameController.text.trim().length >= 2;
 
@@ -430,9 +421,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   void _onUserPassport(UserPassportDataEvent event, Emitter<AuthState> emit) async{
 
-    if(event.pnfl != null){
+    if(event.pinfl != null){
       emit(state.copyWith(
-          pnfl: event.pnfl
+          pinfl: event.pinfl
       ));
       return;
     }

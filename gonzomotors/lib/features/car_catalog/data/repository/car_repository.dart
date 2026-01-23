@@ -1,6 +1,6 @@
 import 'package:gonzo_motors/core/network/base_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../../../core/network/models/api_response.dart';
+
 import '../../../../core/network/models/pagination.dart';
 import '../models/car.dart' show CarModel;
 

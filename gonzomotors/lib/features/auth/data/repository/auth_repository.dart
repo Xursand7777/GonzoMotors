@@ -1,7 +1,10 @@
 import '../../../../core/network/base_repository.dart';
 import '../../../../core/network/models/api_response.dart';
 import '../../../../core/services/firebase_token.service.dart';
+import '../../../../core/services/token_service.dart';
+import '../models/create_user_model.dart';
 import '../models/verify_model.dart';
+
 
 abstract class AuthRepository extends BaseRepository {
   AuthRepository(super.dio);
@@ -12,7 +15,7 @@ abstract class AuthRepository extends BaseRepository {
     Map<String, dynamic>? query,
   });
 
-  Future<ApiResponse<VerifyModel?>> registerUserProfile({
+  Future<ApiResponse<CreateUserModel?>> registerUserProfile({
     Map<String, dynamic>? query,
   });
 
@@ -20,31 +23,31 @@ abstract class AuthRepository extends BaseRepository {
     required String phoneNumber,
   });
 
-  // Future<ApiResponse<CreateStudentModel?>> createStudent({
-  //   Map<String, dynamic>? query,
-  // });
-  //
-  // Future<ApiResponse<CreateStudentModel?>> updateStudent(
-  //     {Map<String, dynamic>? query});
 }
 
 class AuthRepositoryImpl extends AuthRepository {
   final FirebaseTokenService _fcmService;
+  final TokenService _tokenService;
 
-  AuthRepositoryImpl(super.dio, this._fcmService);
+  AuthRepositoryImpl(super.dio, this._fcmService, this._tokenService);
 
   @override
-  Future<ApiResponse<VerifyModel?>> registerUserProfile({
+  Future<ApiResponse<CreateUserModel?>> registerUserProfile({
     Map<String, dynamic>? query,
   }) async {
-    final fcmToken = await FirebaseTokenService.getFCMToken();
+    // final fcmToken = await FirebaseTokenService.getFCMToken();
     final Map<String, dynamic> header = {};
-    if (fcmToken != null && fcmToken.isNotEmpty) {
-      header['fcm_token'] = fcmToken;
-    }
+    // if (fcmToken != null && fcmToken.isNotEmpty) {
+    //   header['fcm_token'] = fcmToken;
+    // }
+    final token = await _tokenService.getToken();
 
-    return await post('auth/register',
-        fromJson: (json) => VerifyModel.fromJson(json),
+    if (token != null && token.isNotEmpty) {
+      header['Authorization'] = 'Bearer $token';
+    }
+    print('➡️ Headers to send: $header');
+    return await post('MobileUser/update',
+        fromJson: (json) => CreateUserModel.fromJson(json),
         data: query,
         headers: header);
   }
@@ -53,29 +56,28 @@ class AuthRepositoryImpl extends AuthRepository {
   Future<void> sendPhoneVerification({Map<String, dynamic>? query}) async {
     final fcmToken = await FirebaseTokenService.getFCMToken();
     final Map<String, dynamic> header = {};
-    if (fcmToken != null && fcmToken.isNotEmpty) {
-      header['fcm_token'] = fcmToken;
-    }
-    return await postNoContent('auth/send-otp', data: query, headers: header);
+    // if (fcmToken != null && fcmToken.isNotEmpty) {
+    //   header['fcm_token'] = fcmToken;
+    // }
+    return await postNoContent('MobileUser/send-sms', data: query);
   }
 
   @override
-  Future<ApiResponse<VerifyModel?>> verifyOtpCode(
-      {Map<String, dynamic>? query}) async {
-    return await post('auth/otp/login',
-        fromJson: (json) => VerifyModel.fromJson(json), data: query);
-/*
-    return Future<ApiResponse<UserModel?>>.delayed(
-      const Duration(seconds: 2),
-      () => ApiResponse(
-          success: true,
-          statusCode: 200,
-          message: "OTP code verified successfully",
-          data: const UserModel(id: '', name: '', email: '')),
-    );*/
-    // TODO: implement verifyOtpCode
-    throw UnimplementedError();
+  Future<ApiResponse<VerifyModel?>> verifyOtpCode({Map<String, dynamic>? query}) async {
+    return await post(
+      'MobileUser/login',
+      data: query,
+      fromJson: (json) {
+        if (json == null) return null;
+        if (json is Map<String, dynamic>) {
+          return VerifyModel.fromJson(json);
+        }
+        return null;
+      },
+    );
   }
+
+
 
   @override
   Future<ApiResponse> resendOtpCode({required String phoneNumber}) {
@@ -91,17 +93,4 @@ class AuthRepositoryImpl extends AuthRepository {
       ),
     );
   }
-
-  // @override
-  // Future<ApiResponse<CreateStudentModel?>> createStudent(
-  //     {Map<String, dynamic>? query}) async {
-  //   return await post('user/student',
-  //       fromJson: (json) => CreateStudentModel.fromJson(json), data: query);
-  // }
-  //
-  // @override
-  // Future<ApiResponse<CreateStudentModel?>> updateStudent({Map<String, dynamic>? query}) {
-  //   return put('user/student/update',
-  //       fromJson: (json) => CreateStudentModel.fromJson(json), data: query);
-  // }
 }

@@ -1,12 +1,15 @@
 class VerifyModel {
-  String? accessToken;
-  String? refreshToken;
-  dynamic temporaryToken;
+  final String? accessToken;
+  final String? refreshToken;
+  final String? temporaryToken;
+  final String? exp;
 
-  VerifyModel({this.accessToken, this.temporaryToken, this.refreshToken});
-  factory VerifyModel.fromJson(Map<String,dynamic> json)=>VerifyModel(
-    accessToken: json['access_token'] as String?,
-    refreshToken: json['refresh_token'] as String?,
-    temporaryToken: json['temporary_token'] as String?,
+  VerifyModel({this.accessToken, this.refreshToken, this.temporaryToken, this.exp});
+
+  factory VerifyModel.fromJson(Map<String, dynamic> json) => VerifyModel(
+    accessToken: json['accessToken'] as String?,
+    refreshToken: json['refreshToken'] as String?,
+    temporaryToken: json['temporaryToken'] as String?,
+    exp: json['exp'] as String?,
   );
 }
