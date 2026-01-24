@@ -1,5 +1,5 @@
 import 'dart:developer';
-
+import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class TokenService {
@@ -20,6 +20,14 @@ class TokenService {
       // Log error
       log('Token initialization failed: $e');
     }
+  }
+
+  bool isExpired(String token) {
+    return JwtDecoder.isExpired(token);
+  }
+
+  DateTime getExpirationDate(String token) {
+    return JwtDecoder.getExpirationDate(token);
   }
 
   Future<void> saveToken(String token) async {

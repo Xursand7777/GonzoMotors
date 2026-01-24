@@ -26,7 +26,8 @@ class AuthPage extends StatelessWidget {
           create: (context) => AuthCubit(),
         ),
         BlocProvider(
-          create: (context) => AuthBloc(sl.get(), sl.get(), sl.get()),
+          create: (context) => AuthBloc(sl.get(), sl.get(), sl.get())
+            ..add(const AppStarted()),
         ),
       ],
       child: _AuthView()
@@ -76,15 +77,12 @@ class _AuthView extends StatelessWidget {
               listenWhen: (previous, current) =>
               previous.isLogin != current.isLogin,
               listener: (context, state) {
-                context.read<ProfileBloc>().add(const GetProfileEvent());
-
                 if (state.isLogin) {
-                  if (cubit.state.currentPage != cubit.pages.length - 1) {
-                    context.replaceNamed(RouteNames.success,
-                        extra: SuccessNavigation.register);
-                  } else {
-                    context.replaceNamed(RouteNames.success);
-                  }
+                  // TODO check profile bloc
+                 // context.read<ProfileBloc>().add(const GetProfileEvent());
+                  context.replaceNamed(RouteNames.dashboard);
+                } else {
+                  context.replaceNamed(RouteNames.auth);
                 }
               }),
         ],

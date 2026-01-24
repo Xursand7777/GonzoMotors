@@ -36,6 +36,14 @@ class SetUserDateEvent extends AuthEvent {
   List<Object?> get props => [date];
 }
 
+class AppStarted extends AuthEvent {
+  const AppStarted();
+
+  @override
+  List<Object?> get props => [];
+}
+
+
 class StartResendCodeTimerEvent extends AuthEvent {
   const StartResendCodeTimerEvent();
 

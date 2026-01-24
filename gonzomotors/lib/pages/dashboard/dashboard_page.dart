@@ -84,8 +84,8 @@ class _DashboardViewState extends State<_DashboardView> {
             return IndexedStack(
               index: currentIndex,
               children: const [
-                CatalogPage(),
                 CarCatalogPage(),
+                CatalogPage(),
                 OnboardingPage(),
                 ProfilePage(),
               ],

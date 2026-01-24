@@ -11,7 +11,7 @@ abstract class AuthRepository extends BaseRepository {
 
   Future<void> sendPhoneVerification({Map<String, dynamic>? query});
 
-  Future<ApiResponse<VerifyModel?>> verifyOtpCode({
+  Future<bool> verifyOtpCode({
     Map<String, dynamic>? query,
   });
 
@@ -46,7 +46,7 @@ class AuthRepositoryImpl extends AuthRepository {
       header['Authorization'] = 'Bearer $token';
     }
     print('➡️ Headers to send: $header');
-    return await post('MobileUser/update',
+    return await post('MobileUser/create',
         fromJson: (json) => CreateUserModel.fromJson(json),
         data: query,
         headers: header);
@@ -63,17 +63,10 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<ApiResponse<VerifyModel?>> verifyOtpCode({Map<String, dynamic>? query}) async {
-    return await post(
-      'MobileUser/login',
+  Future<bool> verifyOtpCode({Map<String, dynamic>? query}) async {
+    return await postRaw<bool>(
+      'MobileUser/validate-sms',
       data: query,
-      fromJson: (json) {
-        if (json == null) return null;
-        if (json is Map<String, dynamic>) {
-          return VerifyModel.fromJson(json);
-        }
-        return null;
-      },
     );
   }
 

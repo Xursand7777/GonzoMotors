@@ -117,6 +117,22 @@ abstract class BaseRepository {
     return ApiResponse<T>.fromJson(res.data, fromJson);
   }
 
+  Future<T> postRaw<T>(
+      String path, {
+        dynamic data,
+        Map<String, dynamic>? headers,
+      }) async {
+
+    final res = await dio.post(
+      path,
+      data: data,
+      options: Options(headers: headers),
+    );
+
+    return res.data as T;
+  }
+
+
   Future<void> postNoContent(
       String path, {
         dynamic data,

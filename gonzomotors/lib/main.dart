@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gonzo_motors/features/profile/bloc/profile_bloc.dart';
 import 'package:gonzo_motors/shared/internet_connectivity/internet_connectivity_wrapper.dart';
 import 'package:talker_bloc_logger/talker_bloc_logger_observer.dart';
 
@@ -100,6 +101,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<ConnectionCheckerBloc>(
           create: (context) => ConnectionCheckerBloc(sl.get(), sl.get()),
+        ),
+        BlocProvider<ProfileBloc>(
+          create: (context) => ProfileBloc(sl.get(), sl.get(), sl.get(), sl.get()),
         ),
       ],
       child: MaterialApp.router(

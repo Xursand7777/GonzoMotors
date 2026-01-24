@@ -71,7 +71,7 @@ class _OnboardingViewState extends State<_OnboardingView> {
           previous.isFinished != current.isFinished,
           listener: (context, state) {
             if (state.isFinished) {
-              context.goNamed(RouteNames.dashboard);
+              context.goNamed(RouteNames.auth);
             }
           },
         ),

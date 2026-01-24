@@ -1,26 +1,5 @@
 import 'package:equatable/equatable.dart';
 
-/*
-
-{
-    "success": true,
-    "statusCode": 200,
-    "message": "",
-    "data": {
-        "id": 16,
-        "email": null,
-        "phone": "+998973245224",
-        "first_name": "muniraaaa",
-        "last_name": null,
-        "birth_date": null,
-        "pinfl": null,
-        "gender": null,
-        "roles": null,
-        "Companies": null
-    }
-}
-
- */
 
 class UserModel extends Equatable {
   final int id;

@@ -5,6 +5,7 @@ import 'package:gonzo_motors/core/network/dio_client.dart';
 import 'package:gonzo_motors/core/services/user_service.dart';
 import 'package:gonzo_motors/features/auth/data/repository/auth_repository.dart';
 import 'package:gonzo_motors/features/car_detail/data/repository/car_detail_repository.dart';
+import 'package:gonzo_motors/features/profile/data/repository/profile_repository.dart';
 import 'package:gonzo_motors/features/verification/data/repository/verification_repository.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -70,5 +71,5 @@ Future<void> initInjection() async {
   sl.registerLazySingleton<VerificationRepository>(() => VerificationRepositoryImpl(sl.get()));
   sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl.get(), sl.get(), sl.get()));
   sl.registerLazySingleton<CarDetailRepository>(() => CarDetailRepositoryImpl(sl.get()));
-
+  sl.registerLazySingleton<ProfileRepository>(() => ProfileRepositoryImpl(sl.get()));
 }

@@ -34,6 +34,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<CheckUserInfoValidationEvent>(_onCheckUserInfoValidation);
     on<OtpClearEvent>(_onOtpClear);
     on<UserPassportDataEvent>(_onUserPassport);
+    on<AppStarted>(_onAppStarted);
     add(const GetUserSmsAuthEvent());
   }
 
@@ -80,6 +81,39 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       ),
     );
   }
+
+  Future<void> _onAppStarted(
+      AppStarted event,
+      Emitter<AuthState> emit,
+      ) async {
+    emit(state.copyWith(status: BaseStatus.loading()));
+
+    final isLoggedIn = await _checkIsLoggedIn();
+
+    emit(state.copyWith(
+      isLogin: isLoggedIn,
+      status: isLoggedIn
+          ? BaseStatus.success()
+          : BaseStatus.initial(),
+    ));
+  }
+
+  Future<bool> _checkIsLoggedIn() async {
+    final token = await _tokenService.getToken();
+
+    if (token == null || token.isEmpty) {
+      return false;
+    }
+
+    if (_tokenService.isExpired(token)) {
+      await _tokenService.clearTokens();
+      return false;
+    }
+
+    return true;
+  }
+
+
 
   void _onConfirmPhoneNumber(ConfirmPhoneNumberEvent event, Emitter<AuthState> emit) async {
     if(state.status.isLoading()) return;
@@ -153,11 +187,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       };
       final res = await _repository.verifyOtpCode(query: data);
 
-      if (res.data?.accessToken != null) {
-        await _tokenService.saveToken(res.data!.accessToken!);
-        if (res.data?.refreshToken != null) {
-          await _tokenService.saveRefreshToken(res.data!.refreshToken!);
-        }
+      if (res == true) {
 
         emit(state.copyWith(
           status: BaseStatus.success(),
@@ -166,7 +196,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       } else {
         emit(
             state.copyWith(
-              status: BaseStatus.errorWithMessage(message: res.message),
+              status: BaseStatus.errorWithMessage(message: 'Xatolik yuz berdi'),
             )
         );
       }
@@ -348,8 +378,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final data = {
         'phoneNumber': '998${_phoneMaskFormatter.getUnmaskedText()}',
         'firstname': _nameController.text.trim(),
-        'genderId': '1',
-        'userName': 'abc'
+        'genderId': 1,
       };
 
       if (_lastController.text.trim().isNotEmpty) {
@@ -372,6 +401,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
 
       if (res.success == true) {
+        await _tokenService.saveToken(res.data!.accessToken!);
+        if (res.data?.refreshToken != null) {
+          await _tokenService.saveRefreshToken(res.data!.refreshToken!);
+        }
         emit(state.copyWith(
           status: BaseStatus.completed(),
           isLogin: true,
@@ -384,7 +417,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
 
     } catch (e, s) {
-      print('❌ STATUS: ${e.toString()}');
+      print('Error registering user: ${e}');
       log('Error registering user: $e $s');
       emit(state.copyWith(
         status: BaseStatus.errorWithMessage(message: 'Xatolik yuz berdi'),
