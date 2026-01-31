@@ -81,8 +81,6 @@ class _AuthView extends StatelessWidget {
                   // TODO check profile bloc
                  // context.read<ProfileBloc>().add(const GetProfileEvent());
                   context.replaceNamed(RouteNames.dashboard);
-                } else {
-                  context.replaceNamed(RouteNames.auth);
                 }
               }),
         ],

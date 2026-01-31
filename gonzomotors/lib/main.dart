@@ -1,14 +1,13 @@
-import 'dart:io';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gonzo_motors/features/profile/bloc/profile_bloc.dart';
+import 'package:gonzo_motors/pages/car_catalog/cubit/car_catalog_cubit.dart';
 import 'package:gonzo_motors/shared/internet_connectivity/internet_connectivity_wrapper.dart';
 import 'package:talker_bloc_logger/talker_bloc_logger_observer.dart';
 
@@ -54,26 +53,6 @@ Future<void> main() async {
 
   await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(true);
 
-  // iOS uchun APNS token olish
-  if (Platform.isIOS) {
-    String? apnsToken = await FirebaseMessaging.instance.getAPNSToken();
-    if (apnsToken != null) {
-      // FCM token olish
-      await FirebaseMessaging.instance.getToken();
-      logger.debug("Firebase Messaging Token: $apnsToken");
-    } else {
-      // Callback orqali token olish
-      FirebaseMessaging.instance.onTokenRefresh.listen((token) {
-        logger.debug("Firebase Messaging apns Token stream: $apnsToken");
-      });
-    }
-  } else {
-    // Android uchun
-    final token = await FirebaseMessaging.instance.getToken();
-    logger.debug("Firebase Messaging android Token: $token");
-  }
-
-
 
   Bloc.observer = MultiBlocObserver([
     TalkerBlocObserver(talker: logger),
@@ -102,9 +81,12 @@ class MyApp extends StatelessWidget {
         BlocProvider<ConnectionCheckerBloc>(
           create: (context) => ConnectionCheckerBloc(sl.get(), sl.get()),
         ),
-        BlocProvider<ProfileBloc>(
-          create: (context) => ProfileBloc(sl.get(), sl.get(), sl.get(), sl.get()),
+        BlocProvider<CarCatalogCubit>(
+          create: (_) => CarCatalogCubit(),
         ),
+        // BlocProvider<ProfileBloc>(
+        //   create: (context) => ProfileBloc(sl.get(), sl.get(), sl.get(), sl.get()),
+        // ),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,

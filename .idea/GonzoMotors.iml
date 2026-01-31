@@ -6,6 +6,9 @@
       <excludeFolder url="file://$MODULE_DIR$/gonzomotors/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/gonzomotors/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/gonzomotors/build" />
+      <excludeFolder url="file://$MODULE_DIR$/gonzomotors/packages/pull_to_refresh/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/gonzomotors/packages/pull_to_refresh/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/gonzomotors/packages/pull_to_refresh/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -191,7 +191,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
         emit(state.copyWith(
           status: BaseStatus.success(),
-          isLogin: false,
         ));
       } else {
         emit(

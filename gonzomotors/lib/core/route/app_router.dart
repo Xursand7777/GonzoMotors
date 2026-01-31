@@ -21,7 +21,7 @@ final GoRouter appRouter = GoRouter(
   initialLocation: '/onboarding',
   observers: [TalkerRouteObserver(logger)],
   onException: (context, state, router) {
-    router.goNamed(RouteNames.dashboard);
+   // router.goNamed(RouteNames.dashboard);
   },
   routes: [
     GoRoute(

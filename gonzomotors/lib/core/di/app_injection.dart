@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:gonzo_motors/core/network/dio_client.dart';
@@ -16,21 +19,13 @@ import '../../features/user_location/data/repository/user_location_repository.da
 import '../local/onboarding_service.dart';
 import '../services/deeplink_service.dart';
 import '../services/device_info_service.dart';
-import '../services/firebase_token.service.dart';
+import '../services/fcm_service.dart';
 import '../services/notification_service.dart';
 import '../services/token_service.dart';
 
 final sl = GetIt.instance;
 
 Future<void> initInjection() async {
-  final dio = DioClient();
-  final deeplinkService = DeeplinkService();
-  final notificationService = NotificationService();
-  final sharedPreferences = await SharedPreferences.getInstance();
-  final InternetConnectionChecker connectionChecker =
-  InternetConnectionChecker.createInstance(
-      addresses: [AddressCheckOption(uri: Uri.parse('https://www.google.com'))]);
-  final Connectivity connectivity = Connectivity();
   const FlutterSecureStorage secureStorage = FlutterSecureStorage(
     aOptions: AndroidOptions(
       encryptedSharedPreferences: true,
@@ -38,16 +33,47 @@ Future<void> initInjection() async {
     ),
   );
   final TokenService tokenService = TokenService(secureStorage)..initialize();
+
+  final deeplinkService = DeeplinkService();
+  final notificationService = NotificationService();
+  final sharedPreferences = await SharedPreferences.getInstance();
   final deviceInfoService = DeviceInfoService(sharedPreferences);
   final userService = UserService(secureStorage);
-  final fmcService = FirebaseTokenService();
+  final FcmService fcmService = FcmService(secureStorage);
+  final dioClient = DioClient(
+    tokenService: tokenService,
+    fcmService: fcmService,
+    deviceInfoService: deviceInfoService,
+  );
+  final InternetConnectionChecker connectionChecker =
+  InternetConnectionChecker.createInstance(
+      addresses: [AddressCheckOption(uri: Uri.parse('https://www.google.com'))]);
+  final Connectivity connectivity = Connectivity();
   final smsAuth = SmartAuth.instance;
+
+  try {
+    String? token;
+    if (Platform.isIOS) {
+      String? apnsToken = await FirebaseMessaging.instance.getAPNSToken();
+      if (apnsToken != null) {
+        token = await FirebaseMessaging.instance.getToken();
+      } else {
+        FirebaseMessaging.instance.onTokenRefresh.listen((token) {});
+      }
+    } else {
+      token = await FirebaseMessaging.instance.getToken();
+    }
+    if (token != null && token.isNotEmpty) {
+      await fcmService.saveToken(token);
+    }
+    token = null;
+  } catch (_) {}
 
 
   // core
   sl.registerSingleton(connectivity);
   sl.registerSingleton(connectionChecker);
-  sl.registerSingleton(dio.dio);
+  sl.registerSingleton(dioClient.dio);
   sl.registerSingleton<SharedPreferences>(sharedPreferences);
   sl.registerSingleton(deeplinkService);
   sl.registerSingleton<TokenService>(tokenService);
@@ -55,7 +81,7 @@ Future<void> initInjection() async {
   sl.registerSingleton<UserService>(userService);
   sl.registerSingleton(notificationService);
   sl.registerLazySingleton(() => OnboardingService(sl.get()));
-  sl.registerLazySingleton(() => fmcService);
+  sl.registerSingleton(fcmService);
   sl.registerSingleton(smsAuth);
 
 
@@ -69,7 +95,7 @@ Future<void> initInjection() async {
   sl.registerLazySingleton<UserLocationRepository>(() => UserLocationRepositoryImpl(sl.get(), sl.get()));
   sl.registerLazySingleton<AdsBannerRepository>(() => AdsBannerRepositoryImpl(sl.get(), sl.get()));
   sl.registerLazySingleton<VerificationRepository>(() => VerificationRepositoryImpl(sl.get()));
-  sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl.get(), sl.get(), sl.get()));
+  sl.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl(sl.get()));
   sl.registerLazySingleton<CarDetailRepository>(() => CarDetailRepositoryImpl(sl.get()));
   sl.registerLazySingleton<ProfileRepository>(() => ProfileRepositoryImpl(sl.get()));
 }

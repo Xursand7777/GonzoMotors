@@ -64,12 +64,18 @@ class $AssetsIconsGen {
   AssetGenImage get closeCircle =>
       const AssetGenImage('assets/icons/close_circle.png');
 
+  /// File path: assets/icons/compare.png
+  AssetGenImage get compare => const AssetGenImage('assets/icons/compare.png');
+
   /// File path: assets/icons/connect_no.png
   AssetGenImage get connectNo =>
       const AssetGenImage('assets/icons/connect_no.png');
 
   /// File path: assets/icons/electro.png
   AssetGenImage get electro => const AssetGenImage('assets/icons/electro.png');
+
+  /// File path: assets/icons/heart.png
+  AssetGenImage get heart => const AssetGenImage('assets/icons/heart.png');
 
   /// File path: assets/icons/hybrid.png
   AssetGenImage get hybrid => const AssetGenImage('assets/icons/hybrid.png');
@@ -168,6 +174,10 @@ class $AssetsIconsGen {
   AssetGenImage get zeekr001 =>
       const AssetGenImage('assets/icons/zeekr001.png');
 
+  /// File path: assets/icons/zeekr_logo.png
+  AssetGenImage get zeekrLogo =>
+      const AssetGenImage('assets/icons/zeekr_logo.png');
+
   /// List of all assets
   List<dynamic> get values => [
     available,
@@ -175,8 +185,10 @@ class $AssetsIconsGen {
     check,
     checkCircleFill,
     closeCircle,
+    compare,
     connectNo,
     electro,
+    heart,
     hybrid,
     language,
     logOut,
@@ -205,6 +217,7 @@ class $AssetsIconsGen {
     xiamo,
     xiamoyu7,
     zeekr001,
+    zeekrLogo,
   ];
 }
 

@@ -4,29 +4,167 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fb66d60-bf55-4744-a189-5e75f78c85c9" name="Changes" comment="">
+    <list default="true" id="3fb66d60-bf55-4744-a189-5e75f78c85c9" name="Changes" comment="Fix auth and remove unused code">
+      <change afterPath="$PROJECT_DIR$/gonzomotors/assets/icons/compare.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gonzomotors/assets/icons/heart.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gonzomotors/assets/icons/zeekr_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/core/network/refreshable_page_mixin.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/core/services/fcm_service.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/car_catalog/cubit/car_catalog_cubit.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/car_catalog/cubit/car_catalog_state.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gonzomotors/lib/shared/custom_footer/custom_footer_shared.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/GonzoMotors.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/GonzoMotors.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gonzomotors/lib/core/di/app_injection.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/core/di/app_injection.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gonzomotors/lib/core/network/base_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/core/network/base_repository.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/core/network/dio_client.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/core/network/dio_client.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gonzomotors/lib/core/route/app_router.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/core/route/app_router.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/core/services/token_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/core/services/token_service.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/core/services/user_service.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/core/services/user_service.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/core/services/firebase_token.service.dart" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/auth/bloc/auth_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/auth/bloc/auth_bloc.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/auth/bloc/auth_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/auth/bloc/auth_event.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/auth/data/models/create_user_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/auth/data/models/create_user_model.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/auth/data/repository/auth_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/auth/data/repository/auth_repository.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/profile/data/models/user_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/profile/data/models/user_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/bloc/car_catalog_state.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/bloc/car_catalog_state.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/widgets/car_list.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/widgets/car_list.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/widgets/car_pick_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/car_catalog/widgets/car_pick_card.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/gen/assets.gen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/gen/assets.gen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gonzomotors/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gonzomotors/lib/pages/auth/auth_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/auth/auth_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/pages/car_catalog/car_catalog_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/car_catalog/car_catalog_page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/pages/car_catalog/widgets/car_filter_widget.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/car_catalog/widgets/car_filter_widget.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gonzomotors/lib/pages/catalog/catalog_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/catalog/catalog_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/pages/dashboard/dashboard_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/dashboard/dashboard_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/pages/onboarding/onboarding_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/pages/onboarding/onboarding_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/pages/phone_register/phone_register_page.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/pages/verification/verification_page.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/pages/verification/widgets/border_box.dart" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/pages/verification/widgets/white_container.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/arts/custom_header.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/arts/example1.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/arts/example2.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/arts/example3.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/arts/example4.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/arts/example5.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/arts/example6.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/arts/example7.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/arts/example8.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/arts/gifindicator.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/arts/screen1.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/.metadata" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/android/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/android/app/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/android/app/src/main/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/android/app/src/main/java/com/jpeng/demo/MainActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/android/app/src/main/res/drawable/launch_background.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/android/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/android/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/android/app/src/main/res/values/styles.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/android/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/android/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/android/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/android/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/android/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/android/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/android/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/images/animate.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/images/bezier.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/images/classical_follow.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/images/classical_unfollow.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/images/custom_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/images/custom_2.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/images/empty.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/images/empty1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/images/gifindicator1.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/images/loadstyle1.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/images/loadstyle2.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/images/loadstyle3.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/images/material_classic.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/images/material_waterdrop.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/images/msg_text_right_bg.9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/images/qqbg.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/images/refreshstyle1.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/images/refreshstyle2.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/images/refreshstyle3.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/images/refreshstyle4.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/images/secondfloor.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/images/shimmerindicator.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/images/warterdrop.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Flutter/AppFrameworkInfo.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Flutter/Debug.xcconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Flutter/Release.xcconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Podfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Podfile.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner.xcodeproj/project.pbxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner.xcodeproj/project.xcworkspace/contents.xcworkspacedata" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner.xcodeproj/xcshareddata/xcschemes/Runner.xcscheme" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner.xcworkspace/contents.xcworkspacedata" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/AppDelegate.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/AppDelegate.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/Assets.xcassets/LaunchImage.imageset/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/Base.lproj/LaunchScreen.storyboard" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/Base.lproj/Main.storyboard" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/ios/Runner/main.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/main.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/other/RunningHeader.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/other/custom_spinkit.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/other/expanded_viewport.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/other/refresh_glowindicator.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/other/refresh_recordable_listview.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/other/shimmer_indicator.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/Item.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/MainActivity.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/SecondActivity.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/example/ExamplePage.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/example/customindicator/footer_underscroll.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/example/customindicator/gif_indicator_example1.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/example/customindicator/link_header_example.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/example/customindicator/shimmer_indicator.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/example/customindicator/spinkit_header.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/example/otherwidget/draggable_bottomsheet_loadmore.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/example/otherwidget/refesh_expansiopn_panel_list_example.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/example/otherwidget/refresh_animatedlist_example.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/example/otherwidget/refresh_pageView_example.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/example/otherwidget/refresh_recordable_listview_example.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/example/otherwidget/refresh_staggered_and_sticky.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/example/useStage/Nested.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/example/useStage/basic.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/example/useStage/empty_view.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/example/useStage/force_full_one_page.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/example/useStage/hidefooter_bycontent.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/example/useStage/horizontal+reverse.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/example/useStage/qq_chat_list.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/example/useStage/tapbutton_refresh.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/example/useStage/twolevel_refresh.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/indicator/IndicatorPage.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/indicator/base/IndicatorActivity.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/test/Test1.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/test/Test2.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/test/Test3.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/test/Test4.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/lib/ui/test/TestPage.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/example/pubspec.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/packages/pull_to_refresh/pubspec.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gonzomotors/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gonzomotors/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/pubspec.yaml" afterDir="false" />
     </list>
@@ -88,15 +226,15 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.sync&quot;,
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\FlutterProjects\GonzoMotors\gonzomotors\assets\icons" />
       <recent name="F:\FlutterProjects\GonzoMotors\gonzomotors\assets\images" />
       <recent name="F:\FlutterProjects\GonzoMotors\gonzomotors\lib\features\car_detail" />
-      <recent name="F:\FlutterProjects\GonzoMotors\gonzomotors\assets\icons" />
       <recent name="F:\FlutterProjects\GonzoMotors\gonzomotors\lib\features\auth\bloc" />
       <recent name="F:\FlutterProjects\GonzoMotors\gonzomotors\android\app" />
     </key>
@@ -195,7 +333,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769181844240</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Fix auth and remove unused code">
+      <option name="closed" value="true" />
+      <created>1769273515400</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1769273515400</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -220,6 +366,7 @@
     <MESSAGE value="Add profile and auth" />
     <MESSAGE value="add auth logic" />
     <MESSAGE value="add car detail and change auth logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="add car detail and change auth logic" />
+    <MESSAGE value="Fix auth and remove unused code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix auth and remove unused code" />
   </component>
 </project>

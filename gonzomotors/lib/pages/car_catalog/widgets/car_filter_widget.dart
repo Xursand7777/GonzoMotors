@@ -77,12 +77,14 @@ final filters = [
   ),
 ];
 
-/// --- Виджет фильтров ---
+
 class CarFilterWidget extends StatelessWidget {
-  const CarFilterWidget({super.key});
+  final bool isLoading;
+  const CarFilterWidget({super.key, this.isLoading = false});
 
   @override
   Widget build(BuildContext context) {
+    if (isLoading) return const CarFilterShimmer();
     return SizedBox(
       height: 100,
       child: ListView.separated(
@@ -118,3 +120,135 @@ class CarFilterWidget extends StatelessWidget {
     );
   }
 }
+
+class CarFilterShimmer extends StatelessWidget {
+  const CarFilterShimmer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final base = Theme.of(context).brightness == Brightness.dark
+        ? const Color(0xFF2A2A2A)
+        : const Color(0xFFE9E9E9);
+
+    final highlight = Theme.of(context).brightness == Brightness.dark
+        ? const Color(0xFF3A3A3A)
+        : const Color(0xFFF5F5F5);
+
+    return SizedBox(
+      height: 100,
+      child: ListView.separated(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        scrollDirection: Axis.horizontal,
+        itemCount: 5,
+        separatorBuilder: (_, __) => const SizedBox(width: 16),
+        itemBuilder: (context, index) {
+          return Column(
+            children: [
+              _ShimmerBox(
+                width: 64,
+                height: 64,
+                radius: 12,
+                baseColor: base,
+                highlightColor: highlight,
+              ),
+              const SizedBox(height: 6),
+              _ShimmerBox(
+                width: 44,
+                height: 12,
+                radius: 6,
+                baseColor: base,
+                highlightColor: highlight,
+              ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+}
+
+class _ShimmerBox extends StatefulWidget {
+  final double width;
+  final double height;
+  final double radius;
+  final Color baseColor;
+  final Color highlightColor;
+
+  const _ShimmerBox({
+    required this.width,
+    required this.height,
+    required this.radius,
+    required this.baseColor,
+    required this.highlightColor,
+  });
+
+  @override
+  State<_ShimmerBox> createState() => _ShimmerBoxState();
+}
+
+class _ShimmerBoxState extends State<_ShimmerBox>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1100),
+    )..repeat();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (_, __) {
+        final t = _controller.value; // 0..1
+        return ShaderMask(
+          blendMode: BlendMode.srcATop,
+          shaderCallback: (rect) {
+            // градиент “пробегает” слева направо
+            final dx = rect.width * (t * 2 - 1); // -width..+width
+            return LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                widget.baseColor,
+                widget.highlightColor,
+                widget.baseColor,
+              ],
+              stops: const [0.2, 0.5, 0.8],
+              transform: _SlideGradientTransform(dx),
+            ).createShader(rect);
+          },
+          child: Container(
+            width: widget.width,
+            height: widget.height,
+            decoration: BoxDecoration(
+              color: widget.baseColor,
+              borderRadius: BorderRadius.circular(widget.radius),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _SlideGradientTransform extends GradientTransform {
+  final double dx;
+  const _SlideGradientTransform(this.dx);
+
+  @override
+  Matrix4 transform(Rect bounds, {TextDirection? textDirection}) {
+    return Matrix4.translationValues(dx, 0.0, 0.0);
+  }
+}
+

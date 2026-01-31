@@ -65,192 +65,213 @@ class _CatalogPageViewState extends State<CatalogPageView> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        ListView(
-          padding: const EdgeInsets.fromLTRB(16, 16, 16, 110),
-          children: [
-            const SearchTextFieldShared(),
-            const SizedBox(height: 16),
-            _SectionTitle(title: 'Тип автомобиля'),
-            const SizedBox(height: 10),
-            SizedBox(
-              height: 96,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: carTypes.length,
-                separatorBuilder: (_, __) => const SizedBox(width: 12),
-                itemBuilder: (context, i) {
-                  final item = carTypes[i];
-                  return _SelectableCard(
-                    width: 104,
-                    height: 96,
-                    selected: selectedCarType == i,
-                    onTap: () => setState(() => selectedCarType = i),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(item.icon, size: 34, color: const Color(0xFF2E7D32)),
-                        const SizedBox(height: 8),
-                        Text(
-                          item.title,
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF111827),
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
+    return CustomScrollView(
+      slivers: [
+        // Верхняя часть страницы как обычные виджеты, но внутри SliverList
+        SliverPadding(
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+          sliver: SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                const SearchTextFieldShared(),
+                const SizedBox(height: 16),
 
-            const SizedBox(height: 18),
-            _SectionTitle(title: 'Тип кузова'),
-            const SizedBox(height: 10),
-            SizedBox(
-              height: 74,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: bodyTypes.length,
-                separatorBuilder: (_, __) => const SizedBox(width: 12),
-                itemBuilder: (context, i) {
-                  return _SoftCard(
-                    width: 112,
-                    height: 74,
-                    child: Align(
-                      alignment: Alignment.bottomLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: Text(
-                          bodyTypes[i],
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF111827),
-                          ),
+                _SectionTitle(title: 'Тип автомобиля'),
+                const SizedBox(height: 10),
+                SizedBox(
+                  height: 96,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: carTypes.length,
+                    separatorBuilder: (_, __) => const SizedBox(width: 12),
+                    itemBuilder: (context, i) {
+                      final item = carTypes[i];
+                      return _SelectableCard(
+                        width: 104,
+                        height: 96,
+                        selected: selectedCarType == i,
+                        onTap: () => setState(() => selectedCarType = i),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(item.icon, size: 34, color: const Color(0xFF2E7D32)),
+                            const SizedBox(height: 8),
+                            Text(
+                              item.title,
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xFF111827),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-
-            const SizedBox(height: 18),
-            Row(
-              children: [
-                const Expanded(child: _SectionTitle(title: 'Бренды')),
-                InkWell(
-                  onTap: () {
-                    // TODO: открыть список всех брендов
-                  },
-                  borderRadius: BorderRadius.circular(10),
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 6, vertical: 6),
-                    child: Row(
-                      children: [
-                        Text(
-                          'Все',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFFFF3B30),
-                          ),
-                        ),
-                        SizedBox(width: 6),
-                        Icon(Icons.chevron_right, size: 18, color: Color(0xFFFF3B30)),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            SizedBox(
-              height: 110,
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: brands.length,
-                separatorBuilder: (_, __) => const SizedBox(width: 12),
-                itemBuilder: (context, i) {
-                  final b = brands[i];
-                  return _SelectableCard(
-                    width: 120,
-                    height: 110,
-                    selected: selectedBrand == i,
-                    onTap: () => setState(() => selectedBrand = i),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        // Заглушка под лого
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: const Color(0xFF111827), width: 2),
-                          ),
-                          child: const Icon(Icons.crop_square, size: 18, color: Color(0xFF111827)),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          b.name,
-                          style: const TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFF111827),
-                          ),
-                        ),
-                        const SizedBox(height: 2),
-                        Text(
-                          '${b.modelsCount} моделей',
-                          style: const TextStyle(
-                            fontSize: 11,
-                            color: Color(0xFF9CA3AF),
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
-            ),
-            const SizedBox(height: 10),
-            Row(
-              children: [
-                _CircleActionButton(
-                  icon: Icons.swap_vert,
-                  onTap: () {
-                    // TODO: сортировка
-                  },
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: _PillButton(
-                    icon: Icons.tune,
-                    text: 'Фильтр',
-                    onTap: () {
-                      showModalBottomSheet(
-                        context: context,
-                        isScrollControlled: true,
-                        backgroundColor: Colors.transparent, // чтобы сделать rounded сверху красиво
-                        builder: (_) => const FilterBottomSheet(),
                       );
                     },
                   ),
                 ),
+
+                const SizedBox(height: 18),
+                _SectionTitle(title: 'Тип кузова'),
+                const SizedBox(height: 10),
+                SizedBox(
+                  height: 74,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: bodyTypes.length,
+                    separatorBuilder: (_, __) => const SizedBox(width: 12),
+                    itemBuilder: (context, i) {
+                      return _SoftCard(
+                        width: 112,
+                        height: 74,
+                        child: Align(
+                          alignment: Alignment.bottomLeft,
+                          child: Padding(
+                            padding: const EdgeInsets.all(12),
+                            child: Text(
+                              bodyTypes[i],
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xFF111827),
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+
+                const SizedBox(height: 18),
+                Row(
+                  children: [
+                    const Expanded(child: _SectionTitle(title: 'Бренды')),
+                    InkWell(
+                      onTap: () {
+                        // TODO: открыть список всех брендов
+                      },
+                      borderRadius: BorderRadius.circular(10),
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+                        child: Row(
+                          children: [
+                            Text(
+                              'Все',
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xFFFF3B30),
+                              ),
+                            ),
+                            SizedBox(width: 6),
+                            Icon(Icons.chevron_right,
+                                size: 18, color: Color(0xFFFF3B30)),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                SizedBox(
+                  height: 110,
+                  child: ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: brands.length,
+                    separatorBuilder: (_, __) => const SizedBox(width: 12),
+                    itemBuilder: (context, i) {
+                      final b = brands[i];
+                      return _SelectableCard(
+                        width: 120,
+                        height: 110,
+                        selected: selectedBrand == i,
+                        onTap: () => setState(() => selectedBrand = i),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: 40,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(
+                                  color: const Color(0xFF111827),
+                                  width: 2,
+                                ),
+                              ),
+                              child: const Icon(Icons.crop_square,
+                                  size: 18, color: Color(0xFF111827)),
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              b.name,
+                              style: const TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w700,
+                                color: Color(0xFF111827),
+                              ),
+                            ),
+                            const SizedBox(height: 2),
+                            Text(
+                              '${b.modelsCount} моделей',
+                              style: const TextStyle(
+                                fontSize: 11,
+                                color: Color(0xFF9CA3AF),
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    _CircleActionButton(
+                      icon: Icons.swap_vert,
+                      onTap: () {
+                        // TODO: сортировка
+                      },
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: _PillButton(
+                        icon: Icons.tune,
+                        text: 'Фильтр',
+                        onTap: () {
+                          showModalBottomSheet(
+                            context: context,
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
+                            builder: (_) => const FilterBottomSheet(),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 16),
               ],
             ),
-          ],
+          ),
         ),
-      //  CarsList()
+
+        // ✅ Список машин (Sliver)
+        const CarsListSliver(),
+
+        // ✅ Отступ под нижнюю навигацию/кнопки
+        const SliverToBoxAdapter(
+          child: SizedBox(height: 110),
+        ),
       ],
     );
   }
+
 }
 
 /* ---------------- UI blocks ---------------- */
