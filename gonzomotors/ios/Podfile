@@ -1,6 +1,10 @@
-platform :ios, '13.0'
+platform :ios, '15.0'
 
-flutter_sdk_path = File.expand_path('~/Library/Developer/flutter')
+# Enable modular headers for some Swift Firebase pods that require module maps
+use_modular_headers!
+
+# Prefer FLUTTER_ROOT environment variable, fallback to common user path
+flutter_sdk_path = ENV['FLUTTER_ROOT'] || File.expand_path('~/Library/Developer/flutter')
 require File.join(flutter_sdk_path, 'packages', 'flutter_tools', 'bin', 'podhelper.rb')
 
 target 'Runner' do
