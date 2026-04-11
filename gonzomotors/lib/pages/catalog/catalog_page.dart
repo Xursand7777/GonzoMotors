@@ -3,15 +3,33 @@ import 'package:gonzo_motors/pages/car_catalog/car_catalog_page.dart';
 import '../../features/car_catalog/widgets/car_list.dart';
 import '../../shared/search_text_field_shared/search_text_field_shared.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../core/di/app_injection.dart';
+import '../../features/car_catalog/bloc/car_catalog_bloc.dart';
+import '../../features/car_catalog/bloc/filter_cubit.dart';
+import '../../features/car_catalog/bloc/filter_options_cubit.dart';
+import '../../features/car_catalog/data/models/car_query_options.dart';
+import '../../features/car_catalog/data/models/filter_options.dart';
+
 class CatalogPage extends StatelessWidget {
   const CatalogPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Color(0xFFF6F7F9),
-      appBar: _CatalogAppBar(),
-      body: CatalogPageView(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => FilterOptionsCubit(repo: sl.get()),
+        ),
+        BlocProvider(
+          create: (_) => FilterCubit(),
+        ),
+      ],
+      child: const Scaffold(
+        backgroundColor: Color(0xFFF6F7F9),
+        appBar: _CatalogAppBar(),
+        body: CatalogPageView(),
+      ),
     );
   }
 }
@@ -65,197 +83,238 @@ class _CatalogPageViewState extends State<CatalogPageView> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        // Верхняя часть страницы как обычные виджеты, но внутри SliverList
-        SliverPadding(
-          padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
-          sliver: SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                const SearchTextFieldShared(),
-                const SizedBox(height: 16),
+    return BlocBuilder<FilterOptionsCubit, FilterOptionsState>(
+      builder: (context, filterOptionsState) {
+        final options = filterOptionsState.options;
 
-                _SectionTitle(title: 'Тип автомобиля'),
-                const SizedBox(height: 10),
-                SizedBox(
-                  height: 96,
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: carTypes.length,
-                    separatorBuilder: (_, __) => const SizedBox(width: 12),
-                    itemBuilder: (context, i) {
-                      final item = carTypes[i];
-                      return _SelectableCard(
-                        width: 104,
-                        height: 96,
-                        selected: selectedCarType == i,
-                        onTap: () => setState(() => selectedCarType = i),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(item.icon, size: 34, color: const Color(0xFF2E7D32)),
-                            const SizedBox(height: 8),
-                            Text(
-                              item.title,
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xFF111827),
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                ),
+        return CustomScrollView(
+          slivers: [
+            SliverPadding(
+              padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+              sliver: SliverList(
+                delegate: SliverChildListDelegate(
+                  [
+                    const SearchTextFieldShared(),
+                    const SizedBox(height: 16),
 
-                const SizedBox(height: 18),
-                _SectionTitle(title: 'Тип кузова'),
-                const SizedBox(height: 10),
-                SizedBox(
-                  height: 74,
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: bodyTypes.length,
-                    separatorBuilder: (_, __) => const SizedBox(width: 12),
-                    itemBuilder: (context, i) {
-                      return _SoftCard(
-                        width: 112,
-                        height: 74,
-                        child: Align(
-                          alignment: Alignment.bottomLeft,
-                          child: Padding(
-                            padding: const EdgeInsets.all(12),
-                            child: Text(
-                              bodyTypes[i],
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xFF111827),
-                              ),
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-
-                const SizedBox(height: 18),
-                Row(
-                  children: [
-                    const Expanded(child: _SectionTitle(title: 'Бренды')),
-                    InkWell(
-                      onTap: () {
-                        // TODO: открыть список всех брендов
-                      },
-                      borderRadius: BorderRadius.circular(10),
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 6, vertical: 6),
-                        child: Row(
-                          children: [
-                            Text(
-                              'Все',
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
-                                color: Color(0xFFFF3B30),
-                              ),
-                            ),
-                            SizedBox(width: 6),
-                            Icon(Icons.chevron_right,
-                                size: 18, color: Color(0xFFFF3B30)),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                SizedBox(
-                  height: 110,
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: brands.length,
-                    separatorBuilder: (_, __) => const SizedBox(width: 12),
-                    itemBuilder: (context, i) {
-                      final b = brands[i];
-                      return _SelectableCard(
-                        width: 120,
-                        height: 110,
-                        selected: selectedBrand == i,
-                        onTap: () => setState(() => selectedBrand = i),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(
-                                  color: const Color(0xFF111827),
-                                  width: 2,
+                    _SectionTitle(title: 'Тип автомобиля'),
+                    const SizedBox(height: 10),
+                    SizedBox(
+                      height: 96,
+                      child: BlocBuilder<FilterCubit, CarQueryOptions>(
+                        builder: (context, filterState) {
+                          return ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: options.powertrains.length,
+                            separatorBuilder: (_, __) => const SizedBox(width: 12),
+                            itemBuilder: (context, i) {
+                              final pt = options.powertrains[i];
+                              final selected = (filterState.powertrains ?? []).contains(pt);
+                              return _SelectableCard(
+                                width: 104,
+                                height: 96,
+                                selected: selected,
+                                onTap: () {
+                                  context.read<FilterCubit>().togglePowertrain(pt);
+                                  context.read<CarCatalogBloc>().add(GetCarsEvent(queryOptions: context.read<FilterCubit>().state));
+                                },
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Icon(Icons.directions_car, size: 34, color: Color(0xFF2E7D32)),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      pt,
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color(0xFF111827),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              child: const Icon(Icons.crop_square,
-                                  size: 18, color: Color(0xFF111827)),
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              b.name,
-                              style: const TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w700,
-                                color: Color(0xFF111827),
-                              ),
-                            ),
-                            const SizedBox(height: 2),
-                            Text(
-                              '${b.modelsCount} моделей',
-                              style: const TextStyle(
-                                fontSize: 11,
-                                color: Color(0xFF9CA3AF),
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                ),
-
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    _CircleActionButton(
-                      icon: Icons.swap_vert,
-                      onTap: () {
-                        // TODO: сортировка
-                      },
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: _PillButton(
-                        icon: Icons.tune,
-                        text: 'Фильтр',
-                        onTap: () {
-                          showModalBottomSheet(
-                            context: context,
-                            isScrollControlled: true,
-                            backgroundColor: Colors.transparent,
-                            builder: (_) => const FilterBottomSheet(),
+                              );
+                            },
                           );
                         },
                       ),
                     ),
-                  ],
-                ),
 
-                const SizedBox(height: 16),
+                    const SizedBox(height: 18),
+                    _SectionTitle(title: 'Тип кузова'),
+                    const SizedBox(height: 10),
+                    SizedBox(
+                      height: 74,
+                      child: BlocBuilder<FilterCubit, CarQueryOptions>(
+                        builder: (context, filterState) {
+                          return ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: options.bodyTypes.length,
+                            separatorBuilder: (_, __) => const SizedBox(width: 12),
+                            itemBuilder: (context, i) {
+                              final bodyType = options.bodyTypes[i];
+                              final selected = (filterState.bodyTypeIds ?? []).contains(bodyType.id);
+                              return InkWell(
+                                onTap: () {
+                                  context.read<FilterCubit>().toggleBodyType(bodyType.id);
+                                  context.read<CarCatalogBloc>().add(GetCarsEvent(queryOptions: context.read<FilterCubit>().state));
+                                },
+                                borderRadius: BorderRadius.circular(16),
+                                child: Container(
+                                  width: 112,
+                                  height: 74,
+                                  decoration: BoxDecoration(
+                                    color: selected ? const Color(0xFFFF3B30).withOpacity(0.1) : const Color(0xFFF2F3F5),
+                                    borderRadius: BorderRadius.circular(16),
+                                    border: Border.all(
+                                      color: selected ? const Color(0xFFFF3B30) : Colors.transparent,
+                                      width: selected ? 1.5 : 0,
+                                    ),
+                                  ),
+                                  child: Align(
+                                    alignment: Alignment.bottomLeft,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(12),
+                                      child: Text(
+                                        bodyType.name,
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600,
+                                          color: selected ? const Color(0xFFFF3B30) : const Color(0xFF111827),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ),
+
+                    const SizedBox(height: 18),
+                    Row(
+                      children: [
+                        const Expanded(child: _SectionTitle(title: 'Бренды')),
+                        InkWell(
+                          onTap: () {
+                            // TODO: открыть список всех брендов
+                          },
+                          borderRadius: BorderRadius.circular(10),
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Все',
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                    color: Color(0xFFFF3B30),
+                                  ),
+                                ),
+                                SizedBox(width: 6),
+                                Icon(Icons.chevron_right,
+                                    size: 18, color: Color(0xFFFF3B30)),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    SizedBox(
+                      height: 110,
+                      child: BlocBuilder<FilterCubit, CarQueryOptions>(
+                        builder: (context, filterState) {
+                          return ListView.separated(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: options.brands.length,
+                            separatorBuilder: (_, __) => const SizedBox(width: 12),
+                            itemBuilder: (context, i) {
+                              final b = options.brands[i];
+                              final selected = (filterState.brandIds ?? []).contains(b.id);
+                              return _SelectableCard(
+                                width: 120,
+                                height: 110,
+                                selected: selected,
+                                onTap: () {
+                                  context.read<FilterCubit>().toggleBrand(b.id);
+                                  context.read<CarCatalogBloc>().add(GetCarsEvent(queryOptions: context.read<FilterCubit>().state));
+                                },
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      width: 40,
+                                      height: 40,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(
+                                          color: const Color(0xFF111827),
+                                          width: 2,
+                                        ),
+                                      ),
+                                      child: const Icon(Icons.directions_car,
+                                          size: 18, color: Color(0xFF111827)),
+                                    ),
+                                    const SizedBox(height: 8),
+                                    Text(
+                                      b.name,
+                                      textAlign: TextAlign.center,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w700,
+                                        color: Color(0xFF111827),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      ),
+                    ),
+
+                    const SizedBox(height: 10),
+                    Row(
+                      children: [
+                        _CircleActionButton(
+                          icon: Icons.swap_vert,
+                          onTap: () {
+                            // TODO: сортировка
+                          },
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: _PillButton(
+                            icon: Icons.tune,
+                            text: 'Фильтр',
+                            onTap: () {
+                              showModalBottomSheet(
+                                context: context,
+                                isScrollControlled: true,
+                                backgroundColor: Colors.transparent,
+                                builder: (_) => MultiBlocProvider(
+                                  providers: [
+                                    BlocProvider.value(value: context.read<FilterOptionsCubit>()),
+                                    BlocProvider.value(value: context.read<FilterCubit>()),
+                                    BlocProvider.value(value: context.read<CarCatalogBloc>()),
+                                  ],
+                                  child: const FilterBottomSheet(),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+
+                    const SizedBox(height: 16),
               ],
             ),
           ),
@@ -268,7 +327,9 @@ class _CatalogPageViewState extends State<CatalogPageView> {
         const SliverToBoxAdapter(
           child: SizedBox(height: 110),
         ),
-      ],
+          ],
+        );
+      },
     );
   }
 
@@ -512,49 +573,85 @@ class FilterBottomSheet extends StatelessWidget {
 
                 // Content (scroll)
                 Expanded(
-                  child: SingleChildScrollView(
-                    controller: scrollController,
-                    padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _SectionTitleFilter(text: 'Тип кузова',),
-                        const SizedBox(height: 10),
-                        _RadioGrid(items: const [
-                          'Внедорожник', 'Кроссовер',
-                          'Лифтбек', 'Хечбек',
-                          'Седан', 'Спорт',
-                        ]),
-                        const SizedBox(height: 18),
+                  child: BlocBuilder<FilterOptionsCubit, FilterOptionsState>(
+                    builder: (context, filterOptionsState) {
+                      final options = filterOptionsState.options;
+                      return BlocBuilder<FilterCubit, CarQueryOptions>(
+                        builder: (context, filterState) {
+                          return SingleChildScrollView(
+                            controller: scrollController,
+                            padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                _SectionTitleFilter(text: 'Тип кузова'),
+                                const SizedBox(height: 10),
+                                _RadioGrid(
+                                  items: options.bodyTypes,
+                                  selectedIds: filterState.bodyTypeIds ?? [],
+                                  onToggle: (id) => context.read<FilterCubit>().toggleBodyType(id),
+                                ),
+                                const SizedBox(height: 18),
 
-                        _SectionTitleFilter(text:'Тип автомобиля'),
-                        const SizedBox(height: 10),
-                        _RadioGrid(items: const ['Гибрид', 'Электро', 'Бензин']),
-                        const SizedBox(height: 18),
+                                _SectionTitleFilter(text: 'Тип автомобиля'),
+                                const SizedBox(height: 10),
+                                _RadioGrid(
+                                  // Map pt string to pseudo-FilterItem
+                                  items: options.powertrains.map((e) => FilterItem(id: e.hashCode, name: e)).toList(),
+                                  selectedIds: (filterState.powertrains ?? []).map((e) => e.hashCode).toList(),
+                                  onToggle: (id) {
+                                    final pt = options.powertrains.firstWhere((e) => e.hashCode == id);
+                                    context.read<FilterCubit>().togglePowertrain(pt);
+                                  },
+                                ),
+                                const SizedBox(height: 18),
 
-                        _SectionTitleFilter(text:'Тип привода'),
-                        const SizedBox(height: 10),
-                        _RadioGrid(items: const [
-                          'FWD', 'RWD', '4WD', 'FWD / 4WD', 'RWD / 4WD', 'XWD', 'AWD'
-                        ]),
-                        const SizedBox(height: 18),
+                                _SectionTitleFilter(text: 'Тип привода'),
+                                const SizedBox(height: 10),
+                                _RadioGrid(
+                                  items: options.driveTypes,
+                                  selectedIds: filterState.driveTypeIds ?? [],
+                                  onToggle: (id) {
+                                    final list = List<int>.from(filterState.driveTypeIds ?? []);
+                                    if (list.contains(id)) list.remove(id); else list.add(id);
+                                    context.read<FilterCubit>().updateQuery((q) => q.copyWith(driveTypeIds: list));
+                                  },
+                                ),
+                                const SizedBox(height: 18),
 
-                        _SectionTitleFilter(text:'Бренды'),
-                        const SizedBox(height: 10),
-                        _BrandGrid(brands: List.generate(10, (_) => 'Zeekr')),
-                        const SizedBox(height: 18),
+                                _SectionTitleFilter(text: 'Бренды'),
+                                const SizedBox(height: 10),
+                                _BrandGrid(
+                                  brands: options.brands,
+                                  selectedIds: filterState.brandIds ?? [],
+                                  onToggle: (id) => context.read<FilterCubit>().toggleBrand(id),
+                                ),
+                                const SizedBox(height: 18),
 
-                        _SectionTitleFilter(text:'Тип двигателя'),
-                        const SizedBox(height: 10),
-                        _RadioGrid(items: List.generate(10, (_) => '1.5 Turbo')),
-                        const SizedBox(height: 18),
+                                _SectionTitleFilter(text: 'Тип двигателя'),
+                                const SizedBox(height: 10),
+                                _RadioGrid(
+                                  items: options.engineTypes,
+                                  selectedIds: filterState.engineTypeIds ?? [],
+                                  onToggle: (id) {
+                                    final list = List<int>.from(filterState.engineTypeIds ?? []);
+                                    if (list.contains(id)) list.remove(id); else list.add(id);
+                                    context.read<FilterCubit>().updateQuery((q) => q.copyWith(engineTypeIds: list));
+                                  },
+                                ),
+                                const SizedBox(height: 18),
 
-                        _SectionTitleFilter(text:'Цена'),
-                        const SizedBox(height: 10),
-                        _PriceStub(),
-                        const SizedBox(height: 90),
-                      ],
-                    ),
+                                _SectionTitleFilter(text: 'Цена'),
+                                const SizedBox(height: 10),
+                                //TODO PriceStub will need arguments, let's keep it unmodified for now
+                                _PriceStub(),
+                                const SizedBox(height: 90),
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    },
                   ),
                 ),
 
@@ -570,7 +667,9 @@ class FilterBottomSheet extends StatelessWidget {
                       Expanded(
                         child: OutlinedButton(
                           onPressed: () {
-                            // TODO reset
+                            context.read<FilterCubit>().reset();
+                            context.read<CarCatalogBloc>().add(const GetCarsEvent());
+                            Navigator.pop(context);
                           },
                           style: OutlinedButton.styleFrom(
                             padding: const EdgeInsets.symmetric(vertical: 14),
@@ -583,7 +682,7 @@ class FilterBottomSheet extends StatelessWidget {
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () {
-                            // TODO apply + close
+                            context.read<CarCatalogBloc>().add(GetCarsEvent(queryOptions: context.read<FilterCubit>().state));
                             Navigator.pop(context);
                           },
                           style: ElevatedButton.styleFrom(
@@ -661,23 +760,23 @@ class _SectionTitleFilter extends StatelessWidget {
 }
 
 
-class _RadioGrid extends StatefulWidget {
-  final List<String> items;
-  const _RadioGrid({required this.items});
+class _RadioGrid extends StatelessWidget {
+  final List<FilterItem> items;
+  final List<int> selectedIds;
+  final Function(int) onToggle;
 
-  @override
-  State<_RadioGrid> createState() => _RadioGridState();
-}
-
-class _RadioGridState extends State<_RadioGrid> {
-  String? selected;
+  const _RadioGrid({
+    required this.items,
+    required this.selectedIds,
+    required this.onToggle,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: widget.items.length,
+      itemCount: items.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisSpacing: 10,
@@ -685,12 +784,12 @@ class _RadioGridState extends State<_RadioGrid> {
         childAspectRatio: 4.2,
       ),
       itemBuilder: (_, i) {
-        final t = widget.items[i];
-        final isOn = selected == t;
+        final t = items[i];
+        final isOn = selectedIds.contains(t.id);
 
         return InkWell(
           borderRadius: BorderRadius.circular(14),
-          onTap: () => setState(() => selected = t),
+          onTap: () => onToggle(t.id),
           child: Row(
             children: [
               Container(
@@ -717,7 +816,7 @@ class _RadioGridState extends State<_RadioGrid> {
               const SizedBox(width: 10),
               Expanded(
                 child: Text(
-                  t,
+                  t.name,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: isOn ? Colors.black : Colors.black54,
@@ -733,23 +832,23 @@ class _RadioGridState extends State<_RadioGrid> {
   }
 }
 
-class _BrandGrid extends StatefulWidget {
-  final List<String> brands;
-  const _BrandGrid({required this.brands});
+class _BrandGrid extends StatelessWidget {
+  final List<FilterItem> brands;
+  final List<int> selectedIds;
+  final Function(int) onToggle;
 
-  @override
-  State<_BrandGrid> createState() => _BrandGridState();
-}
-
-class _BrandGridState extends State<_BrandGrid> {
-  int? selectedIndex;
+  const _BrandGrid({
+    required this.brands,
+    required this.selectedIds,
+    required this.onToggle,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: widget.brands.length,
+      itemCount: brands.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisSpacing: 12,
@@ -757,10 +856,12 @@ class _BrandGridState extends State<_BrandGrid> {
         childAspectRatio: 3.4,
       ),
       itemBuilder: (_, i) {
-        final isOn = selectedIndex == i;
+        final b = brands[i];
+        final isOn = selectedIds.contains(b.id);
+        
         return InkWell(
           borderRadius: BorderRadius.circular(16),
-          onTap: () => setState(() => selectedIndex = i),
+          onTap: () => onToggle(b.id),
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
             decoration: BoxDecoration(
@@ -783,7 +884,7 @@ class _BrandGridState extends State<_BrandGrid> {
                   child: const Icon(Icons.directions_car, size: 18),
                 ),
                 const SizedBox(width: 10),
-                Expanded(child: Text(widget.brands[i])),
+                Expanded(child: Text(b.name, overflow: TextOverflow.ellipsis)),
                 Container(
                   width: 22,
                   height: 22,

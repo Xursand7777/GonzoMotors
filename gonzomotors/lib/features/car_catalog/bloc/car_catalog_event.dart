@@ -8,7 +8,9 @@ sealed class CarCatalogEvent extends Equatable {
 }
 
 class GetCarsEvent extends CarCatalogEvent {
-    const GetCarsEvent();
+    final CarQueryOptions? queryOptions;
+    const GetCarsEvent({this.queryOptions});
+    
     @override
-    List<Object?> get props => [];
+    List<Object?> get props => [queryOptions];
 }

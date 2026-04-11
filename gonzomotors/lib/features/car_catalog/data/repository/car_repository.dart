@@ -9,7 +9,7 @@ import '../models/car.dart' show CarModel;
 
 abstract class CarRepository extends BaseRepository {
   CarRepository(super.dio);
-  Future<Pagination<CarModel>> getCarCards();
+  Future<Pagination<CarModel>> getCarCards({Map<String, dynamic>? queryParameters});
 }
 
 class CarRepositoryImpl extends CarRepository {
@@ -17,12 +17,11 @@ class CarRepositoryImpl extends CarRepository {
   CarRepositoryImpl(super.dio, this.sharedPreferences);
 
   @override
-  Future<Pagination<CarModel>> getCarCards() async {
-    return getListWithPaginationRequest('cars', fromJson: CarModel.fromJson);
+  Future<Pagination<CarModel>> getCarCards({Map<String, dynamic>? queryParameters}) async {
+    return getListWithPaginationRequest(
+      'Common/Cars', 
+      fromJson: CarModel.fromJson,
+      queryParameters: queryParameters,
+    );
   }
-
-
-
-
-
 }

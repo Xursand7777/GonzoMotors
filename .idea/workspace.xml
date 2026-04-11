@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fb66d60-bf55-4744-a189-5e75f78c85c9" name="Changes" comment="pull to refresh lib fix">
+    <list default="true" id="3fb66d60-bf55-4744-a189-5e75f78c85c9" name="Changes" comment="Fix vendor file">
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,6 +58,7 @@
     "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
+    "com.google.services.firebase.aqiPopupShown": "true",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
@@ -237,7 +239,15 @@
       <option name="project" value="LOCAL" />
       <updated>1769878712606</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Fix vendor file">
+      <option name="closed" value="true" />
+      <created>1769879125089</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1769879125089</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -268,6 +278,7 @@
     <MESSAGE value="pull to refresh lib" />
     <MESSAGE value="pull to refresh lib 2" />
     <MESSAGE value="pull to refresh lib fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="pull to refresh lib fix" />
+    <MESSAGE value="Fix vendor file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix vendor file" />
   </component>
 </project>
