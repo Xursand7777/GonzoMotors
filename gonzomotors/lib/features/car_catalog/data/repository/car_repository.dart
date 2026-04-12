@@ -19,7 +19,7 @@ class CarRepositoryImpl extends CarRepository {
   @override
   Future<Pagination<CarModel>> getCarCards({Map<String, dynamic>? queryParameters}) async {
     return getListWithPaginationRequest(
-      'Common/Cars', 
+      'Cars', 
       fromJson: CarModel.fromJson,
       queryParameters: queryParameters,
     );

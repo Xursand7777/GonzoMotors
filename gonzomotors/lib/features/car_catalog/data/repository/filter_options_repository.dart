@@ -32,7 +32,7 @@ class FilterOptionsRepositoryImpl extends FilterOptionsRepository {
 
     // Fetch from backend
     try {
-      final response = await dio.get('/Common/Cars/filter-options');
+      final response = await dio.get('/Cars/filter-options');
       if (response.data != null) {
         // Save to cache
         await sharedPreferences.setString(_cacheKey, jsonEncode(response.data));
