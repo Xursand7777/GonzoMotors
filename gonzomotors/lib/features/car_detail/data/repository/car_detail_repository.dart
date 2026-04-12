@@ -43,8 +43,7 @@ class CarDetailRepositoryImpl extends CarDetailRepository {
 
   @override
   Future<List<CarModelDetail>> getModificationsByModelId(int? modelId) async {
-    // TODO: поменяй на свой endpoint
-    final res = await dio.get('/cars/model/$modelId/modifications');
+    final res = await dio.get('Cars/model/$modelId/modifications');
 
     final list = (res.data as List? ?? []);
     return list
@@ -54,8 +53,7 @@ class CarDetailRepositoryImpl extends CarDetailRepository {
 
   @override
   Future<CarModelDetail> getCarDetailByCarId(int carId) async {
-    // TODO: поменяй на свой endpoint
-    final res = await dio.get('/cars/$carId/detail');
+    final res = await dio.get('Cars/$carId/detail');
     return CarModelDetail.fromJson(res.data as Map<String, dynamic>);
   }
 
