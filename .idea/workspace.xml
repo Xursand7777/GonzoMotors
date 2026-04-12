@@ -5,8 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3fb66d60-bf55-4744-a189-5e75f78c85c9" name="Changes" comment="Fix vendor file">
-      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/data/card_db.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/data/models/address.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/data/models/battery.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/data/models/car_details.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/data/models/car_info.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/data/models/car_specs.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/data/models/charging.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/data/models/compare_models.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/data/models/dimensions.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/data/models/driver_assist.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/data/models/interior.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/data/models/models.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/data/models/performance.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/data/models/pricing.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/data/models/warranty.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gonzomotors/lib/features/user_location/user_location_utils.dart" beforeDir="false" afterPath="$PROJECT_DIR$/gonzomotors/lib/features/user_location/user_location_utils.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
