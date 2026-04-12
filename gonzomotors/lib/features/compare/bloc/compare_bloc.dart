@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../core/bloc/base_status.dart';
+import '../../../core/bloc/base_status.dart';
 import '../data/repository/compare_repository.dart';
 import 'compare_event.dart';
 import 'compare_state.dart';

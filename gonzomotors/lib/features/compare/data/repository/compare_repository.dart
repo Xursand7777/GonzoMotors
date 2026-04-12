@@ -1,5 +1,5 @@
 import 'package:gonzo_motors/core/network/base_repository.dart';
-import 'compare_result.dart';
+import '../models/compare_result.dart';
 
 abstract class CompareRepository extends BaseRepository {
   CompareRepository(super.dio);

@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import '../../core/bloc/base_status.dart';
+import '../../../core/bloc/base_status.dart';
 import '../data/models/compare_result.dart';
 
 class CompareState extends Equatable {
@@ -7,7 +7,7 @@ class CompareState extends Equatable {
   final CompareResult? result;
 
   const CompareState({
-    this.status = const BaseStatus.initial(),
+    this.status = const BaseStatus(type: StatusType.initial),
     this.result,
   });
 
