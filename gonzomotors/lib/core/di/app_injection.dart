@@ -16,6 +16,7 @@ import 'package:smart_auth/smart_auth.dart';
 import '../../features/ads_banner/data/repository/ads_banner_repository.dart';
 import '../../features/car_catalog/data/repository/car_repository.dart';
 import '../../features/car_catalog/data/repository/filter_options_repository.dart';
+import '../../features/compare/data/repository/compare_repository.dart';
 import '../../features/user_location/data/repository/user_location_repository.dart';
 import '../local/onboarding_service.dart';
 import '../services/deeplink_service.dart';
@@ -100,4 +101,5 @@ Future<void> initInjection() async {
   sl.registerLazySingleton<CarDetailRepository>(() => CarDetailRepositoryImpl(sl.get()));
   sl.registerLazySingleton<ProfileRepository>(() => ProfileRepositoryImpl(sl.get()));
   sl.registerLazySingleton<FilterOptionsRepository>(() => FilterOptionsRepositoryImpl(sl.get(), sl.get()));
+  sl.registerLazySingleton<CompareRepository>(() => CompareRepositoryImpl(sl.get()));
 }
