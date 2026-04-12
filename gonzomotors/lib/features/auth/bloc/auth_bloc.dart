@@ -188,7 +188,26 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       final res = await _repository.verifyOtpCode(query: data);
 
       if (res == true) {
-
+        // Check if user already registered
+        final isRegistered = await _repository.checkIsRegistered(phone);
+        
+        if (isRegistered) {
+          // If registered, login directly
+          final loginRes = await _repository.loginUser(query: data);
+          if (loginRes.success == true && loginRes.data != null) {
+            await _tokenService.saveToken(loginRes.data!.accessToken!);
+            if (loginRes.data?.refreshToken != null) {
+              await _tokenService.saveRefreshToken(loginRes.data!.refreshToken!);
+            }
+            emit(state.copyWith(
+              status: BaseStatus.completed(),
+              isLogin: true,
+            ));
+            return;
+          }
+        }
+        
+        // If not registered, proceed to AuthInfo widget
         emit(state.copyWith(
           status: BaseStatus.success(),
         ));

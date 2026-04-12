@@ -21,6 +21,12 @@ abstract class AuthRepository extends BaseRepository {
     required String phoneNumber,
   });
 
+  Future<bool> checkIsRegistered(String phoneNumber);
+
+  Future<ApiResponse<CreateUserModel?>> loginUser({
+    Map<String, dynamic>? query,
+  });
+
 }
 
 class AuthRepositoryImpl extends AuthRepository {
@@ -51,6 +57,22 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
 
+
+  @override
+  Future<bool> checkIsRegistered(String phoneNumber) async {
+    return await postRaw<bool>(
+      'MobileUser/isRegistred?phoneNumber=$phoneNumber',
+    );
+  }
+
+  @override
+  Future<ApiResponse<CreateUserModel?>> loginUser({
+    Map<String, dynamic>? query,
+  }) async {
+    return await post('MobileUser/login',
+        fromJson: (json) => CreateUserModel.fromJson(json),
+        data: query);
+  }
 
   @override
   Future<ApiResponse> resendOtpCode({required String phoneNumber}) {
