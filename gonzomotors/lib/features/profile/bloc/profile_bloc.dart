@@ -45,6 +45,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     on<EditNameEvent>(_onEditName);
     on<EditSurnameEvent>(_onEditSurname);
     on<EditSaveOrCancelEvent>(_onEditSaveOrCancel);
+    on<UpdateUserProfileEvent>(_onUpdateUserProfile);
 
     // Initial events
     add(const GetPopUpEvent());
@@ -351,6 +352,33 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
                'Foydalanuvchi ma\'lumotlarini yangilashda xatolik yuz berdi.'),
          ));
        } finally {
+         emit(state.copyWith(status: BaseStatus.initial()));
+       }
+     }
+   }
+
+   void _onUpdateUserProfile(
+       UpdateUserProfileEvent event, Emitter<ProfileState> emit) async {
+     try {
+       emit(state.copyWith(status: BaseStatus.loading()));
+       final response = await repo.updateUser(event.updatedUserJson);
+       
+       if (response.data != null) {
+         emit(state.copyWith(
+             user: response.data!,
+             status: BaseStatus.success(),
+             clearEdit: true));
+       } else {
+         emit(state.copyWith(
+           status: BaseStatus.errorWithMessage(message: 'Error updating user profile'),
+         ));
+       }
+     } catch (e) {
+       emit(state.copyWith(
+         status: BaseStatus.errorWithMessage(message: e.toString()),
+       ));
+     } finally {
+       if (state.status.isLoading()) {
          emit(state.copyWith(status: BaseStatus.initial()));
        }
      }

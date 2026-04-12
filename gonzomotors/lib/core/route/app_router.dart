@@ -9,6 +9,7 @@ import '../../pages/catalog/catalog_page.dart';
 import '../../pages/connection_check/connection_check_page.dart';
 import '../../pages/dashboard/dashboard_page.dart';
 import '../../pages/profile/profile_page.dart';
+import '../../pages/profile/edit_profile_page.dart';
 import '../../pages/splash/splash_page.dart';
 import '../../pages/success/success_page.dart';
 import '../log/talker_logger.dart';
@@ -58,6 +59,11 @@ final GoRouter appRouter = GoRouter(
       path: '/profile',
       name: RouteNames.profile,
       builder: (_, __) => const ProfilePage(),
+    ),
+    GoRoute(
+      path: '/edit-profile',
+      name: RouteNames.editProfile,
+      builder: (_, __) => const EditProfilePage(),
     ),
     GoRoute(
       path: '/car-detail',

@@ -128,3 +128,12 @@ class EditSaveOrCancelEvent extends ProfileEvent {
 class GetPopUpEvent extends ProfileEvent {
   const GetPopUpEvent();
 }
+
+class UpdateUserProfileEvent extends ProfileEvent {
+  final Map<String, dynamic> updatedUserJson;
+
+  const UpdateUserProfileEvent(this.updatedUserJson);
+
+  @override
+  List<Object?> get props => [updatedUserJson];
+}
