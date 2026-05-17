@@ -47,6 +47,13 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     on<EditSaveOrCancelEvent>(_onEditSaveOrCancel);
     on<UpdateUserProfileEvent>(_onUpdateUserProfile);
 
+    // ==================== POPUP HANDLERS ====================
+    on<GetPopUpEvent>(_onGetPopUp);
+
+    // ==================== ANALYTICS HANDLERS ====================
+    on<UpdateUserAnalyticsEvent>(_onUpdateUserAnalytics);
+    on<ClearAnalyticsEvent>(_onClearAnalytics);
+
     // Initial events
     add(const GetPopUpEvent());
     add(const LoadPackageInfoEvent());
@@ -383,6 +390,18 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
        }
      }
    }
+
+    void _onGetPopUp(GetPopUpEvent event, Emitter<ProfileState> emit) {
+      _log('GetPopUpEvent called');
+    }
+
+    void _onUpdateUserAnalytics(UpdateUserAnalyticsEvent event, Emitter<ProfileState> emit) {
+      _log('UpdateUserAnalyticsEvent called for user: ${event.user.id}');
+    }
+
+    void _onClearAnalytics(ClearAnalyticsEvent event, Emitter<ProfileState> emit) {
+      _log('ClearAnalyticsEvent called');
+    }
 
    Future<String> getUniqueDeviceId(DeviceInfoPlugin deviceInfo) async {
      String uniqueDeviceId = '';

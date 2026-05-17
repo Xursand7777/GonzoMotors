@@ -84,9 +84,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<CarCatalogCubit>(
           create: (_) => CarCatalogCubit(),
         ),
-        // BlocProvider<ProfileBloc>(
-        //   create: (context) => ProfileBloc(sl.get(), sl.get(), sl.get(), sl.get()),
-        // ),
+        BlocProvider<ProfileBloc>(
+          create: (context) => ProfileBloc(sl.get(), sl.get(), sl.get(), sl.get()),
+        ),
       ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
