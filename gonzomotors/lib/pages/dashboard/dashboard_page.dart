@@ -140,17 +140,17 @@ class _DashboardViewState extends State<_DashboardView> {
                   label: 'Main',
                 ),
                 BottomNavigationBarItem(
-                  icon: Assets.icons.search.image(
+                  icon: Assets.icons.compare2.svg(
                     color: barColor.unselectedItemColor,
                     width: 24,
                     height: 24,
                   ),
-                  activeIcon: Assets.icons.search.image(
+                  activeIcon: Assets.icons.compare2.svg(
                     color: barColor.selectedItemColor,
                     width: 24,
                     height: 24,
                   ),
-                  label: 'Search',
+                  label: 'Compare',
                 ),
                 BottomNavigationBarItem(
                   icon: Assets.icons.profile.image(

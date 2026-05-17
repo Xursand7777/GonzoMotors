@@ -67,6 +67,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/compare.png
   AssetGenImage get compare => const AssetGenImage('assets/icons/compare.png');
 
+  /// File path: assets/icons/compare2.svg
+  SvgGenImage get compare2 => const SvgGenImage('assets/icons/compare2.svg');
+
   /// File path: assets/icons/connect_no.png
   AssetGenImage get connectNo =>
       const AssetGenImage('assets/icons/connect_no.png');
@@ -186,6 +189,7 @@ class $AssetsIconsGen {
     checkCircleFill,
     closeCircle,
     compare,
+    compare2,
     connectNo,
     electro,
     heart,
