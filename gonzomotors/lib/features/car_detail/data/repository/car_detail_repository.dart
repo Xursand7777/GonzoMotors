@@ -61,7 +61,7 @@ class CarDetailRepositoryImpl extends CarDetailRepository {
   Future<String?> getPdfUrl(int carId) async {
     // TODO: optional endpoint
     try {
-      final res = await dio.get('/cars/$carId/pdf');
+      final res = await dio.get('cars/$carId/pdf');
       return (res.data?['url'] as String?);
     } catch (_) {
       return null;
@@ -72,7 +72,7 @@ class CarDetailRepositoryImpl extends CarDetailRepository {
   Future<List<CarFeatureCard>> getFeatureCards(int carId) async {
     // TODO: optional endpoint
     try {
-      final res = await dio.get('/cars/$carId/features');
+      final res = await dio.get('cars/$carId/features');
       final list = (res.data as List? ?? []);
       return list
           .map((e) => CarFeatureCard.fromJson(e as Map<String, dynamic>))
