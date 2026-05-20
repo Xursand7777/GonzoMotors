@@ -22,20 +22,20 @@ class ColorDots extends StatelessWidget {
         return GestureDetector(
           onTap: () => onSelect(i),
           child: Container(
-            width: 20,
-            height: 20,
-            margin: const EdgeInsets.symmetric(horizontal: 6),
+            width: 23,
+            height: 23,
+            margin: const EdgeInsets.symmetric(horizontal: 4.5),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               border: Border.all(
-                color: isSelected ? Colors.black : Colors.black.withOpacity(0.15),
-                width: isSelected ? 2 : 1,
+                color: isSelected ? Colors.black : Colors.transparent,
+                width: 1.5,
               ),
             ),
             child: Center(
               child: Container(
-                width: 12,
-                height: 12,
+                width: 15,
+                height: 15,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: colors[i],

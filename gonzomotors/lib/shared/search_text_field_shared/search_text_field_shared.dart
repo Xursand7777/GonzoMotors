@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../core/theme/app_statics.dart';
 import '../../core/theme/text_styles.dart';
 import '../../gen/assets.gen.dart';
 import '../../gen/colors.gen.dart';
@@ -28,6 +27,8 @@ class SearchTextFieldShared extends StatelessWidget {
       onChanged: onChanged,
       decoration: InputDecoration(
           hintText: hintText,
+          filled: true,
+          fillColor: const Color(0xFFF5F5F5),
           hintStyle: AppTextStyles.bodyRegularSecondary.copyWith(
             color: ColorName.contentSecondary,
           ),
@@ -39,18 +40,18 @@ class SearchTextFieldShared extends StatelessWidget {
           ),
           suffixIcon: suffixIcon,
           prefixIcon: Padding(
-            padding: const EdgeInsets.only(left:8),
+            padding: const EdgeInsets.only(left: 8),
             child: Assets.icons.search.image(width: 24, height: 24),
           ),
           focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(AppStatics.radiusXXLarge),
+            borderRadius: BorderRadius.circular(10),
             borderSide: BorderSide.none,
           ),
           enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(AppStatics.radiusXXLarge),
+              borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide.none),
           border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(AppStatics.radiusXXLarge),
+              borderRadius: BorderRadius.circular(10),
               borderSide: BorderSide.none)),
     );
   }

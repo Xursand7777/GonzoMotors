@@ -32,19 +32,164 @@ class CarDetailPage extends StatelessWidget {
     return BlocProvider(
       create: (_) => CarDetailBloc(repository: sl.get())
         ..add(CarDetailOpened(modelId: modelId, preferredCarId: initialCarId)),
-      child: const _CarDetailView(),
+      child: _CarDetailView(modelId: modelId, initialCarId: initialCarId),
     );
   }
 }
 
 class _CarDetailView extends StatelessWidget {
-  const _CarDetailView();
+  final int? modelId;
+  final int? initialCarId;
+
+  const _CarDetailView({
+    this.modelId,
+    this.initialCarId,
+  });
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CarDetailBloc, CarDetailState>(
       builder: (context, state) {
+        if (state.status.isLoading()) {
+          return Scaffold(
+            backgroundColor: Colors.white,
+            body: SafeArea(
+              child: Column(
+                children: [
+                  CarDetailAppBar(
+                    title: 'Загрузка...',
+                    isFavorite: false,
+                    onBack: () => Navigator.of(context).maybePop(),
+                    onFavorite: () {},
+                    onShare: () {},
+                  ),
+                  const Expanded(
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        color: Color(0xFFE81E0E),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+
+        if (state.status.isError() || state.errorMessage != null) {
+          final errorText = state.errorMessage ?? state.status.message ?? 'Не удалось загрузить данные';
+          return Scaffold(
+            backgroundColor: Colors.white,
+            body: SafeArea(
+              child: Column(
+                children: [
+                  CarDetailAppBar(
+                    title: 'Ошибка',
+                    isFavorite: false,
+                    onBack: () => Navigator.of(context).maybePop(),
+                    onFavorite: () {},
+                    onShare: () {},
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.error_outline_rounded,
+                            color: Color(0xFFE81E0E),
+                            size: 64,
+                          ),
+                          const SizedBox(height: 16),
+                          const Text(
+                            'Ошибка загрузки данных',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            errorText,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          const SizedBox(height: 24),
+                          SizedBox(
+                            width: double.infinity,
+                            height: 48,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFFE81E0E),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              onPressed: () {
+                                context.read<CarDetailBloc>().add(
+                                  CarDetailOpened(
+                                    modelId: modelId,
+                                    preferredCarId: initialCarId,
+                                  ),
+                                );
+                              },
+                              child: const Text(
+                                'Повторить попытку',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+
         final selected = state.selected;
+
+        if (selected == null) {
+          return Scaffold(
+            backgroundColor: Colors.white,
+            body: SafeArea(
+              child: Column(
+                children: [
+                  CarDetailAppBar(
+                    title: 'Нет данных',
+                    isFavorite: false,
+                    onBack: () => Navigator.of(context).maybePop(),
+                    onFavorite: () {},
+                    onShare: () {},
+                  ),
+                  const Expanded(
+                    child: Center(
+                      child: Text(
+                        'Детальная информация о машине отсутствует',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+
         return Scaffold(
           backgroundColor: Colors.white,
           body: SafeArea(
@@ -57,8 +202,8 @@ class _CarDetailView extends StatelessWidget {
                     slivers: [
                       SliverToBoxAdapter(
                         child: CarDetailAppBar(
-                          title: selected?.carName ?? 'Car',
-                          isFavorite: state!.isFavorite,
+                          title: selected.carName,
+                          isFavorite: state.isFavorite,
                           onBack: () => Navigator.of(context).maybePop(),
                           onFavorite: () => context.read<CarDetailBloc>().add(const CarDetailToggleFavorite()),
                           onShare: () {
@@ -76,7 +221,7 @@ class _CarDetailView extends StatelessWidget {
 
                               // Фото/карусель
                               CarImageGallery(
-                                images: selected?.images.map((e) => e.url ?? '').where((u) => u.isNotEmpty).toList() ?? const [],
+                                images: selected.images.map((e) => e.url ?? '').where((u) => u.isNotEmpty).toList(),
                                 placeholderAsset: null, // можешь поставить asset
                               ),
 
@@ -86,12 +231,12 @@ class _CarDetailView extends StatelessWidget {
                               ColorDots(
                                 selectedIndex: state.selectedColorIndex,
                                 colors: const [
-                                  Color(0xFFE5E5E5),
-                                  Color(0xFFFF5A5A),
-                                  Color(0xFFFFD54F),
-                                  Color(0xFF42A5F5),
-                                  Color(0xFFAB47BC),
-                                  Color(0xFF1E88E5),
+                                  Color(0xFFADADAD),
+                                  Color(0xFFFE6E6E),
+                                  Color(0xFFFFD94F),
+                                  Color(0xFF3886B3),
+                                  Color(0xFF7A2295),
+                                  Color(0xFF2977D7),
                                 ],
                                 onSelect: (i) => context.read<CarDetailBloc>().add(CarDetailSelectColor(i)),
                               ),
@@ -101,8 +246,8 @@ class _CarDetailView extends StatelessWidget {
                               // Модификации
                               ModificationsGrid(
                                 title: 'Модификации',
-                                modifications: state!.modifications,
-                                selectedCarId: selected?.id,
+                                modifications: state.modifications,
+                                selectedCarId: selected.id,
                                 onSelect: (carId) => context.read<CarDetailBloc>().add(CarDetailSelectModification(carId)),
                               ),
 
@@ -116,6 +261,7 @@ class _CarDetailView extends StatelessWidget {
                               // PDF кнопка
                               PdfButton(
                                 title: 'Подробно о модификации (PDF)',
+                                backgroundColor: const Color(0xFFE81E0E),
                                 onPressed: state.pdfUrl == null
                                     ? null
                                     : () {
@@ -125,6 +271,15 @@ class _CarDetailView extends StatelessWidget {
                               const SizedBox(height: 14),
                               // Cards (интеллектуальная кабина и т.п.)
                               FeatureCardsList(cards: state.featureCards),
+                              const SizedBox(height: 14),
+                              // Связаться с менеджером кнопка
+                              PdfButton(
+                                title: 'Связаться с менеджером',
+                                backgroundColor: const Color(0xFF373737),
+                                onPressed: () {
+                                  // TODO: связаться с менеджером
+                                },
+                              ),
                               const SizedBox(height: 110), // место под bottom bar
                             ],
                           ),
@@ -150,9 +305,9 @@ class _CarDetailView extends StatelessWidget {
 
           // Bottom buy bar
           bottomNavigationBar: BottomBuyBar(
-            title: selected?.model ?? '—',
-            price: selected?.price,
-            cipPrice: selected?.cipPrice,
+            title: selected.model,
+            price: selected.price,
+            cipPrice: selected.cipPrice,
             onBuy: () => context.read<CarDetailBloc>().add(const CarDetailBuyPressed()),
           ),
         );

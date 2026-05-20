@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:gonzo_motors/pages/car_catalog/car_catalog_page.dart';
 import '../../features/car_catalog/widgets/car_list.dart';
 import '../../shared/search_text_field_shared/search_text_field_shared.dart';
 
@@ -26,7 +25,7 @@ class CatalogPage extends StatelessWidget {
         ),
       ],
       child: const Scaffold(
-        backgroundColor: Color(0xFFF6F7F9),
+        backgroundColor: Colors.white,
         appBar: _CatalogAppBar(),
         body: CatalogPageView(),
       ),
@@ -63,6 +62,27 @@ class _CatalogPageViewState extends State<CatalogPageView> {
   int selectedCarType = 2; // бензин по умолчанию как на скрине
   int selectedBrand = 1;
 
+  String _getPowertrainImage(String pt) {
+    final cleanPt = pt.trim().toLowerCase();
+    if (cleanPt.contains('гибрид') || cleanPt.contains('hybrid')) {
+      return 'assets/images/gibrid.png';
+    } else if (cleanPt.contains('электр') || cleanPt.contains('electric') || cleanPt.contains('ev')) {
+      return 'assets/images/electro.png';
+    } else {
+      return 'assets/images/benzin.png';
+    }
+  }
+
+  String _getBrandLogo(String brandName) {
+    final name = brandName.trim().toLowerCase();
+    if (name.contains('zeekr')) {
+      return 'assets/icons/zeekr_logo.png';
+    } else if (name.contains('xiaomi')) {
+      return 'assets/icons/xiamo.png';
+    }
+    return 'assets/icons/zeekr_logo.png';
+  }
+
   final carTypes = const <_CarTypeItem>[
     _CarTypeItem(title: 'Гибрид', icon: Icons.electric_bolt),
     _CarTypeItem(title: 'Электр', icon: Icons.ev_station),
@@ -94,13 +114,15 @@ class _CatalogPageViewState extends State<CatalogPageView> {
               sliver: SliverList(
                 delegate: SliverChildListDelegate(
                   [
-                    const SearchTextFieldShared(),
+                    const SearchTextFieldShared(
+                      hintText: 'Поиск автомобилей',
+                    ),
                     const SizedBox(height: 16),
 
                     _SectionTitle(title: 'Тип автомобиля'),
                     const SizedBox(height: 10),
                     SizedBox(
-                      height: 96,
+                      height: 110,
                       child: BlocBuilder<FilterCubit, CarQueryOptions>(
                         builder: (context, filterState) {
                           return ListView.separated(
@@ -111,24 +133,45 @@ class _CatalogPageViewState extends State<CatalogPageView> {
                               final pt = options.powertrains[i];
                               final selected = (filterState.powertrains ?? []).contains(pt);
                               return _SelectableCard(
-                                width: 104,
-                                height: 96,
+                                width: 110,
+                                height: 110,
                                 selected: selected,
                                 onTap: () {
                                   context.read<FilterCubit>().togglePowertrain(pt);
                                   context.read<CarCatalogBloc>().add(GetCarsEvent(queryOptions: context.read<FilterCubit>().state));
                                 },
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                                child: Stack(
+                                  clipBehavior: Clip.none,
                                   children: [
-                                    const Icon(Icons.directions_car, size: 34, color: Color(0xFF2E7D32)),
-                                    const SizedBox(height: 8),
-                                    Text(
-                                      pt,
-                                      style: const TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w600,
-                                        color: Color(0xFF111827),
+                                    Positioned(
+                                      top: -6,
+                                      left: 5,
+                                      right: 5,
+                                      child: Image.asset(
+                                        _getPowertrainImage(pt),
+                                        height: 100,
+                                        width: 100,
+                                        fit: BoxFit.cover,
+                                        errorBuilder: (_, __, ___) => const Icon(
+                                          Icons.directions_car,
+                                          size: 34,
+                                          color: Color(0xFF2E7D32),
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      bottom: 12,
+                                      left: 0,
+                                      right: 0,
+                                      child: Text(
+                                        pt,
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(
+                                          fontFamily: 'Inter',
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w700,
+                                          color: Color(0xFF202938),
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -154,34 +197,25 @@ class _CatalogPageViewState extends State<CatalogPageView> {
                             itemBuilder: (context, i) {
                               final bodyType = options.bodyTypes[i];
                               final selected = (filterState.bodyTypeIds ?? []).contains(bodyType.id);
-                              return InkWell(
+                              return _SelectableCard(
+                                width: 112,
+                                height: 74,
+                                selected: selected,
                                 onTap: () {
                                   context.read<FilterCubit>().toggleBodyType(bodyType.id);
                                   context.read<CarCatalogBloc>().add(GetCarsEvent(queryOptions: context.read<FilterCubit>().state));
                                 },
-                                borderRadius: BorderRadius.circular(16),
-                                child: Container(
-                                  width: 112,
-                                  height: 74,
-                                  decoration: BoxDecoration(
-                                    color: selected ? const Color(0xFFFF3B30).withOpacity(0.1) : const Color(0xFFF2F3F5),
-                                    borderRadius: BorderRadius.circular(16),
-                                    border: Border.all(
-                                      color: selected ? const Color(0xFFFF3B30) : Colors.transparent,
-                                      width: selected ? 1.5 : 0,
-                                    ),
-                                  ),
-                                  child: Align(
-                                    alignment: Alignment.bottomLeft,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(12),
-                                      child: Text(
-                                        bodyType.name,
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w600,
-                                          color: selected ? const Color(0xFFFF3B30) : const Color(0xFF111827),
-                                        ),
+                                child: Align(
+                                  alignment: Alignment.bottomLeft,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(12),
+                                    child: Text(
+                                      bodyType.name,
+                                      style: const TextStyle(
+                                        fontFamily: 'Inter',
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w700,
+                                        color: Color(0xFF202938),
                                       ),
                                     ),
                                   ),
@@ -209,14 +243,15 @@ class _CatalogPageViewState extends State<CatalogPageView> {
                                 Text(
                                   'Все',
                                   style: TextStyle(
+                                    fontFamily: 'Inter',
                                     fontSize: 12,
-                                    fontWeight: FontWeight.w600,
-                                    color: Color(0xFFFF3B30),
+                                    fontWeight: FontWeight.w700,
+                                    color: Color(0xFFFF594C),
                                   ),
                                 ),
                                 SizedBox(width: 6),
                                 Icon(Icons.chevron_right,
-                                    size: 18, color: Color(0xFFFF3B30)),
+                                    size: 18, color: Color(0xFFFF594C)),
                               ],
                             ),
                           ),
@@ -247,17 +282,22 @@ class _CatalogPageViewState extends State<CatalogPageView> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Container(
-                                      width: 40,
-                                      height: 40,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        border: Border.all(
-                                          color: const Color(0xFF111827),
-                                          width: 2,
+                                      width: 48,
+                                      height: 48,
+                                      decoration: const BoxDecoration(
+                                        color: Colors.white,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      padding: const EdgeInsets.all(6),
+                                      child: Image.asset(
+                                        _getBrandLogo(b.name),
+                                        fit: BoxFit.contain,
+                                        errorBuilder: (_, __, ___) => const Icon(
+                                          Icons.directions_car,
+                                          size: 24,
+                                          color: Color(0xFF202938),
                                         ),
                                       ),
-                                      child: const Icon(Icons.directions_car,
-                                          size: 18, color: Color(0xFF111827)),
                                     ),
                                     const SizedBox(height: 8),
                                     Text(
@@ -266,9 +306,10 @@ class _CatalogPageViewState extends State<CatalogPageView> {
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
                                       style: const TextStyle(
+                                        fontFamily: 'Inter',
                                         fontSize: 12,
                                         fontWeight: FontWeight.w700,
-                                        color: Color(0xFF111827),
+                                        color: Color(0xFF202938),
                                       ),
                                     ),
                                   ],
@@ -346,9 +387,10 @@ class _SectionTitle extends StatelessWidget {
     return Text(
       title,
       style: const TextStyle(
+        fontFamily: 'Inter',
         fontSize: 14,
         fontWeight: FontWeight.w700,
-        color: Color(0xFF111827),
+        color: Color(0xFF202938),
       ),
     );
   }
@@ -371,7 +413,7 @@ class _SelectableCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final borderColor = selected ? const Color(0xFFFF3B30) : const Color(0xFFE5E7EB);
+    final borderColor = selected ? const Color(0xFFFF594C) : Colors.transparent;
 
     return InkWell(
       onTap: onTap,
@@ -380,44 +422,12 @@ class _SelectableCard extends StatelessWidget {
         width: width,
         height: height,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: const Color(0xFFF5F5F5),
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: borderColor, width: selected ? 1.6 : 1),
-          boxShadow: const [
-            BoxShadow(
-              blurRadius: 10,
-              offset: Offset(0, 4),
-              color: Color(0x0F111827),
-            )
-          ],
+          border: Border.all(color: borderColor, width: 1.5),
         ),
         child: child,
       ),
-    );
-  }
-}
-
-class _SoftCard extends StatelessWidget {
-  final double width;
-  final double height;
-  final Widget child;
-
-  const _SoftCard({
-    required this.width,
-    required this.height,
-    required this.child,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      height: height,
-      decoration: BoxDecoration(
-        color: const Color(0xFFF2F3F5),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: child,
     );
   }
 }

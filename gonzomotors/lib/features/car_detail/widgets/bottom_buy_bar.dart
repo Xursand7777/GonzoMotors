@@ -16,50 +16,121 @@ class BottomBuyBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      top: false,
-      child: Container(
-        padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border(top: BorderSide(color: Colors.black.withOpacity(0.06))),
-        ),
-        child: Row(
-          children: [
-            Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(title, style: const TextStyle(fontWeight: FontWeight.w800)),
-                  const SizedBox(height: 6),
-                  Text(
-                    _formatPrice(price),
-                    style: const TextStyle(color: Colors.red, fontSize: 20, fontWeight: FontWeight.w900),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    '${_formatPrice(cipPrice)} CIP Tashkent',
-                    style: TextStyle(color: Colors.black.withOpacity(0.5), fontSize: 12),
-                  ),
-                ],
-              ),
+    return Container(
+      color: Colors.white,
+      child: SafeArea(
+        top: false,
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(25, 16, 25, 16),
+          decoration: const BoxDecoration(
+            color: Color(0xFFF7F7F7),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(40),
+              topRight: Radius.circular(40),
             ),
-            const SizedBox(width: 12),
-            SizedBox(
-              height: 44,
-              width: 140,
-              child: ElevatedButton(
-                onPressed: onBuy,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                  elevation: 0,
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          _formatPrice(price),
+                          style: const TextStyle(
+                            fontFamily: 'Inter',
+                            color: Color(0xFFE81E0E),
+                            fontSize: 23.3,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(width: 6),
+                        const Text(
+                          'цена с\nрастаможкой',
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            color: Color(0xFFE81E0E),
+                            fontSize: 10.2,
+                            fontWeight: FontWeight.w400,
+                            height: 1.1,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    Row(
+                      children: [
+                        Text(
+                          _formatPrice(cipPrice),
+                          style: const TextStyle(
+                            fontFamily: 'Inter',
+                            color: Color(0xFF797979),
+                            fontSize: 14.6,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        const SizedBox(width: 5),
+                        const Text(
+                          'СIP Tashkent',
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            color: Color(0xFF797979),
+                            fontSize: 14.6,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                child: const Text('Купить', style: TextStyle(fontWeight: FontWeight.w900)),
               ),
-            ),
-          ],
+              const SizedBox(width: 12),
+              SizedBox(
+                height: 49,
+                width: 150,
+                child: ElevatedButton(
+                  onPressed: onBuy,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFE81E0E),
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                    elevation: 0,
+                    padding: EdgeInsets.zero,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(Icons.phone, size: 20, color: Colors.white),
+                      SizedBox(width: 8),
+                      Text(
+                        'Позвонить',
+                        style: TextStyle(
+                          fontFamily: 'Inter',
+                          fontWeight: FontWeight.w700,
+                          fontSize: 16,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
-import '../../../core/theme/app_statics.dart';
 import '../../../gen/assets.gen.dart';
 import '../../../gen/colors.gen.dart';
 import '../data/models/car.dart';
@@ -21,19 +20,35 @@ class CarProductCard extends StatelessWidget {
   final VoidCallback? onCompare;
   final VoidCallback? onFavorite;
 
-
   final int? compareCount;
-
   final bool isFavorite;
 
-  // TODO: привяжи к своим данным
-  String get retailPriceText => r'$47 000';
-  String get retailHintText => 'цена с\nрастаможкой';
-  String get cipText => r'$37 000 CIP Tashkent';
+  String _formatPrice(int? price) {
+    if (price == null) return '';
+    final str = price.toString();
+    final buffer = StringBuffer();
+    for (int i = 0; i < str.length; i++) {
+      buffer.write(str[i]);
+      if ((str.length - i - 1) % 3 == 0 && i != str.length - 1) {
+        buffer.write(' ');
+      }
+    }
+    return '\$$buffer';
+  }
+
+  String _getBrandLogo(String carName) {
+    final name = carName.trim().toLowerCase();
+    if (name.contains('zeekr')) {
+      return 'assets/icons/zeekr_logo.png';
+    } else if (name.contains('xiaomi')) {
+      return 'assets/icons/xiamo.png';
+    }
+    return 'assets/icons/zeekr_logo.png';
+  }
 
   @override
   Widget build(BuildContext context) {
-    const radius = AppStatics.radiusXXLarge;
+    const radius = 14.0;
 
     return Material(
       color: Colors.transparent,
@@ -42,7 +57,7 @@ class CarProductCard extends StatelessWidget {
         onTap: onTap,
         child: Ink(
           decoration: BoxDecoration(
-            color: Colors.grey[200],
+            color: const Color(0xFFF7F7F7),
             borderRadius: BorderRadius.circular(radius),
           ),
           child: Padding(
@@ -54,11 +69,25 @@ class CarProductCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // logo слева, фиксированный размер
-
-
+                    Container(
+                      width: 24,
+                      height: 24,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                      ),
+                      padding: const EdgeInsets.all(3),
+                      child: Image.asset(
+                        _getBrandLogo(car.name),
+                        fit: BoxFit.contain,
+                        errorBuilder: (_, __, ___) => const Icon(
+                          Icons.directions_car,
+                          size: 14,
+                          color: Color(0xFF202938),
+                        ),
+                      ),
+                    ),
                     const Spacer(), // ← занимает всё свободное место
-
-
                     _ActionButtons(
                       compareCount: compareCount,
                       onCompare: onCompare,
@@ -75,7 +104,7 @@ class CarProductCard extends StatelessWidget {
                   child: Center(
                     child: Image.network(
                       car.imageCardUrl,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.contain,
                       width: double.infinity,
                       errorBuilder: (_, __, ___) => const Icon(
                         Icons.directions_car_filled,
@@ -94,34 +123,39 @@ class CarProductCard extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w800,
-                    color: Color(0xFF111111),
+                    fontFamily: 'Inter',
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
                   ),
                 ),
+
+                const SizedBox(height: 4),
 
                 // Price row: big red + small hint
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      '${car.price}',
+                      _formatPrice(car.price),
                       style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w900,
-                        color: Color(0xFFE53935),
+                        fontFamily: 'Inter',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFFE81E0E),
                         height: 1.0,
                       ),
                     ),
-                    const SizedBox(width: 10),
+                    const SizedBox(width: 6),
                     const Padding(
                       padding: EdgeInsets.only(bottom: 2),
                       child: Text(
                         'цена с\nрастаможкой',
                         style: TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w700,
-                          color: Color(0xFFE53935),
+                          fontFamily: 'Inter',
+                          fontSize: 7,
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xFFE81E0E),
                           height: 1.1,
                         ),
                       ),
@@ -129,17 +163,18 @@ class CarProductCard extends StatelessWidget {
                   ],
                 ),
 
-                const SizedBox(height: 8),
+                const SizedBox(height: 6),
 
                 // CIP line
                 Text(
-                  '${car.cipPrice} CIP Tashkent',
+                  '${_formatPrice(car.cipPrice)} CIP Tashkent',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
-                    fontSize: 13,
-                    color: Color(0xFF8A8A8A),
-                    fontWeight: FontWeight.w600,
+                    fontFamily: 'Inter',
+                    fontSize: 10,
+                    color: Color(0xFF797979),
+                    fontWeight: FontWeight.w400,
                   ),
                 ),
               ],
@@ -170,8 +205,12 @@ class _ActionButtons extends StatelessWidget {
       children: [
         _SquareIconButton(
           size: 24,
-          background: Colors.white,
-          icon: Assets.icons.compare.image(width: 18, height: 18),
+          background: const Color(0xFFEBEBEB),
+          icon: Assets.icons.compare.image(
+            width: 14,
+            height: 14,
+            color: const Color(0xFF202938),
+          ),
           onTap: onCompare,
           badge: (compareCount != null && compareCount! > 0)
               ? compareCount!.toString()
@@ -180,9 +219,12 @@ class _ActionButtons extends StatelessWidget {
         const SizedBox(width: 10),
         _SquareIconButton(
           size: 24,
-          background: Colors.white,
-          border: const Color(0xFFE6E6EA),
-          icon: Assets.icons.heart.image(width: 18, height: 18),
+          background: const Color(0xFFEBEBEB),
+          icon: Assets.icons.heart.image(
+            width: 14,
+            height: 14,
+            color: isFavorite ? const Color(0xFFFF594C) : const Color(0xFF202938),
+          ),
           onTap: onFavorite,
         ),
       ],
@@ -195,14 +237,12 @@ class _SquareIconButton extends StatelessWidget {
     required this.size,
     required this.background,
     required this.icon,
-    this.border,
     this.onTap,
     this.badge,
   });
 
   final double size;
   final Color background;
-  final Color? border;
   final Widget icon;
   final VoidCallback? onTap;
   final String? badge;
@@ -212,19 +252,17 @@ class _SquareIconButton extends StatelessWidget {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        Material(
-          color: background,
-          borderRadius: BorderRadius.circular(6),
-          child: InkWell(
-            onTap: onTap,
-            child: Container(
-              width: size,
-              height: size,
-              decoration: BoxDecoration(
-                border: border == null ? null : Border.all(color: border!, width: 1),
-              ),
-              child: Center(child: icon),
+        InkWell(
+          onTap: onTap,
+          borderRadius: BorderRadius.circular(4),
+          child: Ink(
+            width: size,
+            height: size,
+            decoration: BoxDecoration(
+              color: background,
+              borderRadius: BorderRadius.circular(4),
             ),
+            child: Center(child: icon),
           ),
         ),
         if (badge != null)
@@ -232,18 +270,18 @@ class _SquareIconButton extends StatelessWidget {
             right: -6,
             top: -6,
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
               decoration: const BoxDecoration(
-                color: Color(0xFF1A1A1A),
+                color: Color(0xFFFF594C),
                 shape: BoxShape.circle,
               ),
-              constraints: const BoxConstraints(minWidth: 18, minHeight: 18),
+              constraints: const BoxConstraints(minWidth: 14, minHeight: 14),
               child: Center(
                 child: Text(
                   badge!,
                   style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 11,
+                    fontSize: 8,
                     fontWeight: FontWeight.w800,
                     height: 1.0,
                   ),
@@ -263,7 +301,7 @@ class CarProductCardShimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const radius = AppStatics.radiusXXLarge;
+    const radius = 14.0;
 
     return Shimmer.fromColors(
       baseColor: ColorName.contentMuted,

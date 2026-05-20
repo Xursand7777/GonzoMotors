@@ -25,7 +25,15 @@ class ModificationsGrid extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
+        Text(
+          title,
+          style: const TextStyle(
+            fontFamily: 'Inter',
+            fontSize: 16,
+            fontWeight: FontWeight.w500,
+            color: Colors.black,
+          ),
+        ),
         const SizedBox(height: 10),
 
         GridView.builder(
@@ -36,7 +44,7 @@ class ModificationsGrid extends StatelessWidget {
             crossAxisCount: 2,
             mainAxisSpacing: 12,
             crossAxisSpacing: 12,
-            childAspectRatio: 1.15,
+            childAspectRatio: 1.9,
           ),
           itemBuilder: (context, i) {
             final m = modifications[i];
@@ -44,16 +52,16 @@ class ModificationsGrid extends StatelessWidget {
 
             return InkWell(
               onTap: () => onSelect(m.id),
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(8),
               child: Container(
-                padding: const EdgeInsets.all(12),
+                padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 10),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(14),
+                  borderRadius: BorderRadius.circular(8),
                   border: Border.all(
-                    color: isSelected ? Colors.red : const Color(0xFFE9E9E9),
-                    width: isSelected ? 1.5 : 1,
+                    color: isSelected ? const Color(0xFFE81E0E) : Colors.transparent,
+                    width: 1.0,
                   ),
-                  color: Colors.white,
+                  color: const Color(0xFFF7F7F7),
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,28 +70,64 @@ class ModificationsGrid extends StatelessWidget {
                       '${m.model} ${m.modelYear}',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(fontWeight: FontWeight.w700),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      _formatPrice(m.price),
                       style: const TextStyle(
-                        color: Colors.red,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w800,
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12,
+                        color: Colors.black,
                       ),
                     ),
-                    const SizedBox(height: 4),
-                    Text(
-                      '${_formatPrice(m.cipPrice)} CIP Tashkent',
-                      style: TextStyle(color: Colors.black.withOpacity(0.5), fontSize: 12),
+                    const SizedBox(height: 5),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          _formatPrice(m.price),
+                          style: const TextStyle(
+                            fontFamily: 'Inter',
+                            color: Color(0xFFE81E0E),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(width: 4),
+                        const Expanded(
+                          child: Text(
+                            'цена с\nрастаможкой',
+                            style: TextStyle(
+                              fontFamily: 'Inter',
+                              color: Color(0xFFE81E0E),
+                              fontSize: 7,
+                              fontWeight: FontWeight.w400,
+                              height: 1.1,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    const Spacer(),
-                    Text(
-                      m.powertrain,
-                      style: TextStyle(color: Colors.black.withOpacity(0.55), fontSize: 12),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                    const SizedBox(height: 4),
+                    Row(
+                      children: [
+                        Text(
+                          _formatPrice(m.cipPrice),
+                          style: const TextStyle(
+                            fontFamily: 'Inter',
+                            color: Color(0xFF797979),
+                            fontSize: 10,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        const SizedBox(width: 4),
+                        const Text(
+                          'СIP Tashkent',
+                          style: TextStyle(
+                            fontFamily: 'Inter',
+                            color: Color(0xFF797979),
+                            fontSize: 10,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),

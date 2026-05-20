@@ -225,11 +225,28 @@ class $AssetsIconsGen {
   ];
 }
 
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+  /// File path: assets/images/benzin.png
+  AssetGenImage get benzin => const AssetGenImage('assets/images/benzin.png');
+
+  /// File path: assets/images/electro.png
+  AssetGenImage get electro => const AssetGenImage('assets/images/electro.png');
+
+  /// File path: assets/images/gibrid.png
+  AssetGenImage get gibrid => const AssetGenImage('assets/images/gibrid.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [benzin, electro, gibrid];
+}
+
 class Assets {
   const Assets._();
 
   static const $AssetsCarsGen cars = $AssetsCarsGen();
   static const $AssetsIconsGen icons = $AssetsIconsGen();
+  static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 
 class AssetGenImage {
